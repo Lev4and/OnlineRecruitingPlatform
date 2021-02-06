@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore", "OnlineRecruitingPlatform.DevExtremeAspNetCore\OnlineRecruitingPlatform.DevExtremeAspNetCore.csproj", "{8EB798B7-948A-436D-B2AD-BE7054B56847}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "DevExtreme NuGet.config", "{7CBED6F4-0A95-4E1B-8E4B-E6A1ED0D12D1}"
+	ProjectSection(SolutionItems) = preProject
+		NuGet.config = NuGet.config
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Model", "OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj", "{C8BEBB96-4B81-44C6-B2EA-74818E970CDC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Model.Tests", "OnlineRecruitingPlatform.Model.Tests\OnlineRecruitingPlatform.Model.Tests.csproj", "{5CED65F5-3472-4530-B6D0-1AEA94B7F5E0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8EB798B7-948A-436D-B2AD-BE7054B56847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EB798B7-948A-436D-B2AD-BE7054B56847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EB798B7-948A-436D-B2AD-BE7054B56847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EB798B7-948A-436D-B2AD-BE7054B56847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8BEBB96-4B81-44C6-B2EA-74818E970CDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8BEBB96-4B81-44C6-B2EA-74818E970CDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8BEBB96-4B81-44C6-B2EA-74818E970CDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8BEBB96-4B81-44C6-B2EA-74818E970CDC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CED65F5-3472-4530-B6D0-1AEA94B7F5E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CED65F5-3472-4530-B6D0-1AEA94B7F5E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CED65F5-3472-4530-B6D0-1AEA94B7F5E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CED65F5-3472-4530-B6D0-1AEA94B7F5E0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DB255B40-427D-4DA8-8ECC-5BAEB3A2396E}
+	EndGlobalSection
+EndGlobal
