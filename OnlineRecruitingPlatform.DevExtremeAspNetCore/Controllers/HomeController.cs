@@ -14,7 +14,8 @@ namespace OnlineRecruitingPlatform_DevExtremeAspNetCore.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error() {
+        public IActionResult Error() 
+        {
             return View();
         }
     }
