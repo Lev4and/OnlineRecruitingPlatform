@@ -1,0 +1,27 @@
+﻿@using FIASApi.Model.Entities
+<div class="mb-3 card">
+    <div class="card-header">Улицы</div>
+    @(Html.DevExtreme().DataGrid<VStreet>()
+    .ID("gridContainer")
+    .ShowBorders(true)
+    .FilterPanel(f => f.Visible(true))
+    .HeaderFilter(headerFilter => headerFilter.Visible(true))
+    .FilterRow(f => f.Visible(true))
+    .Columns(columns =>
+    {
+        columns.AddFor(s => s.Regionname).Caption("Наименование региона");
+        columns.AddFor(s => s.Areaname).Caption("Наименование района");
+        columns.AddFor(s => s.Cityname).Caption("Наименование города");
+        columns.AddFor(s => s.Placename).Caption("Наименование городского или сельского поселения");
+        columns.AddFor(s => s.Offname).Caption("Наименование улицы");
+        columns.AddFor(s => s.Shortname).Caption("Тип объекта");
+    })
+    .Paging(paging => paging.PageSize(100))
+    .Pager(pager =>
+    {
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new[] { 10, 25, 50, 100 });
+        pager.ShowInfo(true);
+    })
+    .DataSource(ViewBag.streets))
+</div>

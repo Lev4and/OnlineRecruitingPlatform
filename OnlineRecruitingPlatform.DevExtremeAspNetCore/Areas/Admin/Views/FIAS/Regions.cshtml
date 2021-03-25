@@ -1,0 +1,23 @@
+﻿@using FIASApi.Model.Entities
+<div class="mb-3 card">
+    <div class="card-header">Регионы</div>
+    @(Html.DevExtreme().DataGrid<VRegion>()
+    .ID("gridContainer")
+    .ShowBorders(true)
+    .FilterPanel(f => f.Visible(true))
+    .HeaderFilter(headerFilter => headerFilter.Visible(true))
+    .FilterRow(f => f.Visible(true))
+    .Columns(columns =>
+    {
+        columns.AddFor(r => r.Offname).Caption("Наименование региона");
+        columns.AddFor(r => r.Shortname).Caption("Тип объекта");
+    })
+    .Paging(paging => paging.PageSize(100))
+    .Pager(pager =>
+    {
+        pager.ShowPageSizeSelector(true);
+        pager.AllowedPageSizes(new[] { 10, 25, 50, 100 });
+        pager.ShowInfo(true);
+    })
+    .DataSource(ViewBag.regions))
+</div>

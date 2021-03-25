@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineRecruitingPlatform_DevExtremeAspNetCore.Controllers
@@ -10,6 +6,14 @@ namespace OnlineRecruitingPlatform_DevExtremeAspNetCore.Controllers
     {
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                if (User.IsInRole("Администратор"))
+                {
+                    return Redirect("~/Admin/Home/Index/");
+                }
+            }
+
             return View();
         }
 

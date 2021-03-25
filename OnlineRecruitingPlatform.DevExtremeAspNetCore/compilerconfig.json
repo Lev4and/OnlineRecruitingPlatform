@@ -1,0 +1,26 @@
+﻿[
+  {
+    "outputFile": "wwwroot/css/adminpanel/adminpanel.css",
+    "inputFile": "wwwroot/sass/adminpanel/!output.scss"
+  },
+
+  {
+    "outputFile": "wwwroot/css/main/app.css",
+    "inputFile": "wwwroot/sass/main/app.scss"
+  },
+
+  {
+    "outputFile": "wwwroot/css/main/custom.css",
+    "inputFile": "wwwroot/sass/main/custom.scss"
+  },
+
+  {
+    "outputFile": "wwwroot/css/main/summernote.css",
+    "inputFile": "wwwroot/sass/main/summernote.scss"
+  },
+
+  {
+    "outputFile": "wwwroot/css/Site.css",
+    "inputFile": "wwwroot/sass/main/!output.scss"
+  }
+]

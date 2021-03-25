@@ -1,0 +1,68 @@
+﻿.app-calendar {
+    min-height: 80vh;
+    height: 100%;
+}
+
+.rbc-calendar {
+    display: block;
+}
+
+.calendar-toolbar {
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.rbc-time-view,
+.rbc-month-view {
+    border-width: 0;
+    border-bottom-left-radius: 0.25rem !important;
+    border-bottom-right-radius: 0.25rem !important;
+}
+
+.rbc-header {
+    font-weight: 500;
+    text-align: right;
+}
+
+.rbc-header + .rbc-header {
+    border-left: 0;
+}
+
+@media (max-width: 991.98px) {
+    .rbc-month-view {
+        width: 100%;
+        overflow-y: hidden;
+        min-height: 0.01%;
+        overflow-x: auto;
+    }
+
+    .rbc-month-view > * {
+        width: 700px;
+    }
+}
+
+.rbc-month-view {
+    height: 100%;
+    height: calc(100vh - 220px);
+}
+
+.rbc-event {
+    background-color: #584d82;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.rbc-day-slot .rbc-event,
+.rbc-day-bg + .rbc-day-bg,
+.rbc-month-row + .rbc-month-row,
+.rbc-header,
+.rbc-time-content > * + * > *,
+.rbc-timeslot-group,
+.rbc-time-content, .rbc-day-slot .rbc-time-slot,
+.rbc-time-header-content {
+    border-color: rgba(43, 44, 48, 0.05) !important;
+}
+
+.rbc-off-range-bg {
+    background-color: #212529;
+}

@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    @await Html.PartialAsync("MetatagsPartial")
+    @await Html.PartialAsync("TitlePartial")
+    @await Html.PartialAsync("IconPartial")
+    @await Html.PartialAsync("CssPartial")
+    @await Html.PartialAsync("ScriptsPartial")
+</head>
+<body class="login-page">
+    <main>
+        @RenderBody()
+    </main>
+</body>
+</html>

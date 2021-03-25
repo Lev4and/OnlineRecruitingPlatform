@@ -1,0 +1,25 @@
+﻿.card {
+    margin-bottom: 1.143rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 1px;
+}
+
+.card-header {
+    position: relative;
+    background-color: inherit;
+    border-radius: 4px 4px 0 0;
+}
+
+.card-header::after {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 1px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-bottom: 1px solid rgba(43, 44, 48, 0.05);
+}
+
+.card-header.no-shadow::after {
+    border-bottom: 0;
+}

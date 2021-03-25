@@ -1,0 +1,30 @@
+﻿.message-sidebar {
+    .navbar {
+        position: relative;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center;
+        min-height: 4.286rem;
+        background-color: transparent;
+        z-index: 11;
+        padding: 0 1rem;
+        box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 3px;
+    }
+
+    .navbar-nav {
+        height: 4.286rem;
+    }
+
+    .navbar-brand {
+        -ms-flex: 1 auto;
+        flex: 1 auto;
+    }
+
+    .active-message {
+        background: rgba(0, 0, 0, 0.03);
+        border: 0 !important;
+    }
+}

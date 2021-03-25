@@ -1,0 +1,66 @@
+﻿@model RegisterViewModel 
+<div class="login-block">
+
+    <h1>Log into your account</h1>
+
+    <form method="post" asp-controller="Account" asp-action="Register">
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="ti-user"></i></span>
+                <select class="form-control" asp-for="RoleId">
+                    @foreach (var role in ViewBag.roles)
+                    {
+                        <option value="@role.Id">@role.Name</option>
+                    }
+                </select>
+            </div>
+            <div class="valid-feedback">
+                <span class="text-left" asp-validation-for="RoleId"></span>
+            </div>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="ti-user"></i></span>
+                <input type="text" class="form-control" placeholder="Your name" asp-for="Login">
+            </div>
+            <div class="valid-feedback">
+                <span class="text-left" asp-validation-for="Login"></span>
+            </div>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="ti-email"></i></span>
+                <input type="text" class="form-control" placeholder="Your email address" asp-for="Email">
+            </div>
+            <div class="valid-feedback">
+                <span class="text-left" asp-validation-for="Email"></span>
+            </div>
+        </div>
+
+        <hr class="hr-xs">
+
+        <div class="form-group">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="ti-unlock"></i></span>
+                <input type="password" class="form-control" placeholder="Choose a password" asp-for="Password">
+            </div>
+            <div class="valid-feedback">
+                <span class="text-left" asp-validation-for="Password"></span>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-block" type="submit">Sign up</button>
+
+    </form>
+</div>
+
+<div class="login-links">
+    <p class="text-center">Already have an account? <a class="txt-brand" asp-controller="Account" asp-action="Login">Login</a></p>
+</div>

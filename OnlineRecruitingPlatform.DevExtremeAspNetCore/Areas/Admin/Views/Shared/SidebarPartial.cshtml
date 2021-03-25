@@ -1,0 +1,72 @@
+﻿<div class="sidebar bg-dark page-sidebar"
+     style="transform:translateX(0);min-width:280px;max-width:280px">
+    <div class="h-100 d-flex flex-column flex-1">
+        <nav class="navbar navbar-expand-md  d-none d-lg-flex d-xl-flex bg-dark">
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                <img src="~/images/logo/logo.ico" alt="" width="24" height="24" title="Icon" />
+                <span class="ml-3">OnlineRecruitingPlatform</span>
+            </a>
+            <a href="javascript:;" class="nav-toggle">
+                <span class="animated-icon">
+                    <img src="~/css/bootstrap-icons/icons/list.svg" alt="" width="24" height="24" title="List" />
+                </span>
+            </a>
+        </nav>
+        <ul class="d-block scroll-y flex-1 py-3 nav flex-column">
+            <div class="sidebar-item">
+                <li class="nav-item  active">
+                    <a class="nav-link d-flex align-items-center nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">
+                        <span class="animated-icon">
+                            <img src="~/css/bootstrap-icons/icons/bag.svg" alt="" width="18" height="18" title="Bag"/>
+                        </span>
+                        <span class="mr-auto menu-name">Главная</span>
+                    </a>
+                </li>
+            </div>
+            <div class="sidebar-item">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center nav-link" href="javascript:;">
+                        <span class="animated-icon">
+                            <img src="~/css/bootstrap-icons/icons/signpost-2.svg" alt="" width="18" height="18" title="Signpost-2" />
+                        </span>
+                        <span class="mr-auto menu-name">Федеральная информационная адресная система</span>
+                        <span class="caret">
+                            <span class="animated-icon">
+                                <img src="~/css/bootstrap-icons/icons/chevron-down.svg" alt="" width="12" height="12" title="Chevron-down" />
+                            </span>
+                        </span>
+                    </a>
+                    <div class="sub-menu collapse " aria-expanded="false">
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="FIAS" asp-action="Regions">
+                                    <span class="mr-auto menu-name">Регионы</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="FIAS" asp-action="Areas">
+                                    <span class="mr-auto menu-name">Районы</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="FIAS" asp-action="Cities">
+                                    <span class="mr-auto menu-name">Города</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="FIAS" asp-action="Places">
+                                    <span class="mr-auto menu-name">Городские и сельские поселения</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Admin" asp-controller="FIAS" asp-action="Streets">
+                                    <span class="mr-auto menu-name">Улицы</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </div>
+        </ul>
+    </div>
+</div>

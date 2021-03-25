@@ -1,16 +1,21 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     @await Html.PartialAsync("MetatagsPartial")
     @await Html.PartialAsync("TitlePartial")
     @await Html.PartialAsync("IconPartial")
     @await Html.PartialAsync("CssPartial")
+    @await Html.PartialAsync("ScriptsPartial")
 </head>
-<body style="padding-top: 5rem;">
-    @await Html.PartialAsync("NavBarPartial");
-    <main role="main" class="container">
+<body class="nav-on-header">
+    @await Html.PartialAsync("NavBarPartial")
+    @await Html.PartialAsync("HeaderPartial")
+    <main>
         @RenderBody()
     </main>
-    @await Html.PartialAsync("ScriptsPartial")
+    @await Html.PartialAsync("FooterPartial")
+    <a id="scroll-up" href="#">
+        <i class="ti-angle-up"></i>
+    </a>
 </body>
 </html>

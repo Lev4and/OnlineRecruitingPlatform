@@ -1,0 +1,75 @@
+﻿.bg-transparent {
+    background-color: transparent !important;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.scroll-y {
+    overflow-y: auto;
+}
+
+.scroll-x {
+    overflow-x: auto;
+}
+
+.flex-1 {
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.status {
+    position: absolute;
+    right: 0;
+    transform: translate(-5%, 5%);
+    border: 2px solid;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+
+    &::after {
+        content: '';
+        background-color: currentColor;
+        display: block;
+        line-height: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+    }
+}
+
+.button-shadow.btn-group {
+    border: 0;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.13);
+    border-radius: 4px;
+
+    > .btn {
+        border: 0;
+        border-color: transparent;
+    }
+}
+
+.button-shadow.btn {
+    border: 0;
+    border-color: transparent;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.13);
+    border-radius: 4px;
+}
+
+.animated-icon {
+    > div {
+        overflow: hidden;
+        margin: 0 auto;
+        outline: none;
+    }
+
+    svg {
+        path {
+            fill: currentColor;
+            stroke: currentColor;
+        }
+    }
+}
