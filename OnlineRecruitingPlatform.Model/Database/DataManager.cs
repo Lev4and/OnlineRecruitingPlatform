@@ -4,10 +4,12 @@ namespace OnlineRecruitingPlatform.Model.Database
 {
     public class DataManager
     {
+        public IApplicantCommentAccessTypesRepository ApplicantCommentAccessTypes;
         public IIdentityRolesRepository Roles { get; set; }
 
-        public DataManager(IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IIdentityRolesRepository roles)
         {
+            ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             Roles = roles;
         }
     }

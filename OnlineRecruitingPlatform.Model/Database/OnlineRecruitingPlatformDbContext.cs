@@ -7,6 +7,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 {
     public class OnlineRecruitingPlatformDbContext : IdentityDbContext<IdentityUser>
     {
+        public DbSet<ApplicantCommentAccessType> ApplicantCommentAccessTypes { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 

@@ -15,7 +15,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
             var options = optionsBuilder.UseSqlServer(@"Server=DESKTOP-9CDGA5B;Database=OnlineRecruitingPlatform;User ID=sa;Password=sa;Trusted_Connection=True;").Options;
 
             _context = new OnlineRecruitingPlatformDbContext(options);
-            _dataManager = new DataManager(new EFIdentityRolesRepository(_context));
+            _dataManager = new DataManager(new EFApplicantCommentAccessTypesRepository(_context), new EFIdentityRolesRepository(_context));
         }
     }
 }

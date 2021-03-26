@@ -1,9 +1,13 @@
-﻿namespace OnlineRecruitingPlatform.Model.Database.Entities
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
     public class ApplicantCommentAccessType
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
     }
 }

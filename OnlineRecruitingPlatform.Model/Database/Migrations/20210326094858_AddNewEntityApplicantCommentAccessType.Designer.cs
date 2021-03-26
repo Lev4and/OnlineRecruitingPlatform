@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRecruitingPlatform.Model.Database;
 
 namespace OnlineRecruitingPlatform.Model.Database.Migrations
 {
     [DbContext(typeof(OnlineRecruitingPlatformDbContext))]
-    partial class OnlineRecruitingPlatformDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210326094858_AddNewEntityApplicantCommentAccessType")]
+    partial class AddNewEntityApplicantCommentAccessType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +51,21 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         new
                         {
                             Id = "B867520A-92DB-4658-BE39-84DA53A601C0",
-                            ConcurrencyStamp = "980943d3-309b-4c75-8ff9-29fc021a6466",
+                            ConcurrencyStamp = "61484fdd-4cbd-4633-beed-edd74fde682c",
                             Name = "Администратор",
                             NormalizedName = "АДМИНИСТРАТОР"
                         },
                         new
                         {
                             Id = "2AABA004-1052-4F53-9EB3-18FA85386AD5",
-                            ConcurrencyStamp = "c9a4bb3b-3031-4e3c-a72f-c1af9403c0e7",
+                            ConcurrencyStamp = "eae6c863-036f-402a-af0b-e2a2cfbd678a",
                             Name = "Соискатель",
                             NormalizedName = "СОИСКАТЕЛЬ"
                         },
                         new
                         {
                             Id = "8F525C31-6BCF-460F-86A3-BD51FA76F382",
-                            ConcurrencyStamp = "806bd55d-7b6c-4fbc-9cb6-db225310f951",
+                            ConcurrencyStamp = "d69a2d3c-e126-4488-9f8b-1e6f177cf022",
                             Name = "Работодатель",
                             NormalizedName = "РАБОТОДАТЕЛЬ"
                         });
@@ -162,13 +164,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         {
                             Id = "21F7B496-C675-4E8A-A34C-FC5EC0762FDB",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "617a3ba9-1484-4a80-9728-84520b115f74",
+                            ConcurrencyStamp = "7a18c5e8-63da-4be6-b15e-a4e64419a1dc",
                             Email = "andrey.levchenko.2001@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ANDREY.LEVCHENKO.2001@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIW3hF1TAhAY01eGLmXNd5rKPWPYZh1YqjOXMJ2/aoBvGkTLh+3yhGwhbRtONkVxZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGCpgvdNE3BKaOaSbzEdMfQN2xtF42QMcnM5/EQNqDYJno+5J9W6fjYREu7hZJASKw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -270,7 +272,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
