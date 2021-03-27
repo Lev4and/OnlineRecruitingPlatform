@@ -10,9 +10,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         bool SaveApplicantCommentAccessType(ApplicantCommentAccessType entity);
 
-        ApplicantCommentAccessType GetApplicantCommentAccessType(Guid id);
+        ApplicantCommentAccessType GetApplicantCommentAccessType(Guid id, bool track = false);
 
-        ApplicantCommentAccessType GetApplicantCommentAccessType(string name);
+        ApplicantCommentAccessType GetApplicantCommentAccessType(string name, bool track = false);
 
         IQueryable<ApplicantCommentAccessType> GetApplicantCommentAccessTypes();
 

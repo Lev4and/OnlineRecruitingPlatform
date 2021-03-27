@@ -51,24 +51,38 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return false;
         }
 
-        public ApplicantCommentAccessType GetApplicantCommentAccessType(Guid id)
+        public ApplicantCommentAccessType GetApplicantCommentAccessType(Guid id, bool track = false)
         {
             if (id == null)
             {
                 throw new ArgumentNullException("id", "Параметр не может быть пустым.");
             }
 
-            return _context.ApplicantCommentAccessTypes.SingleOrDefault(a => a.Id == id);
+            if (track)
+            {
+                return _context.ApplicantCommentAccessTypes.SingleOrDefault(a => a.Id == id);
+            }
+            else
+            {
+                return _context.ApplicantCommentAccessTypes.AsNoTracking().SingleOrDefault(a => a.Id == id);
+            }
         }
 
-        public ApplicantCommentAccessType GetApplicantCommentAccessType(string name)
+        public ApplicantCommentAccessType GetApplicantCommentAccessType(string name, bool track = false)
         {
             if (string.IsNullOrEmpty(name))
             {
                 throw new ArgumentNullException("name", "Параметр не может быть пустым или длиной 0 символов.");
             }
 
-            return _context.ApplicantCommentAccessTypes.SingleOrDefault(a => a.Name == name);
+            if (track)
+            {
+                return _context.ApplicantCommentAccessTypes.SingleOrDefault(a => a.Name == name);
+            }
+            else
+            {
+                return _context.ApplicantCommentAccessTypes.AsNoTracking().SingleOrDefault(a => a.Name == name);
+            }
         }
 
         public IQueryable<ApplicantCommentAccessType> GetApplicantCommentAccessTypes()

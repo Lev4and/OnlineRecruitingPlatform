@@ -22,7 +22,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database.Repositories.EntityFrame
         }
 
         [Fact]
-        public async Task GetMainIdentityRoles__WithoutAnyParams_ReturnNotBeNullCollection()
+        public async Task GetMainIdentityRoles_WithoutAnyParams_ReturnNotBeNullCollection()
         {
             var result = await Task.Run<List<IdentityRole>>(() =>
             {
