@@ -9,6 +9,8 @@ namespace OnlineRecruitingPlatform.Model.Database
     {
         public DbSet<ApplicantCommentAccessType> ApplicantCommentAccessTypes { get; set; }
 
+        public DbSet<ApplicantCommentsOrder> ApplicantCommentsOrders { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
