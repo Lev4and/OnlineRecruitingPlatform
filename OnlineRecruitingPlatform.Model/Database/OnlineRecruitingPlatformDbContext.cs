@@ -11,6 +11,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<ApplicantCommentsOrder> ApplicantCommentsOrders { get; set; }
 
+        public DbSet<ApplicantNegotiationStatus> ApplicantNegotiationStatuses { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 

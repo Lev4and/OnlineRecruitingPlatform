@@ -6,14 +6,17 @@ namespace OnlineRecruitingPlatform.Model.Database
     {
         public IApplicantCommentAccessTypesRepository ApplicantCommentAccessTypes;
 
-        public IApplicantCommentsOrdersRepository ApplicantCommentsOrders; 
+        public IApplicantCommentsOrdersRepository ApplicantCommentsOrders;
+
+        public IApplicantNegotiationStatusesRepository ApplicantNegotiationStatuses;
 
         public IIdentityRolesRepository Roles { get; set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
+            ApplicantNegotiationStatuses = applicantNegotiationStatuses;
             Roles = roles;
         }
     }
