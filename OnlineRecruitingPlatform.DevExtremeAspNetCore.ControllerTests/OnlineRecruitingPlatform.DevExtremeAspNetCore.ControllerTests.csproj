@@ -17,10 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\Areas\Admin\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\OnlineRecruitingPlatform.DevExtremeAspNetCore\OnlineRecruitingPlatform.DevExtremeAspNetCore.csproj" />
   </ItemGroup>
 
