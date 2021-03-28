@@ -15,6 +15,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<BusinessTripReadiness> BusinessTripReadinessTypes { get; set; }
 
+        public DbSet<Currency> Currencies { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
