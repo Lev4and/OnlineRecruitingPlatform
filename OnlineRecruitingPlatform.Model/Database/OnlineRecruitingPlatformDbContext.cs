@@ -13,6 +13,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<ApplicantNegotiationStatus> ApplicantNegotiationStatuses { get; set; }
 
+        public DbSet<BusinessTripReadiness> BusinessTripReadinessTypes { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 

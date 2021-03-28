@@ -10,13 +10,16 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IApplicantNegotiationStatusesRepository ApplicantNegotiationStatuses;
 
+        public IBusinessTripReadinessTypesRepository BusinessTripReadinessTypes;
+
         public IIdentityRolesRepository Roles { get; set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
             ApplicantNegotiationStatuses = applicantNegotiationStatuses;
+            BusinessTripReadinessTypes = businessTripReadinessTypes;
             Roles = roles;
         }
     }
