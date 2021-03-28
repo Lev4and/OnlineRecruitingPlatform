@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace OnlineRecruitingPlatform_DevExtremeAspNetCore.Controllers
+namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 {
     public class HomeController : Controller
     {
