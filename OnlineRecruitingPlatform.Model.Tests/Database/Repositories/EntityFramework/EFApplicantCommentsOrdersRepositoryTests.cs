@@ -78,7 +78,6 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database.Repositories.EntityFrame
                 return _dataManager.ApplicantCommentsOrders.SaveApplicantCommentsOrder(
                     new ApplicantCommentsOrder()
                     {
-                        Id = Guid.Parse("3b8e2de5-ed50-4412-9e87-6b6d6a88e6e7"),
                         Name = "по убыванию даты публикации"
                     });
             });

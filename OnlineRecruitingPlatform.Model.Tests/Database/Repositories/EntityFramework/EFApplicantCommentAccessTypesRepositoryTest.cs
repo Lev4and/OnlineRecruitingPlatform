@@ -78,7 +78,6 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database.Repositories.EntityFrame
                 return _dataManager.ApplicantCommentAccessTypes.SaveApplicantCommentAccessType(
                     new ApplicantCommentAccessType()
                     {
-                        Id = Guid.Parse("a8bac010-7dab-4149-ae01-ea533c8125da"),
                         Name = "Виден мне и моим коллегам"
                     });
             });

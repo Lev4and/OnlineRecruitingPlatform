@@ -78,7 +78,6 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database.Repositories.EntityFrame
                 return _dataManager.ApplicantNegotiationStatuses.SaveApplicantNegotiationStatus(
                     new ApplicantNegotiationStatus()
                     {
-                        Id = Guid.Parse("d0397f1b-8e31-40b4-a450-0f200649f1a3"),
                         Name = "Все"
                     });
             });

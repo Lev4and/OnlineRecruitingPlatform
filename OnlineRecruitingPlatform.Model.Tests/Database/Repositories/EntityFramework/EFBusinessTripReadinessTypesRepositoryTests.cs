@@ -78,7 +78,6 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database.Repositories.EntityFrame
                 return _dataManager.BusinessTripReadinessTypes.SaveBusinessTripReadiness(
                     new BusinessTripReadiness()
                     {
-                        Id = Guid.Parse("a935b5b1-1ac3-40fe-9fdc-eb497471390b"),
                         Name = "готов к командировкам"
                     });
             });
