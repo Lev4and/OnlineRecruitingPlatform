@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="HeadHunter\Clients\Companies\" />
+    <Folder Include="HeadHunter\Clients\Vacancies\" />
+    <Folder Include="ZarplataRu\Clients\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj" />
+  </ItemGroup>
+
 </Project>
