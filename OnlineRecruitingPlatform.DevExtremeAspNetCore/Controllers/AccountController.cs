@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 {
-    [Authorize]
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly DataManager _dataManager;

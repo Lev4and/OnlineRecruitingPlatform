@@ -12,21 +12,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Model", "OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj", "{735E6DD4-E305-4355-BF56-F4B27D3714CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests\OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests.csproj", "{32C1A658-E29F-41C2-9DB0-A560834351AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests\OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests.csproj", "{32C1A658-E29F-41C2-9DB0-A560834351AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.HttpClients", "OnlineRecruitingPlatform.HttpClients\OnlineRecruitingPlatform.HttpClients.csproj", "{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.HttpClients", "OnlineRecruitingPlatform.HttpClients\OnlineRecruitingPlatform.HttpClients.csproj", "{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.HttpClients.Tests", "OnlineRecruitingPlatform.HttpClients.Tests\OnlineRecruitingPlatform.HttpClients.Tests.csproj", "{CD4186E8-D6CD-48A4-B5F0-F06F4AC5D095}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.HttpClients.Tests", "OnlineRecruitingPlatform.HttpClients.Tests\OnlineRecruitingPlatform.HttpClients.Tests.csproj", "{CD4186E8-D6CD-48A4-B5F0-F06F4AC5D095}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Model.Tests", "OnlineRecruitingPlatform.Model.Tests\OnlineRecruitingPlatform.Model.Tests.csproj", "{574B16B3-CEC8-4A55-9402-E33DFB9DC920}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Model.Tests", "OnlineRecruitingPlatform.Model.Tests\OnlineRecruitingPlatform.Model.Tests.csproj", "{574B16B3-CEC8-4A55-9402-E33DFB9DC920}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Api", "OnlineRecruitingPlatform.Api\OnlineRecruitingPlatform.Api.csproj", "{941BFAA1-3553-47EE-84A4-6A65726DEAFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api", "OnlineRecruitingPlatform.Api\OnlineRecruitingPlatform.Api.csproj", "{941BFAA1-3553-47EE-84A4-6A65726DEAFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Api.ControllerTests", "OnlineRecruitingPlatform.Api.ControllerTests\OnlineRecruitingPlatform.Api.ControllerTests.csproj", "{22064065-731A-42A7-A123-C8A06ADD2ACD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.ControllerTests", "OnlineRecruitingPlatform.Api.ControllerTests\OnlineRecruitingPlatform.Api.ControllerTests.csproj", "{22064065-731A-42A7-A123-C8A06ADD2ACD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Api.HttpClients", "OnlineRecruitingPlatform.Api.HttpClients\OnlineRecruitingPlatform.Api.HttpClients.csproj", "{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.HttpClients", "OnlineRecruitingPlatform.Api.HttpClients\OnlineRecruitingPlatform.Api.HttpClients.csproj", "{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Api.HttpClients.Tests", "OnlineRecruitingPlatform.Api.HttpClients.Tests\OnlineRecruitingPlatform.Api.HttpClients.Tests.csproj", "{2BC132FD-360E-4477-AA29-70136650C682}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.HttpClients.Tests", "OnlineRecruitingPlatform.Api.HttpClients.Tests\OnlineRecruitingPlatform.Api.HttpClients.Tests.csproj", "{2BC132FD-360E-4477-AA29-70136650C682}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests\OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests.csproj", "{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +76,10 @@ Global
 		{2BC132FD-360E-4477-AA29-70136650C682}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2BC132FD-360E-4477-AA29-70136650C682}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2BC132FD-360E-4477-AA29-70136650C682}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
