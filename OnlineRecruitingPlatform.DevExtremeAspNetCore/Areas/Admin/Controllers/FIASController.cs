@@ -1,47 +1,87 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using FIASApi.Response.RestClients.Addrobs;
-using FIASApi.Response.RestClients.Houses;
-using FIASApi.Response.RestClients.Rooms;
+using FIASApi.HttpClients.Clients.Addrobs;
+using FIASApi.Model.Entities;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class FIASController : Controller
     {
-        private readonly AreasRestClient _areasRestClient;
-        private readonly FlatsRestClient _flatsRestClient;
-        private readonly CitiesRestClient _citiesRestClient;
-        private readonly PlacesRestClient _placesRestClient;
-        private readonly HousesRestClient _housesRestClient;
-        private readonly RegionsRestClient _regionsRestClient;
-        private readonly StreetsRestClient _streetsRestClient;
-        private readonly OfficesRestClient _officesRestClient;
-
-        public FIASController(AreasRestClient areasRestClient, FlatsRestClient flatsRestClient, CitiesRestClient citiesRestClient, PlacesRestClient placesRestClient, HousesRestClient housesRestClient, RegionsRestClient regionsRestClient, StreetsRestClient streetsRestClient, OfficesRestClient officesRestClient)
+        private readonly AreasClient _areasClient;
+        private readonly CitiesClient _citiesClient;
+        private readonly PlacesClient _placesClient;
+        private readonly RegionsClient _regionsClient;
+        private readonly StreetsClient _streetsClient;
+        
+        public FIASController(AreasClient areasClient, CitiesClient citiesClient, PlacesClient placesClient, RegionsClient regionsClient, StreetsClient streetsClient)
         {
-            _areasRestClient = areasRestClient;
-            _flatsRestClient = flatsRestClient;
-            _citiesRestClient = citiesRestClient;
-            _placesRestClient = placesRestClient;
-            _housesRestClient = housesRestClient;
-            _regionsRestClient = regionsRestClient;
-            _streetsRestClient = streetsRestClient;
-            _officesRestClient = officesRestClient;
+            _areasClient = areasClient;
+            _citiesClient = citiesClient;
+            _placesClient = placesClient;
+            _regionsClient = regionsClient;
+            _streetsClient = streetsClient;
         }
-
-        [Route("Admin/FIAS/Regions/")]
-        public async Task<IActionResult> Regions()
+        
+        [Route("Admin/FIAS/Areas/")]
+        public async Task<IActionResult> Areas()
         {
-            ViewBag.regions = await _regionsRestClient.GetRegions();
+            var response = await _areasClient.GetAreas();
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<VArea>>(resultJson);
+
+            ViewBag.areas = result;
 
             return View();
         }
 
-        [Route("Admin/FIAS/Areas/")]
-        public async Task<IActionResult> Areas()
+        [HttpGet]
+        [Route("Admin/FIAS/Areas/{aoguid}")]
+        public async Task<IActionResult> DetailsArea(string aoguid)
         {
-            ViewBag.areas = await _areasRestClient.GetAreas();
+            var responseArea = await _areasClient.GetArea(aoguid);
+            var resultJsonArea = await responseArea.Content.ReadAsStringAsync();
+            var resultArea = JsonConvert.DeserializeObject<VArea>(resultJsonArea);
+
+            var responseAreaCities = await _citiesClient.GetCities("_", regionCode: resultArea.Regioncode, areaCode: resultArea.Areacode);
+            var responseJsonAreaCities = await responseAreaCities.Content.ReadAsStringAsync();
+            var resultAreaCities = JsonConvert.DeserializeObject<List<VCity>>(responseJsonAreaCities);
+
+
+            ViewBag.area = resultArea;
+            ViewBag.areaCities = resultAreaCities;
+
+            return View();
+        }
+
+        [Route("Admin/FIAS/Cities/")]
+        public async Task<IActionResult> Cities()
+        {
+            var response = await _citiesClient.GetCities();
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<VCity>>(resultJson);
+
+            ViewBag.cities = result;
+
+            return View();
+        }
+
+        [HttpGet]
+        [Route("Admin/FIAS/Cities/{aoguid}")]
+        public async Task<IActionResult> DetailsCity(string aoguid)
+        {
+            var responseCity = await _citiesClient.GetCity(aoguid);
+            var resultJsonCity = await responseCity.Content.ReadAsStringAsync();
+            var resultCity = JsonConvert.DeserializeObject<VCity>(resultJsonCity);
+
+            var responseCityPlaces = await _placesClient.GetPlaces("_", regionCode: resultCity.Regioncode, areaCode: resultCity.Areacode, cityCode: resultCity.Citycode);
+            var resultJsonCityPlaces = await responseCityPlaces.Content.ReadAsStringAsync();
+            var resultCityPlaces = JsonConvert.DeserializeObject<List<VPlace>>(resultJsonCityPlaces);
+
+            ViewBag.city = resultCity;
+            ViewBag.cityPlaces = resultCityPlaces;
 
             return View();
         }
@@ -49,15 +89,59 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Areas.Admin.Controllers
         [Route("Admin/FIAS/Places/")]
         public async Task<IActionResult> Places()
         {
-            ViewBag.places = await _placesRestClient.GetPlaces();
+            var response = await _placesClient.GetPlaces();
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<VPlace>>(resultJson);
+
+            ViewBag.places = result;
 
             return View();
         }
 
-        [Route("Admin/FIAS/Cities")]
-        public async Task<IActionResult> Cities()
+        [HttpGet]
+        [Route("Admin/FIAS/Places/{aoguid}")]
+        public async Task<IActionResult> DetailsPlace(string aoguid)
         {
-            ViewBag.cities = await _citiesRestClient.GetCities();
+            var responsePlace = await _placesClient.GetPlace(aoguid);
+            var resultJsonPlace = await responsePlace.Content.ReadAsStringAsync();
+            var resultPlace = JsonConvert.DeserializeObject<VPlace>(resultJsonPlace);
+
+            var responsePlaceStreets = await _streetsClient.GetStreets("_", regionCode: resultPlace.Regioncode, areaCode: resultPlace.Areacode, cityCode: resultPlace.Citycode, placeCode: resultPlace.Placecode);
+            var resultJsonPlaceStreets = await responsePlaceStreets.Content.ReadAsStringAsync();
+            var resultPlaceStreets = JsonConvert.DeserializeObject<List<VStreet>>(resultJsonPlaceStreets);
+
+            ViewBag.place = resultPlace;
+            ViewBag.resultJsonPlaceStreets = resultPlaceStreets;
+
+            return View();
+        }
+
+        [Route("Admin/FIAS/Regions/")]
+        public async Task<IActionResult> Regions()
+        {
+            var response = await _regionsClient.GetRegions();
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<VRegion>>(resultJson);
+
+            ViewBag.regions = result;
+
+            return View();
+        }
+        
+        [HttpGet]
+        [Route("Admin/FIAS/Regions/{aoguid}")]
+        public async Task<IActionResult> DetailsRegion(string aoguid)
+        {
+            var responseRegion = await _regionsClient.GetRegion(aoguid);
+            var resultJsonRegion = await responseRegion.Content.ReadAsStringAsync();
+            var resultRegion = JsonConvert.DeserializeObject<VRegion>(resultJsonRegion);
+
+            var responseRegionAreas = await _areasClient.GetAreas("_", regionCode: resultRegion.Regioncode);
+            var resultJsonRegionAreas = await responseRegionAreas.Content.ReadAsStringAsync();
+            var resultRegionAreas = JsonConvert.DeserializeObject<List<VArea>>(resultJsonRegionAreas);
+
+            ViewBag.region = resultRegion;
+            ViewBag.regionAreas = resultRegionAreas;
 
             return View();
         }
@@ -65,7 +149,24 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Areas.Admin.Controllers
         [Route("Admin/FIAS/Streets/")]
         public async Task<IActionResult> Streets()
         {
-            ViewBag.streets = await _streetsRestClient.GetStreets();
+            var response = await _streetsClient.GetStreets();
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<List<VStreet>>(resultJson);
+
+            ViewBag.streets = result;
+
+            return View();
+        }
+
+        [HttpGet]
+        [Route("Admin/FIAS/Streets/{aoguid}")]
+        public async Task<IActionResult> DetailsStreet(string aoguid)
+        {
+            var response = await _streetsClient.GetStreet(aoguid);
+            var resultJson = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<VStreet>(resultJson);
+
+            ViewBag.street = result;
 
             return View();
         }

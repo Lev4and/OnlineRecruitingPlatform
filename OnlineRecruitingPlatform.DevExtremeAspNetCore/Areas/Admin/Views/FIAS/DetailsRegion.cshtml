@@ -1,0 +1,126 @@
+﻿@using FIASApi.Model.Entities
+<div class="long-title">
+    <h3>Информация о регионе</h3>
+</div>
+<div id="form-container">
+    @(Html.DevExtreme().Form<VRegion>()
+        .ID("form")
+        .Items(items =>
+        {
+            items.AddGroup()
+                .Caption("Идентификация адресообразующего элемента")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Aoguid)
+                        .Label(l =>
+                        {
+                            l.Text("Идентификатор адресного объекта");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Code)
+                        .Label(l =>
+                        {
+                            l.Text("Код адресного объекта");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Okato)
+                        .Label(l =>
+                        {
+                            l.Text("ОКАТО");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Oktmo)
+                        .Label(l =>
+                        {
+                            l.Text("ОКТМО");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация о регионе")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(r => r.Regioncode)
+                        .Label(l =>
+                        {
+                            l.Text("Код региона");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(r => r.Offname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование региона");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(r => r.Socrname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование типа адресного элемента");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                });
+        }).FormData(ViewBag.region))
+
+    @(Html.DevExtreme().DataGrid<VArea>()
+        .ID("gridContainer")
+        .ShowBorders(true)
+        .FilterPanel(f => f.Visible(true))
+        .HeaderFilter(headerFilter => headerFilter.Visible(true))
+        .FilterRow(f => f.Visible(true))
+        .Columns(columns =>
+        {
+            columns.AddFor(a => a.Regionname).Caption("Наименование региона");
+            columns.AddFor(a => a.Offname).Caption("Наименование района");
+            columns.AddFor(a => a.Socrname).Caption("Тип объекта");
+            columns.Add()
+                .Type(GridCommandColumnType.Buttons)
+                .Width(50)
+                .Buttons(b =>
+                {
+                    b.Add()
+                        .Hint("Детали")
+                        .Icon("fas fa-info")
+                        .Text("Информация")
+                        .OnClick("onDetailsAreaIconClick");
+                });
+        })
+        .Paging(paging => paging.PageSize(10))
+        .Pager(pager =>
+        {
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new[] { 10, 25, 50, 100 });
+            pager.ShowInfo(true);
+        })
+        .KeyExpr("Aoguid")
+        .DataSource(ViewBag.regionAreas))
+</div>

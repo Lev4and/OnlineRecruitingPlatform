@@ -1,0 +1,221 @@
+﻿@using FIASApi.Model.Entities
+<div class="long-title">
+    <h3>Информация об улице</h3>
+</div>
+<div id="form-container">
+    @(Html.DevExtreme().Form<VStreet>()
+        .ID("form")
+        .Items(items =>
+        {
+            items.AddGroup()
+                .Caption("Идентификация адресообразующего элемента")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Aoguid)
+                        .Label(l =>
+                        {
+                            l.Text("Идентификатор адресного объекта");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Code)
+                        .Label(l =>
+                        {
+                            l.Text("Код адресного объекта");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Okato)
+                        .Label(l =>
+                        {
+                            l.Text("ОКАТО");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Oktmo)
+                        .Label(l =>
+                        {
+                            l.Text("ОКТМО");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация о регионе")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Regioncode)
+                        .Label(l =>
+                        {
+                            l.Text("Код региона");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Regionname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование региона");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddButton()
+                        .ButtonOptions(b =>
+                        {
+                            b.Icon("fas fa-info").Text("Информация");
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация о районе")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Areacode)
+                        .Label(l =>
+                        {
+                            l.Text("Код района");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Areaname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование района");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddButton()
+                        .ButtonOptions(b =>
+                        {
+                            b.Icon("fas fa-info").Text("Информация");
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация о городе")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Citycode)
+                        .Label(l =>
+                        {
+                            l.Text("Код города");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Cityname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование города");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddButton()
+                        .ButtonOptions(b =>
+                        {
+                            b.Icon("fas fa-info").Text("Информация");
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация о городском или сельском поселении")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Placecode)
+                        .Label(l =>
+                        {
+                            l.Text("Код городского или сельского поселения");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Placename)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование городского или сельского поселения");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddButton()
+                        .ButtonOptions(b =>
+                        {
+                            b.Icon("fas fa-info").Text("Информация");
+                        });
+                });
+            items.AddGroup()
+                .Caption("Информация об улице")
+                .ColCount(1)
+                .Items(groupItems =>
+                {
+                    groupItems
+                        .AddSimpleFor(a => a.Streetcode)
+                        .Label(l =>
+                        {
+                            l.Text("Код улицы");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Offname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование города");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                    groupItems
+                        .AddSimpleFor(a => a.Socrname)
+                        .Label(l =>
+                        {
+                            l.Text("Наименование типа адресного элемента");
+                        })
+                        .Editor(e =>
+                        {
+                            return e.TextBox().ReadOnly(true);
+                        });
+                });
+        }).FormData(ViewBag.street))
+</div>

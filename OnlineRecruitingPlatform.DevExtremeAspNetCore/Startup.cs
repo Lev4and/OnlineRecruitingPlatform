@@ -1,7 +1,7 @@
-using FIASApi.Response.RestClients.Addrobs;
-using FIASApi.Response.RestClients.Houses;
-using FIASApi.Response.RestClients.Rooms;
-using FIASApi.Response.Service;
+using FIASApi.HttpClients.Clients.Addrobs;
+using FIASApi.HttpClients.Clients.Houses;
+using FIASApi.HttpClients.Clients.Rooms;
+using FIASApi.HttpClients.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -28,18 +28,19 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
             Configuration.Bind("Project", new Config());
             Configuration.Bind("FIASApi", new ConfigFIASApi());
 
-            ConfigRestClients.Protocol = ConfigFIASApi.Protocol;
-            ConfigRestClients.Domain = ConfigFIASApi.Domain;
-            ConfigRestClients.Port = ConfigFIASApi.Port;
+            ConfigHttpClients.UserAgent = ConfigFIASApi.UserAgent;
+            ConfigHttpClients.Protocol = ConfigFIASApi.Protocol;
+            ConfigHttpClients.Domain = ConfigFIASApi.Domain;
+            ConfigHttpClients.Port = ConfigFIASApi.Port;
 
-            services.AddTransient<AreasRestClient>();
-            services.AddTransient<FlatsRestClient>();
-            services.AddTransient<CitiesRestClient>();
-            services.AddTransient<PlacesRestClient>();
-            services.AddTransient<HousesRestClient>();
-            services.AddTransient<RegionsRestClient>();
-            services.AddTransient<StreetsRestClient>();
-            services.AddTransient<OfficesRestClient>();
+            services.AddTransient<AreasClient>();
+            services.AddTransient<FlatsClient>();
+            services.AddTransient<CitiesClient>();
+            services.AddTransient<PlacesClient>();
+            services.AddTransient<HousesClient>();
+            services.AddTransient<RegionsClient>();
+            services.AddTransient<StreetsClient>();
+            services.AddTransient<OfficesClient>();
 
             services.AddTransient<IApplicantCommentAccessTypesRepository, EFApplicantCommentAccessTypesRepository>();
             services.AddTransient<IApplicantCommentsOrdersRepository, EFApplicantCommentsOrdersRepository>();
@@ -75,7 +76,7 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
 
             services.AddAuthorization(x =>
             {
-                x.AddPolicy("AdminArea", policy => { policy.RequireRole("Àäìèíèñòðàòîð"); });
+                x.AddPolicy("AdminArea", policy => { policy.RequireRole("ÐÐ´Ð¼Ð¸Ð½Ð¸ÑÑ‚Ñ€Ð°Ñ‚Ð¾Ñ€"); });
             });
 
             services.AddControllersWithViews(x =>

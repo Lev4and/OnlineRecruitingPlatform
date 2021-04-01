@@ -6,6 +6,42 @@
 
     <ItemGroup>
       <Content Remove="compilerconfig.json" />
+      <Content Update="Areas\Admin\Views\FIAS\Areas\Index.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\Areas\Details.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\Areas.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\DetailsArea.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\DetailsCity.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\DetailsPlace.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\DetailsRegion.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="Areas\Admin\Views\FIAS\DetailsStreet.cshtml">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="wwwroot\sass\adminpanel\form.scss">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -4411,12 +4447,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="FIASApi.HttpClients, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\FIASApi\FIASApi.HttpClients\bin\Debug\netcoreapp3.1\FIASApi.HttpClients.dll</HintPath>
+      </Reference>
       <Reference Include="FIASApi.Model">
         <HintPath>..\..\FIASApi\FIASApi.Model\bin\Debug\netcoreapp3.1\FIASApi.Model.dll</HintPath>
       </Reference>
-      <Reference Include="FIASApi.Response">
-        <HintPath>..\..\FIASApi\FIASApi.Response\bin\Debug\netcoreapp3.1\FIASApi.Response.dll</HintPath>
-      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Database\ApplicantCommentAccessTypes\Index.cshtml" />
     </ItemGroup>
 
     <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>

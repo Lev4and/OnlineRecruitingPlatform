@@ -2,24 +2,36 @@
 <div class="mb-3 card">
     <div class="card-header">Города</div>
     @(Html.DevExtreme().DataGrid<VCity>()
-    .ID("gridContainer")
-    .ShowBorders(true)
-    .FilterPanel(f => f.Visible(true))
-    .HeaderFilter(headerFilter => headerFilter.Visible(true))
-    .FilterRow(f => f.Visible(true))
-    .Columns(columns =>
-    {
-        columns.AddFor(c => c.Regionname).Caption("Наименование региона");
-        columns.AddFor(c => c.Areaname).Caption("Наименование района");
-        columns.AddFor(c => c.Offname).Caption("Наименование города");
-        columns.AddFor(c => c.Shortname).Caption("Тип объекта");
-    })
-    .Paging(paging => paging.PageSize(100))
-    .Pager(pager =>
-    {
-        pager.ShowPageSizeSelector(true);
-        pager.AllowedPageSizes(new[] { 10, 25, 50, 100 });
-        pager.ShowInfo(true);
-    })
-    .DataSource(ViewBag.cities))
+        .ID("gridContainer")
+        .ShowBorders(true)
+        .FilterPanel(f => f.Visible(true))
+        .HeaderFilter(headerFilter => headerFilter.Visible(true))
+        .FilterRow(f => f.Visible(true))
+        .Columns(columns =>
+        {
+            columns.AddFor(c => c.Regionname).Caption("Наименование региона");
+            columns.AddFor(c => c.Areaname).Caption("Наименование района");
+            columns.AddFor(c => c.Offname).Caption("Наименование города");
+            columns.AddFor(c => c.Socrname).Caption("Тип объекта");
+            columns.Add()
+                .Type(GridCommandColumnType.Buttons)
+                .Width(50)
+                .Buttons(b =>
+                {
+                    b.Add()
+                        .Hint("Детали")
+                        .Icon("fas fa-info")
+                        .Text("Информация")
+                        .OnClick("onDetailsCityIconClick");
+                });
+        })
+        .Paging(paging => paging.PageSize(100))
+        .Pager(pager =>
+        {
+            pager.ShowPageSizeSelector(true);
+            pager.AllowedPageSizes(new[] { 10, 25, 50, 100 });
+            pager.ShowInfo(true);
+        })
+        .KeyExpr("Aoguid")
+        .DataSource(ViewBag.cities))
 </div>

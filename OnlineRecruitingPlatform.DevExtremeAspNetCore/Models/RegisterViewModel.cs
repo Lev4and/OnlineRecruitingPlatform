@@ -17,7 +17,6 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Models
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Введите пароль")]
-        [UIHint("password")]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
     }

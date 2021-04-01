@@ -8,6 +8,8 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Service
 {
     public class ConfigFIASApi
     {
+        public static string UserAgent { get; set; }
+        
         public static string Protocol { get; set; }
 
         public static string Domain { get; set; }
