@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 {
     [ApiController]
-    [Route("api/directories/applicantNegotiationStatuses/")]
-    [Produces("application/json")]
-    public class ApplicantNegotiationStatusesController : Controller
+    [Route("api/directories/businessTripReadinessTypes/")]
+    [Produces("apllication/json")]
+    public class BusinessTripReadinessTypesController : Controller
     {
         private readonly DataManager _dataManager;
 
-        public ApplicantNegotiationStatusesController(DataManager dataManager)
+        public BusinessTripReadinessTypesController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetApplicantNegotiationStatuses()
+        public async Task<IActionResult> GetBusinessTripReadinessTypes()
         {
             try
             {
-                return Ok(await Task.Run<IQueryable<ApplicantNegotiationStatus>>(() =>
+                return Ok(await Task.Run<IQueryable<BusinessTripReadiness>>(() =>
                 {
-                    return _dataManager.ApplicantNegotiationStatuses.GetApplicantNegotiationStatuses();
+                    return _dataManager.BusinessTripReadinessTypes.GetBusinessTripReadinessTypes();
                 }));
             }
             catch
@@ -37,7 +37,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetApplicantNegotiationStatus(Guid id)
+        public async Task<IActionResult> GetBusinessTripReadiness(Guid id)
         {
             try
             {
@@ -46,9 +46,9 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
                     return BadRequest();
                 }
 
-                return Ok(await Task.Run<ApplicantNegotiationStatus>(() =>
+                return Ok(await Task.Run<BusinessTripReadiness>(() =>
                 {
-                    return _dataManager.ApplicantNegotiationStatuses.GetApplicantNegotiationStatus(id, true);
+                    return _dataManager.BusinessTripReadinessTypes.GetBusinessTripReadiness(id, true);
                 }));
             }
             catch
@@ -58,18 +58,18 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddApplicantNegotiationStatus([FromBody] ApplicantNegotiationStatus applicantNegotiationStatus)
+        public async Task<IActionResult> AddBusinessTripReadiness([FromBody] BusinessTripReadiness businessTripReadiness)
         {
             try
             {
-                if(applicantNegotiationStatus == null ? true : applicantNegotiationStatus.Id != default)
+                if(businessTripReadiness == null ? true : businessTripReadiness.Id != default)
                 {
                     return BadRequest();
                 }
 
                 return Ok(await Task.Run<bool>(() =>
                 {
-                    return _dataManager.ApplicantNegotiationStatuses.SaveApplicantNegotiationStatus(applicantNegotiationStatus);
+                    return _dataManager.BusinessTripReadinessTypes.SaveBusinessTripReadiness(businessTripReadiness);
                 }));
             }
             catch
@@ -79,18 +79,18 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateApplicantNegotiationStatus([FromBody] ApplicantNegotiationStatus applicantNegotiationStatus)
+        public async Task<IActionResult> UpdateBusinessTripReadiness([FromBody] BusinessTripReadiness businessTripReadiness)
         {
             try
             {
-                if(applicantNegotiationStatus == null ? true : applicantNegotiationStatus.Id == default)
+                if(businessTripReadiness == null ? true : businessTripReadiness.Id == default)
                 {
                     return BadRequest();
                 }
 
                 return Ok(await Task.Run<bool>(() =>
                 {
-                    return _dataManager.ApplicantNegotiationStatuses.SaveApplicantNegotiationStatus(applicantNegotiationStatus);
+                    return _dataManager.BusinessTripReadinessTypes.SaveBusinessTripReadiness(businessTripReadiness);
                 }));
             }
             catch
@@ -101,7 +101,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteApplicantNegotiationStatus(Guid id)
+        public async Task<IActionResult> DeleteBusinessTripReadiness(Guid id)
         {
             try
             {
@@ -112,7 +112,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 
                 return Ok(await Task.Run<bool>(() =>
                 {
-                    _dataManager.ApplicantNegotiationStatuses.DeleteApplicantNegotiationStatus(id);
+                    _dataManager.BusinessTripReadinessTypes.DeleteBusinessTripReadiness(id);
 
                     return true;
                 }));
