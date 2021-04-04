@@ -91,5 +91,29 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
                 return NotFound();
             }
         }
+
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteApplicantCommentsOrder(Guid id)
+        {
+            try
+            {
+                if(id == null)
+                {
+                    return BadRequest();
+                }
+
+                return Ok(await Task.Run<bool>(() =>
+                {
+                    _dataManager.ApplicantCommentsOrders.DeleteApplicantCommentsOrder(id);
+
+                    return true;
+                }));
+            }
+            catch
+            {
+                return NotFound();
+            }
+        }
     }
 }
