@@ -4,6 +4,8 @@
     @(Html.DevExtreme().DataGrid<VArea>()
         .ID("gridContainer")
         .ShowBorders(true)
+        .ShowRowLines(true)
+        .ColumnHidingEnabled(true)
         .FilterPanel(f => f.Visible(true))
         .HeaderFilter(headerFilter => headerFilter.Visible(true))
         .FilterRow(f => f.Visible(true))

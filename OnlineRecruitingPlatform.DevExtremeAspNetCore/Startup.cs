@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Service;
+using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Directories;
 using OnlineRecruitingPlatform.Model.Database;
 using OnlineRecruitingPlatform.Model.Database.Repositories.Abstract;
 using OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework;
@@ -42,12 +43,18 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
             services.AddTransient<StreetsClient>();
             services.AddTransient<OfficesClient>();
 
-            services.AddTransient<IApplicantCommentAccessTypesRepository, EFApplicantCommentAccessTypesRepository>();
-            services.AddTransient<IApplicantCommentsOrdersRepository, EFApplicantCommentsOrdersRepository>();
-            services.AddTransient<IApplicantNegotiationStatusesRepository, EFApplicantNegotiationStatusesRepository>();
-            services.AddTransient<IBusinessTripReadinessTypesRepository, EFBusinessTripReadinessTypesRepository>();
+            services.AddTransient<CurrenciesClient>();
+            services.AddTransient<ApplicantCommentsOrdersClient>();
+            services.AddTransient<BusinessTripReadinessTypesClient>();
+            services.AddTransient<ApplicantCommentAccessTypesClient>();
+            services.AddTransient<ApplicantNegotiationStatusesClient>();
+
             services.AddTransient<ICurrenciesRepository, EFCurrenciesRepository>();
             services.AddTransient<IIdentityRolesRepository, EFIdentityRolesRepository>();
+            services.AddTransient<IApplicantCommentsOrdersRepository, EFApplicantCommentsOrdersRepository>();
+            services.AddTransient<IBusinessTripReadinessTypesRepository, EFBusinessTripReadinessTypesRepository>();
+            services.AddTransient<IApplicantCommentAccessTypesRepository, EFApplicantCommentAccessTypesRepository>();
+            services.AddTransient<IApplicantNegotiationStatusesRepository, EFApplicantNegotiationStatusesRepository>();
             services.AddTransient<DataManager>();
 
             services.AddDbContext<OnlineRecruitingPlatformDbContext>((options) =>

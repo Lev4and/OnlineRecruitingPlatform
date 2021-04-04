@@ -24,7 +24,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetApplicantCommentAccessTypes();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<ApplicantCommentAccessTypeDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<ApplicantCommentAccessTypesDirectory>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
