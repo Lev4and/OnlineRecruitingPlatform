@@ -100,6 +100,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpDelete]
+        [Route("{id}")]
         public async Task<IActionResult> DeleteApplicantCommentAccessType(Guid id)
         {
             try
