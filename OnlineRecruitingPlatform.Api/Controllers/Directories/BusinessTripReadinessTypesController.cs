@@ -9,7 +9,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 {
     [ApiController]
     [Route("api/directories/businessTripReadinessTypes/")]
-    [Produces("apllication/json")]
+    [Produces("application/json")]
     public class BusinessTripReadinessTypesController : Controller
     {
         private readonly DataManager _dataManager;
