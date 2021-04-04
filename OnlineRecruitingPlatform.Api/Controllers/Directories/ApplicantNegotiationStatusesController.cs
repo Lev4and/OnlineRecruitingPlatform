@@ -8,25 +8,25 @@ using System.Threading.Tasks;
 namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 {
     [ApiController]
-    [Route("api/directories/applicantCommentAccessTypes/")]
-    [Produces("application/json")]
-    public class ApplicantCommentAccessTypesController : Controller
+    [Route("api/directories/applicantNegotiationStatuses/")]
+    [Produces("apllication/json")]
+    public class ApplicantNegotiationStatusesController : Controller
     {
         private readonly DataManager _dataManager;
 
-        public ApplicantCommentAccessTypesController(DataManager dataManager)
+        public ApplicantNegotiationStatusesController(DataManager dataManager)
         {
             _dataManager = dataManager;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetApplicantCommentAccessTypes()
+        public async Task<IActionResult> GetApplicantNegotiationStatuses()
         {
             try
             {
-                return Ok(await Task.Run<IQueryable<ApplicantCommentAccessType>>(() =>
+                return Ok(await Task.Run<IQueryable<ApplicantNegotiationStatus>>(() =>
                 {
-                    return _dataManager.ApplicantCommentAccessTypes.GetApplicantCommentAccessTypes();
+                    return _dataManager.ApplicantNegotiationStatuses.GetApplicantNegotiationStatuses();
                 }));
             }
             catch
@@ -37,7 +37,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetApplicantCommentAccessType(Guid id)
+        public async Task<IActionResult> GetApplicantNegotiationStatus(Guid id)
         {
             try
             {
@@ -46,9 +46,9 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
                     return BadRequest();
                 }
 
-                return Ok(await Task.Run<ApplicantCommentAccessType>(() =>
+                return Ok(await Task.Run<ApplicantNegotiationStatus>(() =>
                 {
-                    return _dataManager.ApplicantCommentAccessTypes.GetApplicantCommentAccessType(id, true);
+                    return _dataManager.ApplicantNegotiationStatuses.GetApplicantNegotiationStatus(id);
                 }));
             }
             catch
@@ -58,18 +58,18 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddApplicantCommentAccessType([FromBody] ApplicantCommentAccessType applicantCommentAccessType)
+        public async Task<IActionResult> AddApplicantNegotiationStatus([FromBody] ApplicantNegotiationStatus applicantNegotiationStatus)
         {
             try
             {
-                if(applicantCommentAccessType == null ? true : applicantCommentAccessType.Id != default)
+                if(applicantNegotiationStatus == null ? true : applicantNegotiationStatus.Id != default)
                 {
                     return BadRequest();
                 }
 
                 return Ok(await Task.Run<bool>(() =>
                 {
-                    return _dataManager.ApplicantCommentAccessTypes.SaveApplicantCommentAccessType(applicantCommentAccessType);
+                    return _dataManager.ApplicantNegotiationStatuses.SaveApplicantNegotiationStatus(applicantNegotiationStatus);
                 }));
             }
             catch
@@ -79,18 +79,18 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateApplicantCommentAccessType([FromBody] ApplicantCommentAccessType applicantCommentAccessType)
+        public async Task<IActionResult> UpdateApplicantNegotiationStatus([FromBody] ApplicantNegotiationStatus applicantNegotiationStatus)
         {
             try
             {
-                if (applicantCommentAccessType == null ? true : applicantCommentAccessType.Id == default)
+                if(applicantNegotiationStatus == null ? true : applicantNegotiationStatus.Id == default)
                 {
                     return BadRequest();
                 }
 
-                return Ok(await Task.Run<bool>(() => 
+                return Ok(await Task.Run<bool>(() =>
                 {
-                    return _dataManager.ApplicantCommentAccessTypes.SaveApplicantCommentAccessType(applicantCommentAccessType);
+                    return _dataManager.ApplicantNegotiationStatuses.SaveApplicantNegotiationStatus(applicantNegotiationStatus);
                 }));
             }
             catch
@@ -101,7 +101,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteApplicantCommentAccessType(Guid id)
+        public async Task<IActionResult> DeleteApplicantNegotiationStatus(Guid id)
         {
             try
             {
@@ -110,9 +110,9 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
                     return BadRequest();
                 }
 
-                return Ok(await Task.Run<bool>(() => 
+                return Ok(await Task.Run<bool>(() =>
                 {
-                    _dataManager.ApplicantCommentAccessTypes.DeleteApplicantCommentAccessType(id);
+                    _dataManager.ApplicantNegotiationStatuses.DeleteApplicantNegotiationStatus(id);
 
                     return true;
                 }));

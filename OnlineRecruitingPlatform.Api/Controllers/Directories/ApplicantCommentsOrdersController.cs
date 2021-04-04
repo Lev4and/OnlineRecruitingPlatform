@@ -22,10 +22,17 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         [HttpGet]
         public async Task<IActionResult> GetApplicantCommentsOrders()
         {
-            return Ok(await Task.Run<IQueryable<ApplicantCommentsOrder>>(() =>
+            try
             {
-                return _dataManager.ApplicantCommentsOrders.GetApplicantCommentsOrders();
-            }));
+                return Ok(await Task.Run<IQueryable<ApplicantCommentsOrder>>(() =>
+                {
+                    return _dataManager.ApplicantCommentsOrders.GetApplicantCommentsOrders();
+                }));
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
         [HttpGet]
@@ -51,7 +58,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddApplicantCommentsOrder([FromBody]ApplicantCommentsOrder applicantCommentsOrder)
+        public async Task<IActionResult> AddApplicantCommentsOrder([FromBody] ApplicantCommentsOrder applicantCommentsOrder)
         {
             try
             {
@@ -72,7 +79,7 @@ namespace OnlineRecruitingPlatform.Api.Controllers.Directories
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateApplicantCommentsOrder([FromBody]ApplicantCommentsOrder applicantCommentsOrder)
+        public async Task<IActionResult> UpdateApplicantCommentsOrder([FromBody] ApplicantCommentsOrder applicantCommentsOrder)
         {
             try
             {
