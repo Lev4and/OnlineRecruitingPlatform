@@ -21,6 +21,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<EducationLevel> EducationLevels { get; set; }
 
+        public DbSet<EmployerActiveVacanciesOrder> EmployerActiveVacanciesOrders { get; private set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 

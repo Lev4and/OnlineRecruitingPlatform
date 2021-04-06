@@ -18,9 +18,11 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IEducationLevelsRepository EducationLevels { get; private set; }
 
+        public IEmployerActiveVacanciesOrdersRepository EmployerActiveVacanciesOrders { get; private set; }
+
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
@@ -28,6 +30,7 @@ namespace OnlineRecruitingPlatform.Model.Database
             BusinessTripReadinessTypes = businessTripReadinessTypes;
             DriverLicenseTypes = driverLicenseTypes;
             EducationLevels = educationLevels;
+            EmployerActiveVacanciesOrders = employerActiveVacanciesOrders;
             Currencies = currencies;
             Roles = roles;
         }
