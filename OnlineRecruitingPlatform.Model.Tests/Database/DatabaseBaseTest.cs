@@ -20,7 +20,8 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFApplicantCommentsOrdersRepository(_context),
                 new EFApplicantNegotiationStatusesRepository(_context),
                 new EFBusinessTripReadinessTypesRepository(_context),
-                new EFCurrenciesRepository(_context), 
+                new EFCurrenciesRepository(_context),
+                new EFDriverLicenseTypesRepository(_context),
                 new EFIdentityRolesRepository(_context));
         }
     }

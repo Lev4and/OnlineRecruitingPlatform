@@ -14,14 +14,17 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public ICurrenciesRepository Currencies { get; private set; }
 
+        public IDriverLicenseTypesRepository DriverLicenseTypes { get; private set; }
+
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
             ApplicantNegotiationStatuses = applicantNegotiationStatuses;
             BusinessTripReadinessTypes = businessTripReadinessTypes;
+            DriverLicenseTypes = driverLicenseTypes;
             Currencies = currencies;
             Roles = roles;
         }

@@ -17,6 +17,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<Currency> Currencies { get; set; }
 
+        public DbSet<DriverLicenseType> DriverLicenseTypes { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
