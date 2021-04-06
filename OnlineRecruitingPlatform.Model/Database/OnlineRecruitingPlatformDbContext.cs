@@ -25,6 +25,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<EmployerArchivedVacanciesOrder> EmployerArchivedVacanciesOrders { get; set; }
 
+        public DbSet<EmployerRelation> EmployerRelations { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
