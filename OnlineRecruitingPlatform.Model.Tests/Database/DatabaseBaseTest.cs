@@ -24,6 +24,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFDriverLicenseTypesRepository(_context),
                 new EFEducationLevelsRepository(_context),
                 new EFEmployerActiveVacanciesOrdersRepository(_context),
+                new EFEmployerArchivedVacanciesOrdersRepository(_context),
                 new EFIdentityRolesRepository(_context));
         }
     }
