@@ -19,6 +19,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<DriverLicenseType> DriverLicenseTypes { get; set; }
 
+        public DbSet<EducationLevel> EducationLevels { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
