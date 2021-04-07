@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
+using OnlineRecruitingPlatform.Model.JsonConverters;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
     public class Gender
     {
-        public int Id { get; set; }
+        [JsonConverter(typeof(GuidConverter))]
+        public Guid Id { get; set; }
 
+        [Required]
+        [JsonProperty("name")]
         public string Name { get; set; }
     }
 }

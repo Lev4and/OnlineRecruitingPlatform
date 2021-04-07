@@ -30,14 +30,17 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IExperiencesRepository Experiences { get; private set; }
 
+        public IGendersRepository Genders { get; private set; }
+
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
             ApplicantNegotiationStatuses = applicantNegotiationStatuses;
             BusinessTripReadinessTypes = businessTripReadinessTypes;
+            Currencies = currencies;
             DriverLicenseTypes = driverLicenseTypes;
             EducationLevels = educationLevels;
             EmployerActiveVacanciesOrders = employerActiveVacanciesOrders;
@@ -46,7 +49,7 @@ namespace OnlineRecruitingPlatform.Model.Database
             EmployerTypes = employerTypes;
             Employments = employments;
             Experiences = experiences;
-            Currencies = currencies;
+            Genders = genders;
             Roles = roles;
         }
     }
