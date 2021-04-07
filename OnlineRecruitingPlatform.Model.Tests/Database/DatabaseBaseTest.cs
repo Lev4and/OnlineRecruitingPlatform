@@ -26,6 +26,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFEmployerActiveVacanciesOrdersRepository(_context),
                 new EFEmployerArchivedVacanciesOrdersRepository(_context),
                 new EFEmployerRelationsRepository(_context),
+                new EFEmployerTypesRepository(_context),
                 new EFIdentityRolesRepository(_context));
         }
     }
