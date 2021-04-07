@@ -26,9 +26,11 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IEmployerTypesRepository EmployerTypes { get; private set; }
 
+        public IEmploymentsRepository Employments { get; private set; }
+
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
@@ -40,6 +42,7 @@ namespace OnlineRecruitingPlatform.Model.Database
             EmployerArchivedVacanciesOrders = employerArchivedVacanciesOrders;
             EmployerRelations = employerRelations;
             EmployerTypes = employerTypes;
+            Employments = employments;
             Currencies = currencies;
             Roles = roles;
         }

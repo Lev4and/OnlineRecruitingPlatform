@@ -50,6 +50,7 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
             services.AddTransient<ApplicantNegotiationStatusesClient>();
 
             services.AddTransient<ICurrenciesRepository, EFCurrenciesRepository>();
+            services.AddTransient<IEmploymentsRepository, EFEmploymentsRepository>();
             services.AddTransient<IEmployerTypesRepository, EFEmployerTypesRepository>();
             services.AddTransient<IIdentityRolesRepository, EFIdentityRolesRepository>();
             services.AddTransient<IEducationLevelsRepository, EFEducationLevelsRepository>();
