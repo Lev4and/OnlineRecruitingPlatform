@@ -35,6 +35,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<Gender> Genders { get; set; }
 
+        public DbSet<Language> Languages { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
