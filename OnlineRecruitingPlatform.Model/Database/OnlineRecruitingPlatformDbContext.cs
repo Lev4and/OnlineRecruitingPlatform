@@ -37,6 +37,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<Language> Languages { get; set; }
 
+        public DbSet<LanguageLevel> LanguageLevels { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 

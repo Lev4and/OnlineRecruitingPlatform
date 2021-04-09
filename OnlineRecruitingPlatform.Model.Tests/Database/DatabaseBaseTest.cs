@@ -31,6 +31,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFExperiencesRepository(_context),
                 new EFGendersRepository(_context),
                 new EFLanguagesRepository(_context),
+                new EFLanguageLevelsRepository(_context),
                 new EFIdentityRolesRepository(_context));
         }
     }
