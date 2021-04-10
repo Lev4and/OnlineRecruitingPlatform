@@ -39,6 +39,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
 
+        public DbSet<Skill> Skills { get; set; }
+
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
 
