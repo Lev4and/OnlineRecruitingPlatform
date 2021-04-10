@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
+using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
