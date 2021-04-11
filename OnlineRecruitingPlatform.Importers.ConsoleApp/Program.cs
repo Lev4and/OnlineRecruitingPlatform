@@ -59,14 +59,14 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
                     Console.Clear();
                 }
 
-                var secondsLeft = (double)importer.CountFoundRecords - (double)importer.CountImportedRecords / (double)importer.CountImportedRecords - (double)valuesPerUnitTime;
+                var secondsLeft = ((double)importer.CountFoundRecords - (double)importer.CountImportedRecords) / ((double)importer.CountImportedRecords - (double)valuesPerUnitTime);
                 var timeLeft = new TimeSpan(0, 0, (int)(double.IsNaN(secondsLeft) ? 0 : secondsLeft));
 
-                Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Прошло времени: {importer.Duration.ToString("h'h 'm'm 's's'")} Прогресс: {(double.IsNaN(importer.ProgressImport) ? 0.ToString("F5") : importer.ProgressImport.ToString("F5"))}% ({importer.CountImportedRecords.ToString("N")} / {importer.CountFoundRecords.ToString("N")}) Скорость: {(importer.CountImportedRecords - valuesPerUnitTime) * 8} Записей/сек Осталось: {timeLeft.ToString("h'h 'm'm 's's'")}");
+                Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Прошло времени: {importer.Duration.ToString("h'h 'm'm 's's'")} Прогресс: {(double.IsNaN(importer.ProgressImport) ? 0.ToString("F5") : importer.ProgressImport.ToString("F5"))}% ({importer.CountImportedRecords.ToString("N")} / {importer.CountFoundRecords.ToString("N")}) Скорость: {importer.CountImportedRecords - valuesPerUnitTime} Записей/сек Осталось: {timeLeft.ToString("h'h 'm'm 's's'")}");
 
                 valuesPerUnitTime = importer.CountImportedRecords;
 
-                Thread.Sleep(125);
+                Thread.Sleep(1000);
             }
 
             Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Импорт завершен");
