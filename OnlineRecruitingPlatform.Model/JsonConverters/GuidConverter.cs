@@ -14,11 +14,16 @@ namespace OnlineRecruitingPlatform.Model.JsonConverters
         {
             try
             {
-                return serializer.Deserialize<Guid>(reader);
+                var stringResult = serializer.Deserialize<string>(reader);
+                var guidResult = Guid.Empty;
+
+                Guid.TryParse(stringResult, out guidResult);
+
+                return guidResult;
             }
             catch
             {
-                return Guid.NewGuid();
+                return Guid.Empty;
             }
         }
 

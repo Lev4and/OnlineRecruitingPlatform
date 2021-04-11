@@ -28,7 +28,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Ap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.HttpClients.Tests", "OnlineRecruitingPlatform.Api.HttpClients.Tests\OnlineRecruitingPlatform.Api.HttpClients.Tests.csproj", "{2BC132FD-360E-4477-AA29-70136650C682}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests\OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests.csproj", "{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests\OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests.csproj", "{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Importers", "OnlineRecruitingPlatform.Importers\OnlineRecruitingPlatform.Importers.csproj", "{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Importers.Tests", "OnlineRecruitingPlatform.Importers.Tests\OnlineRecruitingPlatform.Importers.Tests.csproj", "{C3273AD7-691C-4BCE-AF19-66B65299CD8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Importers.ConsoleApp", "OnlineRecruitingPlatform.Importers.ConsoleApp\OnlineRecruitingPlatform.Importers.ConsoleApp.csproj", "{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +86,18 @@ Global
 		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3273AD7-691C-4BCE-AF19-66B65299CD8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3273AD7-691C-4BCE-AF19-66B65299CD8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3273AD7-691C-4BCE-AF19-66B65299CD8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3273AD7-691C-4BCE-AF19-66B65299CD8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

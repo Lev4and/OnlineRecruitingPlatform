@@ -16,6 +16,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         IQueryable<Skill> GetSkills();
 
+        void MarkToAdd(Skill skill);
+
+        void SaveChanges();
+
         void DeleteSkill(Guid id);
     }
 }
