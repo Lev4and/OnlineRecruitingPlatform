@@ -19,47 +19,36 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 
         private protected override async Task Import(CancellationToken cancellationToken, int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
         {
-            CountFoundRecords = await GetMaximumCountRecords(minValueSkillId, maxValueSkillId);
+            Status = ImportStatus.SearchForARangeOfValidValues;
 
-            var countIterations = CountFoundRecords % 50 == 0 ? CountFoundRecords / 50 : CountFoundRecords / 50 + 1;
+            var maxThresholdValueSkillId = await GetMaxValueSkillId(minValueSkillId, maxValueSkillId);
+            var countIterations = maxThresholdValueSkillId % 50 == 0 ? maxThresholdValueSkillId / 50 : maxThresholdValueSkillId / 50 + 1;
 
-            for (int i = 0; i < countIterations; i++)
+            Progress.CountFoundRecords = maxThresholdValueSkillId - minValueSkillId;
+
+            for (int i = minValueSkillId / 50; i < countIterations; i++)
             {
                 if (!cancellationToken.IsCancellationRequested)
                 {
-                    var skillsIds = new int[i < countIterations - 1 ? 50 : CountFoundRecords - i * 50];
+                    var skillsIds = new int[i < countIterations - 1 ? 50 : maxThresholdValueSkillId - i * 50];
 
                     for (int j = 0; j < skillsIds.Length; j++)
                     {
                         skillsIds[j] = minValueSkillId + i * 50 + j;
                     }
 
-                    if (!cancellationToken.IsCancellationRequested)
+                    Status = ImportStatus.DownloadFromAPI;
+
+                    var skills = JsonConvert.DeserializeObject<SkillsDirectory>(_client.GetSkills(skillsIds).Result.Content.ReadAsStringAsync().Result);
+
+                    Status = ImportStatus.SavingToDb;
+
+                    foreach (var skill in skills.Skills)
                     {
-                        var skills = JsonConvert.DeserializeObject<SkillsDirectory>(_client.GetSkills(skillsIds).Result.Content.ReadAsStringAsync().Result);
+                        _dataManager.Skills.MarkToAdd(new Skill { Name = skill.Name });
+                        _dataManager.Skills.SaveChanges();
 
-                        foreach (var skill in skills.Skills)
-                        {
-                            if (!cancellationToken.IsCancellationRequested)
-                            {
-                                _dataManager.Skills.MarkToAdd(new Skill { Name = skill.Name });
-                                _dataManager.Skills.SaveChanges();
-
-                                //_dataManager.Skills.SaveSkill(new Skill { Name = skill.Name });
-
-                                CountImportedRecords += 1;
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-
-                        //_dataManager.Skills.SaveChanges();
-                    }
-                    else
-                    {
-                        break;
+                        Progress.CountImportedRecords += 1;
                     }
                 }
                 else
@@ -68,10 +57,10 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
                 }
             }
 
-            IsRunning = false;
+            Status = ImportStatus.Completed;
         }
 
-        private async Task<int> GetMaximumCountRecords(int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
+        private async Task<int> GetMaxValueSkillId(int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
         {
             var countRecords = maxValueSkillId;
             var oldCountRecords = minValueSkillId;

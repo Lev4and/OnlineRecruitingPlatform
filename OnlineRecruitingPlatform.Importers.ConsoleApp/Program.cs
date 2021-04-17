@@ -52,19 +52,19 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Импорт начался");
 
-            while (importer.IsRunning)
+            while (importer.IsRunning())
             {
-                if(importer.Duration.TotalMinutes % 5 == 0 && importer.Duration.TotalMinutes != 0)
+                if(importer.Timer.Duration.TotalMinutes % 5 == 0 && importer.Timer.Duration.TotalMinutes != 0)
                 {
                     Console.Clear();
                 }
 
-                var secondsLeft = ((double)importer.CountFoundRecords - (double)importer.CountImportedRecords) / ((double)importer.CountImportedRecords - (double)valuesPerUnitTime);
+                var secondsLeft = ((double)importer.Progress.CountFoundRecords - (double)importer.Progress.CountImportedRecords) / ((double)importer.Progress.CountImportedRecords - (double)valuesPerUnitTime);
                 var timeLeft = new TimeSpan(0, 0, (int)(double.IsNaN(secondsLeft) ? 0 : secondsLeft));
 
-                Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Прошло времени: {importer.Duration.ToString("h'h 'm'm 's's'")} Прогресс: {(double.IsNaN(importer.ProgressImport) ? 0.ToString("F5") : importer.ProgressImport.ToString("F5"))}% ({importer.CountImportedRecords.ToString("N")} / {importer.CountFoundRecords.ToString("N")}) Скорость: {importer.CountImportedRecords - valuesPerUnitTime} Записей/сек Осталось: {timeLeft.ToString("h'h 'm'm 's's'")}");
+                Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Прошло времени: {importer.Timer.Duration.ToString("h'h 'm'm 's's'")} Прогресс: {(double.IsNaN(importer.Progress.ProgressImport) ? 0.ToString("F5") : importer.Progress.ProgressImport.ToString("F5"))}% ({importer.Progress.CountImportedRecords.ToString("N")} / {importer.Progress.CountFoundRecords.ToString("N")}) Скорость: {importer.Progress.CountImportedRecords - valuesPerUnitTime} Записей/сек Осталось: {timeLeft.ToString("h'h 'm'm 's's'")}");
 
-                valuesPerUnitTime = importer.CountImportedRecords;
+                valuesPerUnitTime = importer.Progress.CountImportedRecords;
 
                 Thread.Sleep(1000);
             }

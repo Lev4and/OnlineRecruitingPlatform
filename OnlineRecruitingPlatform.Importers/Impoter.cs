@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineRecruitingPlatform.Model.Database;
 using OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -9,35 +8,24 @@ namespace OnlineRecruitingPlatform.Importers
 {
     public abstract class Impoter
     {
-        public bool IsRunning { get; private protected set; }
-
-        public int CountFoundRecords { get; private protected set; }
-
-        public int CountImportedRecords { get; private protected set; }
-
-        public double ProgressImport { get; private protected set; }
-
-        public TimeSpan Duration { get; private protected set; }
-
-        private DateTime _startDateTime;
-
         private CancellationTokenSource _cancellationTokenSource;
         private CancellationToken _cancellationToken;
 
         private readonly OnlineRecruitingPlatformDbContext _context;
         private protected readonly DataManager _dataManager;
 
+        public ImportStatus Status { get; private protected set; }
+
+        public ImportTimer Timer { get; private protected set; }
+
+        public ImportProgress Progress { get; private protected set; }
+
         public Impoter()
         {
-            IsRunning = false;
+            Status = ImportStatus.NotStarted;
 
-            ProgressImport = 0;
-            CountFoundRecords = 0;
-            CountImportedRecords = 0;
-
-            _startDateTime = DateTime.Now;
-
-            Duration = new TimeSpan();
+            Timer = new ImportTimer();
+            Progress = new ImportProgress();
 
             _cancellationTokenSource = new CancellationTokenSource();
             _cancellationToken = _cancellationTokenSource.Token;
@@ -67,36 +55,28 @@ namespace OnlineRecruitingPlatform.Importers
                 new EFIdentityRolesRepository(_context));
         }
 
+        public bool IsRunning()
+        {
+            return Status != ImportStatus.NotStarted && Status != ImportStatus.Stopped && Status != ImportStatus.Completed;
+        }
+
         public async Task Start(int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
         {
-            new Thread(new ThreadStart(Timer)).Start();
+            Timer.Start();
+
+            Status = ImportStatus.Started;
 
             await Import(_cancellationToken, minValueSkillId, maxValueSkillId);
         }
 
         public void Stop()
         {
+            Timer.Stop();
+            Progress.Reset();
+
+            Status = ImportStatus.Stopped;
+
             _cancellationTokenSource.Cancel();
-        }
-
-        private void Timer()
-        {
-            IsRunning = true;
-
-            ProgressImport = 0;
-            CountFoundRecords = 0;
-            CountImportedRecords = 0;
-
-            _startDateTime = DateTime.Now;
-
-            while (!_cancellationToken.IsCancellationRequested || IsRunning)
-            {
-                ProgressImport = (double)CountImportedRecords / (double)CountFoundRecords * (double)100;
-
-                Duration = DateTime.Now - _startDateTime;
-
-                Task.Delay(1000);
-            }
         }
 
         private protected virtual async Task Import(CancellationToken cancellationToken, int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
