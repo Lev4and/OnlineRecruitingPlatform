@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Skill
+    public class Skill : IImportedFromHeadHunter<int?>, IImportedFromZarplataRu<int?>
     {
         [JsonConverter(typeof(GuidConverter))]
         public Guid Id { get; set; }
@@ -13,5 +13,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [Required]
         [JsonProperty("text")]
         public string Name { get; set; }
+
+        [JsonProperty("id")]
+        public int? IdentifierFromHeadHunter { get; set; }
+
+        public int? IdentifierFromZarplataRu { get; set; }
     }
 }
