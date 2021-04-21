@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("employer_archived_vacancies_order")]
         public EmployerArchivedVacanciesOrder[] EmployerArchivedVacanciesOrders { get; set; }
     }
+
+    public class EmployerArchivedVacanciesOrdersDirectory<T> where T : EmployerArchivedVacanciesOrder
+    {
+        [JsonProperty("employer_archived_vacancies_order")]
+        public T[] EmployerArchivedVacanciesOrders { get; set; }
+    }
 }

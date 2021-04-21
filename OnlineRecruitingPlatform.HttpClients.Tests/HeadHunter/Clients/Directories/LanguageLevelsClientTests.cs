@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetLanguageLevels();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<LanguageLevelsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<LanguageLevelsDirectory<LanguageLevelIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.LanguageLevels.Should().BeOfType<LanguageLevel[]>();
+            result.LanguageLevels.Should().BeOfType<LanguageLevelIV[]>();
             result.LanguageLevels.Should().HaveCountGreaterThan(0);
         }
     }

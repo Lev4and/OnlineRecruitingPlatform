@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("gender")]
         public Gender[] Genders { get; set; }
     }
+
+    public class GendersDirectory<T> where T : Gender
+    {
+        [JsonProperty("gender")]
+        public T[] Genders { get; set; }
+    }
 }

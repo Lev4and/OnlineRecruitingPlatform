@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("business_trip_readiness")]
         public BusinessTripReadiness[] BusinessTripReadinessTypes { get; set; }
     }
+
+    public class BusinessTripReadinessTypesDirectory<T> where T : BusinessTripReadiness
+    {
+        [JsonProperty("business_trip_readiness")]
+        public T[] BusinessTripReadinessTypes { get; set; }
+    }
 }

@@ -22,11 +22,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetLanguages();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<Language[]>(resultJson);
+            var result = JsonConvert.DeserializeObject<LanguageIV[]>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Should().BeOfType<Language[]>();
+            result.Should().BeOfType<LanguageIV[]>();
             result.Should().HaveCountGreaterThan(0);
         }
     }

@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("language_level")]
         public LanguageLevel[] LanguageLevels { get; set; }
     }
+
+    public class LanguageLevelsDirectory<T> where T : LanguageLevel
+    {
+        [JsonProperty("language_level")]
+        public T[] LanguageLevels { get; set; }
+    }
 }

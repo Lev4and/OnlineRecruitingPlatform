@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("items")]
         public Skill[] Skills { get; set; }
     }
+
+    public class SkillsDirectory<T> where T : Skill
+    {
+        [JsonProperty("items")]
+        public T[] Skills { get; set; }
+    }
 }

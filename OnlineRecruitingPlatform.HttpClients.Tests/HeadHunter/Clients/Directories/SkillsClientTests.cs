@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkill(-1);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Skills.Should().BeOfType<Skill[]>();
+            result.Skills.Should().BeOfType<SkillIV[]>();
             result.Skills.Should().HaveCount(0);
         }
 
@@ -36,11 +36,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkill(0);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Skills.Should().BeOfType<Skill[]>();
+            result.Skills.Should().BeOfType<SkillIV[]>();
             result.Skills.Should().HaveCount(0);
         }
 
@@ -49,11 +49,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkill(1);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Skills.Should().BeOfType<Skill[]>();
+            result.Skills.Should().BeOfType<SkillIV[]>();
             result.Skills.Should().HaveCount(1);
         }
 
@@ -62,11 +62,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkill(int.MaxValue);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Skills.Should().BeOfType<Skill[]>();
+            result.Skills.Should().BeOfType<SkillIV[]>();
             result.Skills.Should().HaveCount(0);
         }
 
@@ -83,7 +83,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkills(new int[0] { });
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
@@ -93,11 +93,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetSkills(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<SkillsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Skills.Should().BeOfType<Skill[]>();
+            result.Skills.Should().BeOfType<SkillIV[]>();
             result.Skills.Should().HaveCount(9);
         }
     }

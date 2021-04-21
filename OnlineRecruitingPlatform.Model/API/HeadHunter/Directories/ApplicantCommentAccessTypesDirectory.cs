@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("applicant_comment_access_type")]
         public ApplicantCommentAccessType[] ApplicantCommentAccessTypes { get; set; }
     }
+
+    public class ApplicantCommentAccessTypesDirectory<T> where T : ApplicantCommentAccessType
+    {
+        [JsonProperty("applicant_comment_access_type")]
+        public T[] ApplicantCommentAccessTypes { get; set; }
+    }
 }

@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("applicant_comments_order")]
         public ApplicantCommentsOrder[] ApplicantCommentsOrders { get; set; }
     }
+
+    public class ApplicantCommentsOrdersDirectory<T> where T : ApplicantCommentsOrder
+    {
+        [JsonProperty("applicant_comments_order")]
+        public T[] ApplicantCommentsOrders { get; set; }
+    }
 }

@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetBusinessTripReadinessTypes();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<BusinessTripReadinessTypesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<BusinessTripReadinessTypesDirectory<BusinessTripReadinessIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.BusinessTripReadinessTypes.Should().BeOfType<BusinessTripReadiness[]>();
+            result.BusinessTripReadinessTypes.Should().BeOfType<BusinessTripReadinessIV[]>();
             result.BusinessTripReadinessTypes.Should().HaveCountGreaterThan(0);
         }
     }

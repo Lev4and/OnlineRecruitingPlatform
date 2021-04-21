@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRecruitingPlatform.Model.Database;
 
 namespace OnlineRecruitingPlatform.Model.Database.Migrations
 {
     [DbContext(typeof(OnlineRecruitingPlatformDbContext))]
-    partial class OnlineRecruitingPlatformDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210419175351_ChangeEntityApplicantCommentsOrder")]
+    partial class ChangeEntityApplicantCommentsOrder
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +51,21 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         new
                         {
                             Id = "B867520A-92DB-4658-BE39-84DA53A601C0",
-                            ConcurrencyStamp = "3fa95a94-375f-4c7d-a4ab-769a3b157859",
+                            ConcurrencyStamp = "9879a0a9-e866-4f6f-9a8e-996d90da5034",
                             Name = "Администратор",
                             NormalizedName = "АДМИНИСТРАТОР"
                         },
                         new
                         {
                             Id = "2AABA004-1052-4F53-9EB3-18FA85386AD5",
-                            ConcurrencyStamp = "eeef7aff-ba33-4749-bc15-069a182b8e24",
+                            ConcurrencyStamp = "e3ace23e-458c-4d27-89fe-325df2de4437",
                             Name = "Соискатель",
                             NormalizedName = "СОИСКАТЕЛЬ"
                         },
                         new
                         {
                             Id = "8F525C31-6BCF-460F-86A3-BD51FA76F382",
-                            ConcurrencyStamp = "3c27925d-d7de-44ac-856d-8da17a693c66",
+                            ConcurrencyStamp = "2ba0bf6f-f9e9-48a1-8282-aa60fdf7cc95",
                             Name = "Работодатель",
                             NormalizedName = "РАБОТОДАТЕЛЬ"
                         });
@@ -162,13 +164,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         {
                             Id = "21F7B496-C675-4E8A-A34C-FC5EC0762FDB",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "1068965d-9134-4274-9791-6de531bb630d",
+                            ConcurrencyStamp = "f9a035df-ea77-463a-86de-b7f7fb31e122",
                             Email = "andrey.levchenko.2001@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ANDREY.LEVCHENKO.2001@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDvvDZs9o6JrLrysjgb5psbipe6W63ck8g1C6Rpsc9wel9H7+RVrrlqWNx32Y/vKZQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH/d4anFtUEaC8TiU6NCSOlKsPPtlCnMyG9GuF23DRg6azOk5DN0+s79em/nz/A9Ig==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -305,9 +307,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -322,9 +321,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -353,9 +349,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -370,9 +363,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -389,9 +379,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -406,9 +393,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -425,9 +409,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -442,9 +423,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -461,9 +439,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -478,9 +453,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -497,9 +469,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -514,9 +483,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -550,9 +516,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Property<string>("Designation")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

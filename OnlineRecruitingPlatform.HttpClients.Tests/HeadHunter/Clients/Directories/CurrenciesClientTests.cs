@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetCurrencies();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CurrenciesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<CurrenciesDirectory<CurrencyIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Currencies.Should().BeOfType<Currency[]>();
+            result.Currencies.Should().BeOfType<CurrencyIV[]>();
             result.Currencies.Should().HaveCountGreaterThan(0);
         }
     }

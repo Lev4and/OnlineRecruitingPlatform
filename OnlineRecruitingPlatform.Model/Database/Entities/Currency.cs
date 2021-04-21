@@ -5,25 +5,43 @@ using OnlineRecruitingPlatform.Model.JsonConverters;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Currency
+    public class Currency : IImportedFromHeadHunter<string>
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         [Required]
         [JsonProperty("code")]
         public string Code { get; set; }
 
         [Required]
-        [JsonProperty("abbr")]
-        public string Abbreviation { get; set; }
+        [JsonProperty("abbreviation")]
+        public virtual string Abbreviation { get; set; }
 
         [Required]
+        [JsonProperty("designation")]
         public string Designation { get; set; }
 
         [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("identifierfromheadhunter")]
+        public virtual string IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class CurrencyIV : Currency
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [Required]
+        [JsonProperty("abbr")]
+        public override string Abbreviation { get; set; }
+
+        [JsonProperty("code")]
+        public override string IdentifierFromHeadHunter { get; set; }
     }
 }

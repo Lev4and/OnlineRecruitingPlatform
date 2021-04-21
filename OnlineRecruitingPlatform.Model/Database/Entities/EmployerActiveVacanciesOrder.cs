@@ -5,13 +5,27 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class EmployerActiveVacanciesOrder
+    public class EmployerActiveVacanciesOrder : IImportedFromHeadHunter<string>
     {
+        [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
 
         [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
+
+        [JsonProperty("identifierfromheadhunter")]
+        public virtual string IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class EmployerActiveVacanciesOrderIV : EmployerActiveVacanciesOrder
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty("id")]
+        public override string IdentifierFromHeadHunter { get; set; }
     }
 }

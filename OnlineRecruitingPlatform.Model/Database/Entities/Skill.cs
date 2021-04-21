@@ -5,18 +5,31 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Skill : IImportedFromHeadHunter<int?>, IImportedFromZarplataRu<int?>
+    public class Skill : IImportedFromHeadHunter<int?>
     {
+        [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
+
+        [Required]
+        [JsonProperty("name")]
+        public virtual string Name { get; set; }
+
+        [JsonProperty("identifierfromheadhunter")]
+        public virtual int? IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class SkillIV : Skill
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
 
         [Required]
         [JsonProperty("text")]
-        public string Name { get; set; }
+        public override string Name { get; set; }
 
         [JsonProperty("id")]
-        public int? IdentifierFromHeadHunter { get; set; }
-
-        public int? IdentifierFromZarplataRu { get; set; }
+        public override int? IdentifierFromHeadHunter { get; set; }
     }
 }

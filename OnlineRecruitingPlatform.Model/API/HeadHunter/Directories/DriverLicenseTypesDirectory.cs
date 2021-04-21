@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("driver_license_types")]
         public DriverLicenseType[] DriverLicenseTypes { get; set; }
     }
+
+    public class DriverLicenseTypesDirectory<T> where T : DriverLicenseType
+    {
+        [JsonProperty("driver_license_types")]
+        public T[] DriverLicenseTypes { get; set; }
+    }
 }

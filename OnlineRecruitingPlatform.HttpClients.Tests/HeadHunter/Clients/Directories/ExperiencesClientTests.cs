@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetExperiences();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<ExperiencesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<ExperiencesDirectory<ExperienceIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Experiences.Should().BeOfType<Experience[]>();
+            result.Experiences.Should().BeOfType<ExperienceIV[]>();
             result.Experiences.Should().HaveCountGreaterThan(0);
         }
     }

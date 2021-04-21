@@ -90,24 +90,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return _context.Skills;
         }
 
-        public void MarkToAdd(Skill skill)
-        {
-            if (skill == null)
-            {
-                throw new ArgumentNullException("skill", "Параметр не может быть пустым.");
-            }
-
-            if(skill.Id == default)
-            {
-                _context.Entry(skill).State = EntityState.Added;
-            }
-        }
-
-        public void SaveChanges()
-        {
-            _context.SaveChanges();
-        }
-
         public void DeleteSkill(Guid id)
         {
             if (id == null)

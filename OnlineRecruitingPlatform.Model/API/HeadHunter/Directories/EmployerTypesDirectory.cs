@@ -8,4 +8,10 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Directories
         [JsonProperty("employer_type")]
         public EmployerType[] EmployerTypes { get; set; }
     }
+
+    public class EmployerTypesDirectory<T> where T : EmployerType
+    {
+        [JsonProperty("employer_type")]
+        public T[] EmployerTypes { get; set; }
+    }
 }

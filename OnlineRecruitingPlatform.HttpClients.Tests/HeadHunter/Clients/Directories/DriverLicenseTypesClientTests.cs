@@ -23,11 +23,11 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Director
         {
             var response = await _client.GetDriverLicenseTypes();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<DriverLicenseTypesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<DriverLicenseTypesDirectory<DriverLicenseTypeIV>>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.DriverLicenseTypes.Should().BeOfType<DriverLicenseType[]>();
+            result.DriverLicenseTypes.Should().BeOfType<DriverLicenseTypeIV[]>();
             result.DriverLicenseTypes.Should().HaveCountGreaterThan(0);
         }
     }
