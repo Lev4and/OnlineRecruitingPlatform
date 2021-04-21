@@ -49,9 +49,11 @@ namespace OnlineRecruitingPlatform.Importers
                 new EFEmploymentsRepository(_context),
                 new EFExperiencesRepository(_context),
                 new EFGendersRepository(_context),
+                new EFIndustriesRepository(_context),
                 new EFLanguagesRepository(_context),
                 new EFLanguageLevelsRepository(_context),
                 new EFSkillsRepository(_context),
+                new EFSubIndustriesRepository(_context),
                 new EFIdentityRolesRepository(_context));
         }
 

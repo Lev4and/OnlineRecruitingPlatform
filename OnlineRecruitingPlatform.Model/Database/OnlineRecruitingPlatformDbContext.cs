@@ -35,11 +35,15 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<Gender> Genders { get; set; }
 
+        public DbSet<Industry> Industries { get; set; }
+
         public DbSet<Language> Languages { get; set; }
 
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
+
+        public DbSet<SubIndustry> SubIndustries { get; set; }
 
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
@@ -96,6 +100,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 RoleId = "B867520A-92DB-4658-BE39-84DA53A601C0",
                 UserId = "21F7B496-C675-4E8A-A34C-FC5EC0762FDB"
             });
+
+            builder.Entity<Industry>()
+                .HasMany(i => i.SubIndustries)
+                .WithOne(s => s.Industry)
+                .HasForeignKey(s => s.IndustryId);
         }
     }
 }

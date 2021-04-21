@@ -32,15 +32,19 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IGendersRepository Genders { get; private set; }
 
+        public IIndustriesRepository Industries { get; private set; }
+
         public ILanguagesRepository Languages { get; private set; }
 
         public ILanguageLevelsRepository LanguageLevels { get; private set; }
 
         public ISkillsRepository Skills { get; private set; }
 
+        public ISubIndustriesRepository SubIndustries { get; private set; }
+
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, ISkillsRepository skills, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIndustriesRepository industries, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, ISkillsRepository skills, ISubIndustriesRepository subIndustries, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
@@ -56,9 +60,11 @@ namespace OnlineRecruitingPlatform.Model.Database
             Employments = employments;
             Experiences = experiences;
             Genders = genders;
+            Industries = industries;
             Languages = languages;
             LanguageLevels = languageLevels;
             Skills = skills;
+            SubIndustries = subIndustries;
             Roles = roles;
         }
     }

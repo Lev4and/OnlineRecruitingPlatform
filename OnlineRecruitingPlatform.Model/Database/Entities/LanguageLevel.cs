@@ -20,7 +20,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("identifierfromheadhunter")]
+        [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
     }
 

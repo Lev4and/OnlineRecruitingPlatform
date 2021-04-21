@@ -16,7 +16,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonConverter(typeof(UpperRegisterConverter))]
         public string Name { get; set; }
 
-        [JsonProperty("identifierfromheadhunter")]
+        [JsonProperty("identifierFromHeadHunter")]
         [JsonConverter(typeof(UpperRegisterConverter))]
         public virtual string IdentifierFromHeadHunter { get; set; }
     }
