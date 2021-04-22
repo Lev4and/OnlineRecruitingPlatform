@@ -1,23 +1,22 @@
 ﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace OnlineRecruitingPlatform.Importers.Tests.API.HeadHunter.Directories
 {
-    public class SkillsDirectoryImpoterTests
+    public class SkillsDirectoryImporterTests
     {
-        private readonly SkillsDirectoryImpoter _impoter;
+        private readonly SkillsDirectoryImporter _importer;
 
-        public SkillsDirectoryImpoterTests()
+        public SkillsDirectoryImporterTests()
         {
-            _impoter = new SkillsDirectoryImpoter();
+            _importer = new SkillsDirectoryImporter();
         }
 
         [Fact]
         public async Task Import_WithParams()
         {
-            await _impoter.Start(maxValueSkillId: 55);
+            await _importer.Start(maxValueId: 55);
         }
     }
 }

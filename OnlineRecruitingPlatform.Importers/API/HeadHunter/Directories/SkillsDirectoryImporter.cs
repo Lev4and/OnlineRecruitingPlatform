@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 {
-    public class SkillsDirectoryImpoter : Impoter
+    public class SkillsDirectoryImporter : Importer
     {
         private readonly string _connectString;
         private readonly SkillsClient _client;
         private readonly OleDbCommand _myCommand;
         private readonly OleDbConnection _myConnection;
 
-        public SkillsDirectoryImpoter() : base ()
+        public SkillsDirectoryImporter() : base ()
         {
             _connectString = _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Skills.accdb;";
 
@@ -28,18 +28,18 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
             _myCommand.Connection = _myConnection;
         }
 
-        private protected override async Task Import(CancellationToken cancellationToken, int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
+        private protected override async Task Import(CancellationToken cancellationToken, int minValueId = 0, int maxValueId = int.MaxValue)
         {
             Status = ImportStatus.SearchForARangeOfValidValues;
 
-            var maxThresholdValueSkillId = await GetMaxValueSkillId(minValueSkillId, maxValueSkillId);
+            var maxThresholdValueSkillId = await GetMaxValueSkillId(minValueId, maxValueId);
             var countIterations = maxThresholdValueSkillId % 50 == 0 ? maxThresholdValueSkillId / 50 : maxThresholdValueSkillId / 50 + 1;
 
-            Progress.CountFoundRecords = maxThresholdValueSkillId - minValueSkillId;
+            Progress.CountFoundRecords = maxThresholdValueSkillId - minValueId;
 
             _myConnection.Open();
 
-            for (int i = minValueSkillId / 50; i < countIterations; i++)
+            for (int i = minValueId / 50; i < countIterations; i++)
             {
                 if (!cancellationToken.IsCancellationRequested)
                 {
@@ -47,7 +47,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 
                     for (int j = 0; j < skillsIds.Length; j++)
                     {
-                        skillsIds[j] = minValueSkillId + i * 50 + j;
+                        skillsIds[j] = minValueId + i * 50 + j;
                     }
 
                     Status = ImportStatus.DownloadFromAPI;
@@ -96,10 +96,10 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
             Status = ImportStatus.Completed;
         }
 
-        private async Task<int> GetMaxValueSkillId(int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
+        private async Task<int> GetMaxValueSkillId(int minValueId = 0, int maxValueId = int.MaxValue)
         {
-            var countRecords = maxValueSkillId;
-            var oldCountRecords = minValueSkillId;
+            var countRecords = maxValueId;
+            var oldCountRecords = minValueId;
 
             while (countRecords != oldCountRecords)
             {
@@ -109,7 +109,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 
                 if (skills.Skills.Length > 0)
                 {
-                    if (countRecords == maxValueSkillId)
+                    if (countRecords == maxValueId)
                     {
                         break;
                     }

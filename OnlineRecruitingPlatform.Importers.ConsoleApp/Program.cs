@@ -1,4 +1,5 @@
-﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
+﻿using OnlineRecruitingPlatform.Importers.API.DaDataRu.OKVED2;
+using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
 using System;
 using System.Threading;
 
@@ -14,7 +15,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new SkillsDirectoryImpoter();
+            var importer = new SubIndustriesImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 
@@ -48,7 +49,8 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             }
 
-            importer.Start(minValueId, maxValueId);
+            //importer.Start(minValueId, maxValueId);
+            importer.Start();
 
             Console.WriteLine($"[IMPORTER][{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}] Импорт начался");
 

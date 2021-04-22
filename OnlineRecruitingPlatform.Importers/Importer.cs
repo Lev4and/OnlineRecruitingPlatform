@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OnlineRecruitingPlatform.Importers
 {
-    public abstract class Impoter
+    public abstract class Importer
     {
         private CancellationTokenSource _cancellationTokenSource;
         private CancellationToken _cancellationToken;
@@ -20,7 +20,7 @@ namespace OnlineRecruitingPlatform.Importers
 
         public ImportProgress Progress { get; private protected set; }
 
-        public Impoter()
+        public Importer()
         {
             Status = ImportStatus.NotStarted;
 
@@ -62,13 +62,22 @@ namespace OnlineRecruitingPlatform.Importers
             return Status != ImportStatus.NotStarted && Status != ImportStatus.Stopped && Status != ImportStatus.Completed;
         }
 
-        public async Task Start(int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
+        public async Task Start()
         {
             Timer.Start();
 
             Status = ImportStatus.Started;
 
-            await Import(_cancellationToken, minValueSkillId, maxValueSkillId);
+            await Import(_cancellationToken);
+        }
+
+        public async Task Start(int minValueId = 0, int maxValueId = int.MaxValue)
+        {
+            Timer.Start();
+
+            Status = ImportStatus.Started;
+
+            await Import(_cancellationToken, minValueId, maxValueId);
         }
 
         public void Stop()
@@ -81,7 +90,12 @@ namespace OnlineRecruitingPlatform.Importers
             _cancellationTokenSource.Cancel();
         }
 
-        private protected virtual async Task Import(CancellationToken cancellationToken, int minValueSkillId = 0, int maxValueSkillId = int.MaxValue)
+        private protected virtual async Task Import(CancellationToken cancellationToken)
+        {
+
+        }
+
+        private protected virtual async Task Import(CancellationToken cancellationToken, int minValueId = 0, int maxValueId = int.MaxValue)
         {
 
         }
