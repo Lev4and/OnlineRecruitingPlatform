@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Industry GetIndustry(string name, bool track = false);
 
+        Industry GetIndustryByCode(string code, bool track = false);
+
         IQueryable<Industry> GetIndustries();
 
         void DeleteIndustry(Guid id);
