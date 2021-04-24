@@ -10,7 +10,11 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public IApplicantNegotiationStatusesRepository ApplicantNegotiationStatuses { get; private set; }
 
+        public IAreasRepository Areas { get; private set; }
+
         public IBusinessTripReadinessTypesRepository BusinessTripReadinessTypes { get; private set; }
+
+        public ICountiesRepository Counties { get; private set; }
 
         public ICurrenciesRepository Currencies { get; private set; }
 
@@ -38,19 +42,23 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public ILanguageLevelsRepository LanguageLevels { get; private set; }
 
+        public IRegionsRepository Regions { get; private set; }
+
         public ISkillsRepository Skills { get; private set; }
 
         public ISubIndustriesRepository SubIndustries { get; private set; }
 
         public IIdentityRolesRepository Roles { get; private set; }
 
-        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIndustriesRepository industries, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, ISkillsRepository skills, ISubIndustriesRepository subIndustries, IIdentityRolesRepository roles)
+        public DataManager(IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IAreasRepository areas, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICountiesRepository counties, ICurrenciesRepository currencies, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIndustriesRepository industries, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, IRegionsRepository regions, ISkillsRepository skills, ISubIndustriesRepository subIndustries, IIdentityRolesRepository roles)
         {
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
             ApplicantNegotiationStatuses = applicantNegotiationStatuses;
             BusinessTripReadinessTypes = businessTripReadinessTypes;
+            Areas = areas;
             Currencies = currencies;
+            Counties = counties;
             DriverLicenseTypes = driverLicenseTypes;
             EducationLevels = educationLevels;
             EmployerActiveVacanciesOrders = employerActiveVacanciesOrders;
@@ -63,6 +71,7 @@ namespace OnlineRecruitingPlatform.Model.Database
             Industries = industries;
             Languages = languages;
             LanguageLevels = languageLevels;
+            Regions = regions;
             Skills = skills;
             SubIndustries = subIndustries;
             Roles = roles;

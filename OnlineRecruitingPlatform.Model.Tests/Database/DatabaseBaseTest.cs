@@ -19,7 +19,9 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFApplicantCommentAccessTypesRepository(_context),
                 new EFApplicantCommentsOrdersRepository(_context),
                 new EFApplicantNegotiationStatusesRepository(_context),
+                new EFAreasRepository(_context), 
                 new EFBusinessTripReadinessTypesRepository(_context),
+                new EFCountiesRepository(_context), 
                 new EFCurrenciesRepository(_context),
                 new EFDriverLicenseTypesRepository(_context),
                 new EFEducationLevelsRepository(_context),
@@ -33,6 +35,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFIndustriesRepository(_context),
                 new EFLanguagesRepository(_context),
                 new EFLanguageLevelsRepository(_context),
+                new EFRegionsRepository(_context),
                 new EFSkillsRepository(_context),
                 new EFSubIndustriesRepository(_context),
                 new EFIdentityRolesRepository(_context));

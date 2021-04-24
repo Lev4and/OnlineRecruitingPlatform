@@ -13,7 +13,11 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<ApplicantNegotiationStatus> ApplicantNegotiationStatuses { get; set; }
 
+        public DbSet<Area> Areas { get; set; }
+
         public DbSet<BusinessTripReadiness> BusinessTripReadinessTypes { get; set; }
+
+        public DbSet<Country> Countries { get; set; }
 
         public DbSet<Currency> Currencies { get; set; }
 
@@ -40,6 +44,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<Language> Languages { get; set; }
 
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
+
+        public DbSet<Region> Regions { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
 
@@ -105,6 +111,16 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(i => i.SubIndustries)
                 .WithOne(s => s.Industry)
                 .HasForeignKey(s => s.IndustryId);
+
+            builder.Entity<Country>()
+                .HasMany(c => c.Regions)
+                .WithOne(r => r.Country)
+                .HasForeignKey(r => r.CountryId);
+
+            builder.Entity<Region>()
+                .HasMany(r => r.Areas)
+                .WithOne(a => a.Region)
+                .HasForeignKey(a => a.RegionId);
         }
     }
 }

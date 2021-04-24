@@ -21,8 +21,11 @@ namespace OnlineRecruitingPlatform.Api
         {
             Configuration.Bind("ConfigDb", new ConfigDb());
 
+            services.AddTransient<IAreasRepository, EFAreasRepository>();
             services.AddTransient<ISkillsRepository, EFSkillsRepository>();
+            services.AddTransient<IRegionsRepository, EFRegionsRepository>();
             services.AddTransient<IGendersRepository, EFGendersRepository>();
+            services.AddTransient<ICountiesRepository, EFCountiesRepository>();
             services.AddTransient<ILanguagesRepository, EFLanguagesRepository>();
             services.AddTransient<ICurrenciesRepository, EFCurrenciesRepository>();
             services.AddTransient<IIndustriesRepository, EFIndustriesRepository>();
