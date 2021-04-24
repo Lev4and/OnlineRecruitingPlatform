@@ -1,5 +1,4 @@
-﻿using OnlineRecruitingPlatform.Importers.API.DaDataRu.OKVED2;
-using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
+﻿using OnlineRecruitingPlatform.Importers.API.DataDovRu.OKVED2;
 using System;
 using System.Threading;
 

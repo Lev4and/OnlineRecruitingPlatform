@@ -18,7 +18,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [Required]
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
 
         [JsonProperty("subIndustries")]
         public SubIndustry[] SubIndustries { get; set; }
@@ -26,6 +26,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
     public class IndustryIV : Industry
     {
+        [JsonIgnore]
         [JsonProperty()]
         [JsonConverter(typeof(GuidConverter))]
         public override Guid Id { get; set; }
@@ -34,5 +35,39 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [MaxLength(2)]
         [JsonProperty("kod")]
         public override string Code { get; set; }
+    }
+
+    public class IndustryIVDataDovRu : Industry
+    {
+        [JsonIgnore]
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [Required]
+        [MaxLength(2)]
+        [JsonProperty("Kod")]
+        public override string Code { get; set; }
+
+        [Required]
+        [JsonProperty("Name")]
+        public override string Name { get; set; }
+    }
+
+    public class IndustryIVDataMosRu : Industry
+    {
+        [JsonIgnore]
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [Required]
+        [MaxLength(2)]
+        [JsonProperty("Kod")]
+        public override string Code { get; set; }
+
+        [Required]
+        [JsonProperty("Name")]
+        public override string Name { get; set; }
     }
 }
