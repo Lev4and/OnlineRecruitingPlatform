@@ -34,12 +34,12 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
             ConfigHttpClients.Domain = ConfigFIASApi.Domain;
             ConfigHttpClients.Port = ConfigFIASApi.Port;
 
-            services.AddTransient<AreasClient>();
+            services.AddTransient<FIASApi.HttpClients.Clients.Addrobs.AreasClient>();
             services.AddTransient<FlatsClient>();
             services.AddTransient<CitiesClient>();
             services.AddTransient<PlacesClient>();
             services.AddTransient<HousesClient>();
-            services.AddTransient<RegionsClient>();
+            services.AddTransient<FIASApi.HttpClients.Clients.Addrobs.RegionsClient>();
             services.AddTransient<StreetsClient>();
             services.AddTransient<OfficesClient>();
 

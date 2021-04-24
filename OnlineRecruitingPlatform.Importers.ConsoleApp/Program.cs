@@ -1,4 +1,4 @@
-﻿using OnlineRecruitingPlatform.Importers.API.DataDovRu.OKVED2;
+﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
 using System;
 using System.Threading;
 
@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new SubIndustriesImporter();
+            var importer = new CountriesDirectoryImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 
