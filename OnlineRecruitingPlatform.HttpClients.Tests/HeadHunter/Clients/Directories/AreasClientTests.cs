@@ -9,32 +9,32 @@ using Xunit;
 
 namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Directories
 {
-    public class RegionsClientTests
+    public class AreasClientTests
     {
-        private readonly RegionsClient _client;
+        private readonly AreasClient _client;
 
-        public RegionsClientTests()
+        public AreasClientTests()
         {
-            _client = new RegionsClient();
+            _client = new AreasClient();
         }
 
         [Fact]
-        public async Task GetRegions_WithCurrentParam_ReturnHttpStatusCode200Response()
+        public async Task GetAreas_WithCurrentParam_ReturnHttpStatusCode200Response()
         {
-            var response = await _client.GetRegions(113);
+            var response = await _client.GetAreas(1384);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<RegionsDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<AreasDirectory>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
-            result.Regions.Should().BeOfType<RegionIV[]>();
-            result.Regions.Should().HaveCountGreaterThan(0);
+            result.Areas.Should().BeOfType<AreaIV[]>();
+            result.Areas.Should().HaveCountGreaterThan(0);
         }
 
         [Fact]
-        public async Task GetRegions_WithInvalidParam_ReturnHttpStatusCode404Response()
+        public async Task GetAreas_WithInvalidParam_ReturnHttpStatusCode404Response()
         {
-            var response = await _client.GetRegions(250);
+            var response = await _client.GetAreas(10000);
 
             response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
