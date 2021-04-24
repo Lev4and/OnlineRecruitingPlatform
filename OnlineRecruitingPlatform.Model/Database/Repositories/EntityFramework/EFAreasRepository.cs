@@ -106,9 +106,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
-        public IQueryable<Area> GetAreas()
+        public IQueryable<Area> GetAreas(bool track = false)
         {
-            return _context.Areas;
+            if (track)
+            {
+                return _context.Areas;
+            }
+            else
+            {
+                return _context.Areas.AsNoTracking();
+            }
         }
 
         public void DeleteArea(Guid id)

@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Area GetArea(Guid regionId, string name, bool track = false);
 
-        IQueryable<Area> GetAreas();
+        IQueryable<Area> GetAreas(bool track = false);
 
         void DeleteArea(Guid id);
     }

@@ -85,9 +85,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
-        public IQueryable<Country> GetCountries()
+        public IQueryable<Country> GetCountries(bool track = false)
         {
-            return _context.Countries;
+            if (track)
+            {
+                return _context.Countries;
+            }
+            else
+            {
+                return _context.Countries.AsNoTracking();
+            }
         }
 
         public void DeleteCountry(Guid id)

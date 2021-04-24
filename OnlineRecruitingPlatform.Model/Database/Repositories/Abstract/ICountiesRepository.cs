@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Country GetCountry(string name, bool track = false);
 
-        IQueryable<Country> GetCountries();
+        IQueryable<Country> GetCountries(bool track = false);
 
         void DeleteCountry(Guid id);
     }

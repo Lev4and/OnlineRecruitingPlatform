@@ -102,9 +102,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
-        public IQueryable<Region> GetRegions()
+        public IQueryable<Region> GetRegions(bool track = false)
         {
-            return _context.Regions;
+            if (track)
+            {
+                return _context.Regions;
+            }
+            else
+            {
+                return _context.Regions.AsNoTracking();
+            }
         }
 
         public void DeleteRegion(Guid id)

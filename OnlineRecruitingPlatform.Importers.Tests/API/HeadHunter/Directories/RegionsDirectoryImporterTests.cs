@@ -1,16 +1,17 @@
-﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
+﻿using System.Diagnostics;
+using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace OnlineRecruitingPlatform.Importers.Tests.API.HeadHunter.Directories
 {
-    public class CountriesDirectoryImporterTests
+    public class RegionsDirectoryImporterTests
     {
-        private readonly CountriesDirectoryImporter _importer;
+        private readonly RegionsDirectoryImporter _importer;
 
-        public CountriesDirectoryImporterTests()
+        public RegionsDirectoryImporterTests()
         {
-            _importer = new CountriesDirectoryImporter();
+            _importer = new RegionsDirectoryImporter();
         }
 
         [Fact]

@@ -17,6 +17,11 @@ namespace OnlineRecruitingPlatform.Importers.Tests.API.HeadHunter.Directories
         public async Task Import_WithParams()
         {
             await _importer.Start(maxValueId: 55);
+
+            while (_importer.IsRunning())
+            {
+
+            }
         }
     }
 }

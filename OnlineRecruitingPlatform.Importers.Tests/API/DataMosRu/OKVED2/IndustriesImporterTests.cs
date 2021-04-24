@@ -17,6 +17,11 @@ namespace OnlineRecruitingPlatform.Importers.Tests.API.DataMosRu.OKVED2
         public async Task Import_WithParams()
         {
             await _importer.Start();
+
+            while (_importer.IsRunning())
+            {
+
+            }
         }
     }
 }
