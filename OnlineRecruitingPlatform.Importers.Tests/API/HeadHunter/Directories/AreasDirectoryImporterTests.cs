@@ -4,13 +4,13 @@ using Xunit;
 
 namespace OnlineRecruitingPlatform.Importers.Tests.API.HeadHunter.Directories
 {
-    public class RegionsDirectoryImporterTests
+    public class AreasDirectoryImporterTests
     {
-        private readonly RegionsDirectoryImporter _importer;
+        private readonly AreasDirectoryImporter _importer;
 
-        public RegionsDirectoryImporterTests()
+        public AreasDirectoryImporterTests()
         {
-            _importer = new RegionsDirectoryImporter();
+            _importer = new AreasDirectoryImporter();
         }
 
         [Fact]

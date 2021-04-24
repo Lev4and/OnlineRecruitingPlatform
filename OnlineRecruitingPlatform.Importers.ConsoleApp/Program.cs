@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new RegionsDirectoryImporter();
+            var importer = new AreasDirectoryImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 
