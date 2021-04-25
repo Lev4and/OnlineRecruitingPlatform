@@ -6,40 +6,39 @@ using System.Linq;
 
 namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 {
-    public class EFCompanyRelationsRepository : ICompanyRelationsRepository
+    public class EFCompanySubIndustriesRepository : ICompanySubIndustriesRepository
     {
         private readonly OnlineRecruitingPlatformDbContext _context;
 
-        public EFCompanyRelationsRepository(OnlineRecruitingPlatformDbContext context)
+        public EFCompanySubIndustriesRepository(OnlineRecruitingPlatformDbContext context)
         {
             _context = context;
         }
 
-        public bool ContainsCompanyRelation(Guid companyId, Guid relationId)
+        public bool ContainsCompanySubIndustry(Guid companyId, Guid subIndustryId)
         {
             if (companyId == null)
             {
                 throw new ArgumentNullException("companyId", "Параметр не может быть пустым.");
             }
 
-            if (relationId == null)
+            if (subIndustryId == null)
             {
-                throw new ArgumentNullException("relationId", "Параметр не может быть пустым.");
+                throw new ArgumentNullException("subIndustryId", "Параметр не может быть пустым.");
             }
 
-            return _context.CompanyRelations.SingleOrDefault(
-                c => c.CompanyId == companyId && c.RelationId == relationId) != null;
-            
+            return _context.CompanySubIndustries.SingleOrDefault(
+                c => c.CompanyId == companyId && c.SubIndustryId == subIndustryId) != null;
         }
 
-        public bool SaveCompanyRelation(CompanyRelation entity)
+        public bool SaveCompanySubIndustry(CompanySubIndustry entity)
         {
             if (entity == null)
             {
                 throw new ArgumentNullException("entity", "Параметр не может быть пустым.");
             }
 
-            if (!ContainsCompanyRelation(entity.CompanyId, entity.RelationId))
+            if (!ContainsCompanySubIndustry(entity.CompanyId, entity.SubIndustryId))
             {
                 if (entity.Id == default)
                 {
@@ -58,7 +57,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return false;
         }
 
-        public CompanyRelation GetCompanyRelation(Guid id, bool track = false)
+        public CompanySubIndustry GetCompanySubIndustry(Guid id, bool track = false)
         {
             if (id == null)
             {
@@ -67,36 +66,31 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 
             if (track)
             {
-                return _context.CompanyRelations.SingleOrDefault(c => c.Id == id);
+                return _context.CompanySubIndustries.SingleOrDefault(c => c.Id == id);
             }
             else
             {
-                return _context.CompanyRelations.AsNoTracking().SingleOrDefault(c => c.Id == id);
+                return _context.CompanySubIndustries.AsNoTracking().SingleOrDefault(c => c.Id == id);
             }
         }
 
-        public IQueryable<CompanyRelation> GetCompanyRelations(bool track = false)
+        public IQueryable<CompanySubIndustry> GetCompanySubIndustries(bool track = false)
         {
             if (track)
             {
-                return _context.CompanyRelations;
+                return _context.CompanySubIndustries;
             }
             else
             {
-                return _context.CompanyRelations.AsNoTracking();
+                return _context.CompanySubIndustries.AsNoTracking();
             }
         }
 
-        public void DeleteCompanyRelation(Guid id)
+        public void DeleteCompanySubIndustry(Guid id)
         {
-            if (id == null)
-            {
-                throw new ArgumentNullException("id", "Параметр не может быть пустым.");
-            }
+            var entity = GetCompanySubIndustry(id);
 
-            var entity = GetCompanyRelation(id);
-
-            _context.CompanyRelations.Remove(entity);
+            _context.CompanySubIndustries.Remove(entity);
             _context.SaveChanges();
         }
     }

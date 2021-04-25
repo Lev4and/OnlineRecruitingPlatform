@@ -12,7 +12,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         CompanyRelation GetCompanyRelation(Guid id, bool track = false);
 
-        IQueryable<CompanyRelation> GerCompanyRelations(bool track = false);
+        IQueryable<CompanyRelation> GetCompanyRelations(bool track = false);
 
         void DeleteCompanyRelation(Guid id);
     }
