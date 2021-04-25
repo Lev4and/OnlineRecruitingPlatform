@@ -17,6 +17,20 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<BusinessTripReadiness> BusinessTripReadinessTypes { get; set; }
 
+        public DbSet<Company> Companies { get; set; }
+
+        public DbSet<CompanyInformation> CompanyInformation { get; set; }
+
+        public DbSet<CompanyInsiderInterview> CompanyInsiderInterviews { get; set; }
+
+        public DbSet<CompanyLocation> CompanyLocations { get; set; }
+
+        public DbSet<CompanyLogo> CompanyLogos { get; set; }
+
+        public DbSet<CompanyRelation> CompanyRelations { get; set; }
+
+        public DbSet<CompanySubIndustry> CompanySubIndustries { get; set; }
+
         public DbSet<Country> Countries { get; set; }
 
         public DbSet<Currency> Currencies { get; set; }
@@ -46,6 +60,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
 
         public DbSet<Region> Regions { get; set; }
+
+        public DbSet<Relation> Relations { get; set; }
 
         public DbSet<Skill> Skills { get; set; }
 
@@ -121,6 +137,51 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(r => r.Areas)
                 .WithOne(a => a.Region)
                 .HasForeignKey(a => a.RegionId);
+
+            builder.Entity<Company>()
+                .HasOne(c => c.Information)
+                .WithOne(ci => ci.Company)
+                .HasForeignKey<CompanyInformation>(ci => ci.CompanyId);
+
+            builder.Entity<Company>()
+                .HasOne(c => c.Logo)
+                .WithOne(cl => cl.Company)
+                .HasForeignKey<CompanyLogo>(cl => cl.CompanyId);
+
+            builder.Entity<Company>()
+                .HasMany(c => c.Relations)
+                .WithOne(cr => cr.Company)
+                .HasForeignKey(cr => cr.CompanyId);
+
+            builder.Entity<Company>()
+                .HasMany(c => c.Locations)
+                .WithOne(cl => cl.Company)
+                .HasForeignKey(cl => cl.CompanyId);
+
+            builder.Entity<Company>()
+                .HasMany(c => c.SubIndustries)
+                .WithOne(cs => cs.Company)
+                .HasForeignKey(cs => cs.CompanyId);
+
+            builder.Entity<Company>()
+                .HasMany(c => c.InsiderInterviews)
+                .WithOne(ci => ci.Company)
+                .HasForeignKey(ci => ci.CompanyId);
+
+            builder.Entity<Relation>()
+                .HasMany(r => r.CompanyRelations)
+                .WithOne(cr => cr.Relation)
+                .HasForeignKey(cr => cr.RelationId);
+
+            builder.Entity<Area>()
+                .HasMany(a => a.CompanyLocations)
+                .WithOne(cl => cl.Area)
+                .HasForeignKey(cl => cl.AreaId);
+
+            builder.Entity<SubIndustry>()
+                .HasMany(s => s.CompanySubIndustries)
+                .WithOne(cs => cs.SubIndustry)
+                .HasForeignKey(cs => cs.SubIndustryId);
         }
     }
 }

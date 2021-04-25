@@ -31,6 +31,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("region")]
         public Region Region { get; set; }
+
+        [JsonProperty("companyLocations")]
+        public CompanyLocation[] CompanyLocations { get; set; }
     }
 
     public class AreaIV : Area

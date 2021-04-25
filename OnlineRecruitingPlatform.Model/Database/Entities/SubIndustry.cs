@@ -26,6 +26,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("industry")]
         public Industry Industry { get; set; }
+
+        [JsonProperty("companySubIndustries")]
+        public CompanySubIndustry[] CompanySubIndustries { get; set; }
     }
 
     public class SubIndustryIV : SubIndustry
