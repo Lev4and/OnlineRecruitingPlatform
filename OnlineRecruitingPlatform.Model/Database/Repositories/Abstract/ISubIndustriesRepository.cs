@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         SubIndustry GetSubIndustry(string name, bool track = false);
 
+        SubIndustry GetSubIndustryByCode(string code, bool track = false);
+
         IQueryable<SubIndustry> GetSubIndustries();
 
         void DeleteSubIndustry(Guid id);

@@ -21,7 +21,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public virtual string Resolution240px { get; set; }
 
         [JsonProperty("original")]
-        public string Original { get; set; }
+        public virtual string Original { get; set; }
 
         [JsonProperty("company")]
         public Company Company { get; set; }
@@ -38,9 +38,15 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public override Guid CompanyId { get; set; }
 
         [JsonProperty("90")]
+        [JsonConverter(typeof(Base64Converter))]
         public override string Resolution90px { get; set; }
 
         [JsonProperty("240")]
+        [JsonConverter(typeof(Base64Converter))]
         public override string Resolution240px { get; set; }
+
+        [JsonProperty("original")]
+        [JsonConverter(typeof(Base64Converter))]
+        public override string Original { get; set; }
     }
 }

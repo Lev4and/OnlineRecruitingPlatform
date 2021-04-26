@@ -102,6 +102,23 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public SubIndustry GetSubIndustryByCode(string code, bool track = false)
+        {
+            if (string.IsNullOrEmpty(code))
+            {
+                throw new ArgumentNullException("code", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.SubIndustries.SingleOrDefault(i => i.Code == code);
+            }
+            else
+            {
+                return _context.SubIndustries.AsNoTracking().SingleOrDefault(i => i.Code == code);
+            }
+        }
+
         public IQueryable<SubIndustry> GetSubIndustries()
         {
             return _context.SubIndustries;

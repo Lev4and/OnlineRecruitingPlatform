@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnlineRecruitingPlatform.Model.Database.Entities;
 using OnlineRecruitingPlatform.Model.Database.Repositories.Abstract;
+using System;
+using System.Linq;
 using ArgumentNullException = System.ArgumentNullException;
 
 namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
@@ -70,6 +67,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
 
             return false;
+        }
+
+        public Area GetArea(int identifierFromHeadHunter, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Areas.SingleOrDefault(a => a.IdentifierFromHeadHunter == identifierFromHeadHunter);
+            }
+            else
+            {
+                return _context.Areas.AsNoTracking().SingleOrDefault(a => a.IdentifierFromHeadHunter == identifierFromHeadHunter);
+            }
         }
 
         public Area GetArea(Guid id, bool track = false)

@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
+using Newtonsoft.Json;
 using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Companies;
+using OnlineRecruitingPlatform.Model.API.HeadHunter.Companies;
+using OnlineRecruitingPlatform.Model.Database.Entities;
 using System.Net;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using OnlineRecruitingPlatform.Model.API.HeadHunter.Directories;
-using OnlineRecruitingPlatform.Model.Database.Entities;
 using Xunit;
 
 namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companies
@@ -23,7 +23,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companie
         {
             var response = await _client.GetCompanies(-1, -1);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CompaniesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SearchResultCompanies>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -36,7 +36,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companie
         {
             var response = await _client.GetCompanies(-1);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CompaniesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SearchResultCompanies>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -49,7 +49,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companie
         {
             var response = await _client.GetCompanies(perPage: -1);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CompaniesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SearchResultCompanies>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -62,7 +62,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companie
         {
             var response = await _client.GetCompanies(perPage: 100000);
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CompaniesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SearchResultCompanies>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 
@@ -75,7 +75,7 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.HeadHunter.Clients.Companie
         {
             var response = await _client.GetCompanies();
             var resultJson = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<CompaniesDirectory>(resultJson);
+            var result = JsonConvert.DeserializeObject<SearchResultCompanies>(resultJson);
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
 

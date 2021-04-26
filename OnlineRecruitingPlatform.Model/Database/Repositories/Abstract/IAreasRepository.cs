@@ -10,6 +10,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         bool SaveArea(Area entity);
 
+        Area GetArea(int identifierFromHeadHunter, bool track = false);
+
         Area GetArea(Guid id, bool track = false);
 
         Area GetArea(Guid regionId, string name, bool track = false);

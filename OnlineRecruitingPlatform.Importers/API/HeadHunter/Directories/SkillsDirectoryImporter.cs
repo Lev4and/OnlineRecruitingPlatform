@@ -52,7 +52,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 
                     Status = ImportStatus.DownloadFromAPI;
 
-                    var skills = JsonConvert.DeserializeObject<SkillsDirectory>(_client.GetSkills(skillsIds).Result.Content.ReadAsStringAsync().Result);
+                    var skills = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(_client.GetSkills(skillsIds).Result.Content.ReadAsStringAsync().Result);
 
                     Status = ImportStatus.SavingToDb;
 
@@ -63,8 +63,8 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
                             _myCommand.CommandText = $"INSERT INTO [Skills] (Id, Name, IdentifierFromHeadHunter, IdentifierFromZarplataRu) VALUES (?, ?, ?, ?)";
 
                             _myCommand.Parameters.Clear();
-                            _myCommand.Parameters.Add(new OleDbParameter("@Id", OleDbType.LongVarChar)).Value = $"{Guid.NewGuid()}";
-                            _myCommand.Parameters.Add(new OleDbParameter("@Name", OleDbType.VarChar)).Value = skill.Name;
+                            _myCommand.Parameters.Add(new OleDbParameter("@Id", OleDbType.VarChar)).Value = $"{Guid.NewGuid()}";
+                            _myCommand.Parameters.Add(new OleDbParameter("@Name", OleDbType.LongVarChar)).Value = skill.Name;
                             _myCommand.Parameters.Add(new OleDbParameter("@IdentifierFromHeadHunter", OleDbType.Integer)).Value = skill.IdentifierFromHeadHunter;
                             _myCommand.Parameters.Add(new OleDbParameter("@IdentifierFromZarplataRu", OleDbType.Integer)).Value = DBNull.Value;
 
@@ -105,7 +105,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
             {
                 var currentValueCountRecords = countRecords;
 
-                var skills = JsonConvert.DeserializeObject<SkillsDirectory>(await(await _client.GetSkill(currentValueCountRecords)).Content.ReadAsStringAsync());
+                var skills = JsonConvert.DeserializeObject<SkillsDirectory<SkillIV>>(await(await _client.GetSkill(currentValueCountRecords)).Content.ReadAsStringAsync());
 
                 if (skills.Skills.Length > 0)
                 {

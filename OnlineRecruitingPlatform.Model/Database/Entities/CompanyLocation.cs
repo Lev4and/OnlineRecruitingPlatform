@@ -24,4 +24,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("area")]
         public Area Area { get; set; }
     }
+
+    public class CompanyLocationIV
+    {
+        [JsonProperty("id")]
+        public int Area { get; set; }
+    }
 }
