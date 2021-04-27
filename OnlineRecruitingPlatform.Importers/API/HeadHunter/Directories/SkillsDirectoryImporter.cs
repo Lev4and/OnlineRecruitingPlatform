@@ -47,7 +47,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 
                     for (int j = 0; j < skillsIds.Length; j++)
                     {
-                        skillsIds[j] = minValueId + i * 50 + j;
+                        skillsIds[j] = i * 50 + j;
                     }
 
                     Status = ImportStatus.DownloadFromAPI;
