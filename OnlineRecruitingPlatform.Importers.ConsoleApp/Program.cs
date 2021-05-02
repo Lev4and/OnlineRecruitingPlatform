@@ -1,4 +1,4 @@
-﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
+﻿using OnlineRecruitingPlatform.Importers.API.DataMosRu.OKPDTR;
 using System;
 using System.Threading;
 
@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new SpecializationsDirectoryImporter();
+            var importer = new ProfessionsImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 
