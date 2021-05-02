@@ -3,7 +3,6 @@ using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Directories;
 using OnlineRecruitingPlatform.Model.API.HeadHunter.Directories;
 using OnlineRecruitingPlatform.Model.Database.Entities;
 using System;
-using System.Data.OleDb;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,21 +10,11 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
 {
     public class SkillsDirectoryImporter : Importer
     {
-        private readonly string _connectString;
         private readonly SkillsClient _client;
-        private readonly OleDbCommand _myCommand;
-        private readonly OleDbConnection _myConnection;
 
         public SkillsDirectoryImporter() : base ()
         {
-            _connectString = _connectString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=Skills.accdb;";
-
             _client = new SkillsClient();
-
-            _myConnection = new OleDbConnection(_connectString);
-
-            _myCommand = new OleDbCommand();
-            _myCommand.Connection = _myConnection;
         }
 
         private protected override async Task Import(CancellationToken cancellationToken, int minValueId = 0, int maxValueId = int.MaxValue)
@@ -36,8 +25,6 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
             var countIterations = maxThresholdValueSkillId % 50 == 0 ? maxThresholdValueSkillId / 50 : maxThresholdValueSkillId / 50 + 1;
 
             Progress.CountFoundRecords = maxThresholdValueSkillId - minValueId;
-
-            _myConnection.Open();
 
             for (int i = minValueId / 50; i < countIterations; i++)
             {
@@ -60,25 +47,12 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
                     {
                         try
                         {
-                            _myCommand.CommandText = $"INSERT INTO [Skills] (Id, Name, IdentifierFromHeadHunter, IdentifierFromZarplataRu) VALUES (?, ?, ?, ?)";
-
-                            _myCommand.Parameters.Clear();
-                            _myCommand.Parameters.Add(new OleDbParameter("@Id", OleDbType.VarChar)).Value = $"{Guid.NewGuid()}";
-                            _myCommand.Parameters.Add(new OleDbParameter("@Name", OleDbType.LongVarChar)).Value = skill.Name;
-                            _myCommand.Parameters.Add(new OleDbParameter("@IdentifierFromHeadHunter", OleDbType.Integer)).Value = skill.IdentifierFromHeadHunter;
-                            _myCommand.Parameters.Add(new OleDbParameter("@IdentifierFromZarplataRu", OleDbType.Integer)).Value = DBNull.Value;
-
-                            _myCommand.ExecuteNonQuery();
-
-                            //_dataManager.Skills.MarkToAdd(new Skill { Name = skill.Name });
-                            //_dataManager.Skills.SaveChanges();
+                            _dataManager.Skills.SaveSkill(new Skill { Name = skill.Name, IdentifierFromHeadHunter = skill.IdentifierFromHeadHunter });
 
                             Progress.CountImportedRecords += 1;
                         }
                         catch
                         {
-                            _myConnection.Close();
-
                             Status = ImportStatus.Completed;
 
                             return;
@@ -90,8 +64,6 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories
                     break;
                 }
             }
-
-            _myConnection.Close();
 
             Status = ImportStatus.Completed;
         }

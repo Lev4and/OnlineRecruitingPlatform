@@ -24,6 +24,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("logo")]
         public CompanyLogo Logo { get; set; }
 
+        [JsonProperty("vacancies")]
+        public Vacancy[] Vacancies { get; set; }
+
         [JsonProperty("relations")]
         public CompanyRelation[] Relations { get; set; }
 

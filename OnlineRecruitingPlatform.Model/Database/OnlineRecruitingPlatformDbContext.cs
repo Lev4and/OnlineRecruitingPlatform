@@ -7,6 +7,8 @@ namespace OnlineRecruitingPlatform.Model.Database
 {
     public class OnlineRecruitingPlatformDbContext : IdentityDbContext<IdentityUser>
     {
+        public DbSet<Address> Addresses { get; set; }
+        
         public DbSet<ApplicantCommentAccessType> ApplicantCommentAccessTypes { get; set; }
 
         public DbSet<ApplicantCommentsOrder> ApplicantCommentsOrders { get; set; }
@@ -14,6 +16,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<ApplicantNegotiationStatus> ApplicantNegotiationStatuses { get; set; }
 
         public DbSet<Area> Areas { get; set; }
+        
+        public DbSet<Building> Buildings { get; set; }
 
         public DbSet<BusinessTripReadiness> BusinessTripReadinessTypes { get; set; }
 
@@ -34,6 +38,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<Country> Countries { get; set; }
 
         public DbSet<Currency> Currencies { get; set; }
+
+        public DbSet<CurrencyQuote> CurrencyQuotes { get; set; }
 
         public DbSet<DriverLicenseType> DriverLicenseTypes { get; set; }
 
@@ -59,13 +65,51 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
 
+        public DbSet<Profession> Professions { get; set; }
+
+        public DbSet<ProfessionalArea> ProfessionalAreas { get; set; }
+
         public DbSet<Region> Regions { get; set; }
 
         public DbSet<Relation> Relations { get; set; }
 
+        public DbSet<Schedule> Schedules { get; set; }
+
         public DbSet<Skill> Skills { get; set; }
 
+        public DbSet<Specialization> Specializations { get; set; }
+        
+        public DbSet<Street> Streets { get; set; }
+
         public DbSet<SubIndustry> SubIndustries { get; set; }
+
+        public DbSet<Vacancy> Vacancies { get; set; }
+        
+        public DbSet<VacancyBillingType> VacancyBillingTypes { get; set; }
+
+        public DbSet<VacancyContact> VacancyContacts { get; set; }
+
+        public DbSet<VacancyContactPhone> VacancyContactPhones { get; set; }
+
+        public DbSet<VacancyDriverLicenseType> VacancyDriverLicenseTypes { get; set; }
+
+        public DbSet<VacancyInformation> VacancyInformation { get; set; }
+
+        public DbSet<VacancyKeySkill> VacancyKeySkills { get; set; }
+
+        public DbSet<VacancyRelation> VacancyRelations { get; set; }
+
+        public DbSet<VacancySalary> VacancySalaries { get; set; }
+
+        public DbSet<VacancySpecialization> VacancySpecializations { get; set; }
+
+        public DbSet<VacancyType> VacancyTypes { get; set; }
+
+        public DbSet<WorkingDays> WorkingDays { get; set; }
+
+        public DbSet<WorkingTimeIntervals> WorkingTimeIntervals { get; set; }
+
+        public DbSet<WorkingTimeModes> WorkingTimeModes { get; set; }
 
         public OnlineRecruitingPlatformDbContext(DbContextOptions<OnlineRecruitingPlatformDbContext> options) : base(options)
         {
@@ -149,6 +193,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasForeignKey<CompanyLogo>(cl => cl.CompanyId);
 
             builder.Entity<Company>()
+                .HasMany(c => c.Vacancies)
+                .WithOne(v => v.Company)
+                .HasForeignKey(v => v.CompanyId);
+
+            builder.Entity<Company>()
                 .HasMany(c => c.Relations)
                 .WithOne(cr => cr.Company)
                 .HasForeignKey(cr => cr.CompanyId);
@@ -174,6 +223,21 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasForeignKey(cr => cr.RelationId);
 
             builder.Entity<Area>()
+                .HasMany(a => a.Streets)
+                .WithOne(s => s.Area)
+                .HasForeignKey(s => s.Aoguid);
+
+            builder.Entity<Area>()
+                .HasMany(a => a.Vacancies)
+                .WithOne(v => v.Area)
+                .HasForeignKey(v => v.AreaId);
+            
+            builder.Entity<Area>()
+                .HasMany(a => a.Addresses)
+                .WithOne(a => a.Area)
+                .HasForeignKey(a => a.CityId);
+            
+            builder.Entity<Area>()
                 .HasMany(a => a.CompanyLocations)
                 .WithOne(cl => cl.Area)
                 .HasForeignKey(cl => cl.AreaId);
@@ -182,6 +246,136 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(s => s.CompanySubIndustries)
                 .WithOne(cs => cs.SubIndustry)
                 .HasForeignKey(cs => cs.SubIndustryId);
+
+            builder.Entity<Street>()
+                .HasMany(s => s.Buildings)
+                .WithOne(b => b.Street)
+                .HasForeignKey(b => b.StreetId);
+
+            builder.Entity<Street>()
+                .HasMany(s => s.Addresses)
+                .WithOne(a => a.Street)
+                .HasForeignKey(a => a.StreetId);
+
+            builder.Entity<Currency>()
+                .HasMany(c => c.CurrencyQuotes)
+                .WithOne(c => c.Currency)
+                .HasForeignKey(c => c.CurrencyId);
+
+            builder.Entity<Currency>()
+                .HasMany(c => c.VacancySalaries)
+                .WithOne(v => v.Currency)
+                .HasForeignKey(v => v.CurrencyId);
+
+            builder.Entity<EducationLevel>()
+                .HasMany(e => e.Vacancies)
+                .WithOne(v => v.EducationLevel)
+                .HasForeignKey(v => v.EducationLevelId);
+
+            builder.Entity<Employment>()
+                .HasMany(e => e.Vacancies)
+                .WithOne(v => v.Employment)
+                .HasForeignKey(v => v.EmploymentId);
+
+            builder.Entity<Experience>()
+                .HasMany(e => e.Vacancies)
+                .WithOne(v => v.Experience)
+                .HasForeignKey(v => v.ExperienceId);
+
+            builder.Entity<ProfessionalArea>()
+                .HasMany(p => p.Specializations)
+                .WithOne(s => s.ProfessionalArea)
+                .HasForeignKey(s => s.ProfessionalAreaId);
+
+            builder.Entity<Schedule>()
+                .HasMany(s => s.Vacancies)
+                .WithOne(v => v.Schedule)
+                .HasForeignKey(v => v.ScheduleId);
+
+            builder.Entity<Specialization>()
+                .HasMany(s => s.VacancySpecializations)
+                .WithOne(v => v.Specialization)
+                .HasForeignKey(v => v.SpecializationId);
+
+            builder.Entity<Building>()
+                .HasMany(b => b.Addresses)
+                .WithOne(a => a.Building)
+                .HasForeignKey(a => a.BuildingId);
+
+            builder.Entity<Address>()
+                .HasMany(a => a.Vacancies)
+                .WithOne(v => v.Address)
+                .HasForeignKey(v => v.AddressId);
+
+            builder.Entity<Vacancy>()
+                .HasOne(v => v.VacancyInformation)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey<VacancyInformation>(v => v.VacancyId);
+
+            builder.Entity<Vacancy>()
+                .HasOne(v => v.VacancySalary)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey<VacancySalary>(v => v.VacancyId);
+
+            builder.Entity<Vacancy>()
+                .HasOne(v => v.VacancyContact)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey<VacancyContact>(v => v.VacancyId);
+
+            builder.Entity<Vacancy>()
+                .HasMany(v => v.VacancyDriverLicenseTypes)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey(v => v.VacancyId);
+
+            builder.Entity<Vacancy>()
+                .HasMany(v => v.VacancyKeySkills)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey(v => v.VacancyId);
+
+            builder.Entity<Vacancy>()
+                .HasMany(v => v.VacancySpecializations)
+                .WithOne(v => v.Vacancy)
+                .HasForeignKey(v => v.VacancyId);
+
+            builder.Entity<DriverLicenseType>()
+                .HasMany(d => d.VacancyDriverLicenseTypes)
+                .WithOne(v => v.DriverLicenseType)
+                .HasForeignKey(v => v.DriverLicenseTypeId);
+
+            builder.Entity<Skill>()
+                .HasMany(s => s.VacancyKeySkills)
+                .WithOne(v => v.Skill)
+                .HasForeignKey(v => v.SkillId);
+
+            builder.Entity<VacancyType>()
+                .HasMany(v => v.Vacancies)
+                .WithOne(v => v.VacancyType)
+                .HasForeignKey(v => v.VacancyTypeId);
+
+            builder.Entity<VacancyBillingType>()
+                .HasMany(v => v.VacancyInformation)
+                .WithOne(v => v.VacancyBillingType)
+                .HasForeignKey(v => v.VacancyBillingTypeId);
+
+            builder.Entity<VacancyContact>()
+                .HasMany(v => v.VacancyContactPhones)
+                .WithOne(v => v.VacancyContact)
+                .HasForeignKey(v => v.VacancyContactId);
+
+            builder.Entity<WorkingDays>()
+                .HasMany(w => w.Vacancies)
+                .WithOne(v => v.WorkingDays)
+                .HasForeignKey(v => v.WorkingDaysId);
+
+            builder.Entity<WorkingTimeIntervals>()
+                .HasMany(w => w.Vacancies)
+                .WithOne(v => v.WorkingTimeIntervals)
+                .HasForeignKey(v => v.WorkingTimeIntervalsId);
+
+            builder.Entity<WorkingTimeModes>()
+                .HasMany(w => w.Vacancies)
+                .WithOne(v => v.WorkingTimeModes)
+                .HasForeignKey(v => v.WorkingTimeModesId);
         }
     }
 }

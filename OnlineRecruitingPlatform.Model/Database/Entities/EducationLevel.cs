@@ -17,6 +17,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+
+        [JsonProperty("vacancies")]
+        public Vacancy[] Vacancies { get; set; }
     }
 
     public class EducationLevelIV : EducationLevel

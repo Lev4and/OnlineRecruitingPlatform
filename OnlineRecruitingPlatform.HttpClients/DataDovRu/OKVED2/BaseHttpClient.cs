@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace OnlineRecruitingPlatform.HttpClients.DataDovRu.OKVED2
+namespace OnlineRecruitingPlatform.HttpClients.DataDovRu
 {
     public class BaseHttpClient
     {

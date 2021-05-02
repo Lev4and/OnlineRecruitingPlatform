@@ -2,12 +2,13 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 
-namespace OnlineRecruitingPlatform.HttpClients.DaDataRu.OKVED2
+namespace OnlineRecruitingPlatform.HttpClients.DataMosRu
 {
     public class BaseHttpClient
     {
         private string _baseUrl;
-        private readonly string _authorizationToken;
+
+        private protected const string _apiKey = "deff7202a87eda2bf3989f9d3019520a";
 
         private protected HttpClient _client;
         private protected HttpContent _content;
@@ -15,8 +16,7 @@ namespace OnlineRecruitingPlatform.HttpClients.DaDataRu.OKVED2
 
         public BaseHttpClient(string pathAndQueryUrl)
         {
-            _baseUrl = $"https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/{pathAndQueryUrl}";
-            _authorizationToken = "363ae91a17f38ccbf02f0cdb52038ee061197c4e";
+            _baseUrl = $"https://apidata.mos.ru/v1/{pathAndQueryUrl}";
 
             _handler = new HttpClientHandler();
             _handler.AllowAutoRedirect = false;
@@ -28,7 +28,6 @@ namespace OnlineRecruitingPlatform.HttpClients.DaDataRu.OKVED2
             _client = new HttpClient(_handler);
             _client.BaseAddress = new Uri(_baseUrl);
             _client.DefaultRequestHeaders.UserAgent.ParseAdd("OnlineRecruitingPlatform/1.0 (onlinerecruitingplatform.u1321851.plsk.regruhosting.ru)");
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", _authorizationToken);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
     }

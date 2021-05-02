@@ -35,10 +35,12 @@ namespace OnlineRecruitingPlatform.Importers
 
             _context = new OnlineRecruitingPlatformDbContext(options);
             _dataManager = new DataManager(
+                new EFAddressesRepository(_context), 
                 new EFApplicantCommentAccessTypesRepository(_context),
                 new EFApplicantCommentsOrdersRepository(_context),
                 new EFApplicantNegotiationStatusesRepository(_context),
                 new EFAreasRepository(_context),
+                new EFBuildingsRepository(_context), 
                 new EFBusinessTripReadinessTypesRepository(_context),
                 new EFCompaniesRepository(_context),
                 new EFCompanyInformationRepository(_context),
@@ -61,11 +63,29 @@ namespace OnlineRecruitingPlatform.Importers
                 new EFIndustriesRepository(_context),
                 new EFLanguagesRepository(_context),
                 new EFLanguageLevelsRepository(_context),
+                new EFProfessionalAreasRepository(_context), 
+                new EFProfessionsRepository(_context), 
                 new EFRegionsRepository(_context),
                 new EFRelationsRepository(_context),
+                new EFSchedulesRepository(_context), 
                 new EFSkillsRepository(_context),
+                new EFStreetsRepository(_context), 
                 new EFSubIndustriesRepository(_context),
-                new EFIdentityRolesRepository(_context));
+                new EFIdentityRolesRepository(_context),
+            new EFVacanciesRepository(_context),
+                new EFVacancyBillingTypesRepository(_context), 
+                new EFVacancyContactsRepository(_context),
+                new EFVacancyContactPhonesRepository(_context),
+                new EFVacancyDriverLicenseTypesRepository(_context),
+                new EFVacancyInformationRepository(_context),
+                new EFVacancyKeySkillsRepository(_context),
+                new EFVacancyRelationsRepository(_context),
+                new EFVacancySalariesRepository(_context),
+                new EFVacancySpecializationsRepository(_context),
+                new EFVacancyTypesRepository(_context),
+                new EFWorkingDaysRepository(_context),
+                new EFWorkingTimeIntervalsRepository(_context),
+                new EFWorkingTimeModesRepository(_context));
         }
 
         public bool IsRunning()

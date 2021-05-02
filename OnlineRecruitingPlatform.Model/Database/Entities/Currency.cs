@@ -29,6 +29,12 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+        
+        [JsonProperty("currencyQuotes")]
+        public CurrencyQuote[] CurrencyQuotes { get; set; }
+        
+        [JsonProperty("vacancySalaries")]
+        public VacancySalary[] VacancySalaries { get; set; }
     }
 
     public class CurrencyIV : Currency
