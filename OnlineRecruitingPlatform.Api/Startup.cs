@@ -46,6 +46,7 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IEmployerTypesRepository, EFEmployerTypesRepository>();
             services.AddTransient<IIdentityRolesRepository, EFIdentityRolesRepository>();
             services.AddTransient<ILanguageLevelsRepository, EFLanguageLevelsRepository>();
+            services.AddTransient<ICurrencyQuotesRepository, EFCurrencyQuotesRepository>();
             services.AddTransient<IEducationLevelsRepository, EFEducationLevelsRepository>();
             services.AddTransient<IVacancyContactsRepository, EFVacancyContactsRepository>();
             services.AddTransient<IVacancySalariesRepository, EFVacancySalariesRepository>();

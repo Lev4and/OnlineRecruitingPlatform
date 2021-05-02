@@ -51,6 +51,7 @@ namespace OnlineRecruitingPlatform.Importers
                 new EFCompanySubIndustriesRepository(_context),
                 new EFCountiesRepository(_context),
                 new EFCurrenciesRepository(_context),
+                new EFCurrencyQuotesRepository(_context),
                 new EFDriverLicenseTypesRepository(_context),
                 new EFEducationLevelsRepository(_context),
                 new EFEmployerActiveVacanciesOrdersRepository(_context),
