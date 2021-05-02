@@ -1,8 +1,6 @@
-﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Companies;
+﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
 using System;
 using System.Threading;
-using OnlineRecruitingPlatform.Importers.API.CbrXmlDaily;
-using OnlineRecruitingPlatform.Importers.API.HeadHunter.Directories;
 
 namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 {
@@ -16,7 +14,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new CurrencyQuotesImporter();
+            var importer = new SpecializationsDirectoryImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 

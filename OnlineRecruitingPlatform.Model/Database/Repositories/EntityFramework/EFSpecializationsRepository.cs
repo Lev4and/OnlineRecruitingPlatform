@@ -22,8 +22,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
                 throw new ArgumentNullException("code", "Параметр не может быть пустым или длиной 0 символов.");
             }
 
-            return _context.Specializations.Include(s => s.ProfessionalArea)
-                .SingleOrDefault(s => s.Code == code || s.ProfessionalArea.Code == code) != null;
+            return _context.Specializations.SingleOrDefault(s => s.Code == code) != null;
         }
 
         public bool SaveSpecialization(Specialization entity)

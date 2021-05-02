@@ -70,6 +70,7 @@ namespace OnlineRecruitingPlatform.Importers
                 new EFRelationsRepository(_context),
                 new EFSchedulesRepository(_context), 
                 new EFSkillsRepository(_context),
+                new EFSpecializationsRepository(_context), 
                 new EFStreetsRepository(_context), 
                 new EFSubIndustriesRepository(_context),
                 new EFIdentityRolesRepository(_context),

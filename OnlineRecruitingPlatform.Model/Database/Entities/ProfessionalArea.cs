@@ -9,21 +9,50 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
         
         [Required]
         [MaxLength(2)]
         [JsonProperty("code")]
-        public string Code { get; set; }
+        public virtual string Code { get; set; }
 
         [Required]
         [JsonProperty("name")]
         public string Name { get; set; }
         
         [JsonProperty("identifierFromHeadHunter")]
-        public string IdentifierFromHeadHunter { get; set; }
+        public virtual string IdentifierFromHeadHunter { get; set; }
 
         [JsonProperty("specializations")]
         public Specialization[] Specializations { get; set; }
+    }
+
+    public class ProfessionalAreaIV : ProfessionalArea
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        public override string Code { get; set; }
+
+        [JsonProperty("id")]
+        public override string IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class ProfessionalAreaIVWithSpecializations
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public Guid Id { get; set; }
+
+        [JsonProperty()]
+        public string Code { get; set; }
+
+        [JsonProperty("id")]
+        public string IdentifierFromHeadHunter { get; set; }
+
+        [JsonProperty("specializations")]
+        public SpecializationIV[] Specializations { get; set; }
     }
 }
