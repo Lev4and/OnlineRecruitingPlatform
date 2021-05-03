@@ -16,7 +16,8 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
 
             _context = new OnlineRecruitingPlatformDbContext(options);
             _dataManager = new DataManager(
-                new EFAddressesRepository(_context), 
+                new EFAddressesRepository(_context),
+                new EFAgePreferencesRepository(_context), 
                 new EFApplicantCommentAccessTypesRepository(_context),
                 new EFApplicantCommentsOrdersRepository(_context),
                 new EFApplicantNegotiationStatusesRepository(_context),
@@ -45,6 +46,9 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFIndustriesRepository(_context),
                 new EFLanguagesRepository(_context),
                 new EFLanguageLevelsRepository(_context),
+                new EFPaidPeriodsRepository(_context), 
+                new EFPayoutFrequenciesRepository(_context),
+                new EFPlaceOfWorksRepository(_context), 
                 new EFProfessionalAreasRepository(_context), 
                 new EFProfessionsRepository(_context), 
                 new EFRegionsRepository(_context),
@@ -67,6 +71,7 @@ namespace OnlineRecruitingPlatform.Model.Tests.Database
                 new EFVacancySpecializationsRepository(_context),
                 new EFVacancyTypesRepository(_context),
                 new EFWorkingDaysRepository(_context),
+                new EFWorkingShiftsRepository(_context), 
                 new EFWorkingTimeIntervalsRepository(_context),
                 new EFWorkingTimeModesRepository(_context));
         }

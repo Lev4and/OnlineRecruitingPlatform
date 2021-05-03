@@ -5,6 +5,8 @@ namespace OnlineRecruitingPlatform.Model.Database
     public class DataManager
     {
         public IAddressesRepository Addresses { get; private set; }
+
+        public IAgePreferencesRepository AgePreferences { get; private set; }
         
         public IApplicantCommentAccessTypesRepository ApplicantCommentAccessTypes { get; private set; }
 
@@ -61,6 +63,12 @@ namespace OnlineRecruitingPlatform.Model.Database
         public ILanguagesRepository Languages { get; private set; }
 
         public ILanguageLevelsRepository LanguageLevels { get; private set; }
+
+        public IPaidPeriodsRepository PaidPeriods { get; private set; }
+
+        public IPayoutFrequenciesRepository PayoutFrequencies { get; private set; }
+
+        public IPlaceOfWorksRepository PlaceOfWorks { get; private set; }
         
         public IProfessionalAreasRepository ProfessionalAreas { get; private set; }
         
@@ -105,14 +113,17 @@ namespace OnlineRecruitingPlatform.Model.Database
         public IVacancyTypesRepository VacancyTypes { get; private set; }
         
         public IWorkingDaysRepository WorkingDays { get; private set; }
+
+        public IWorkingShiftsRepository WorkingShifts { get; private set; }
         
         public IWorkingTimeIntervalsRepository WorkingTimeIntervals { get; private set; }
         
         public IWorkingTimeModesRepository WorkingTimeModes { get; private set; }
 
-        public DataManager(IAddressesRepository addresses, IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IAreasRepository areas, IBuildingsRepository buildings, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICompaniesRepository companies, ICompanyInformationRepository companyInformation, ICompanyInsiderInterviewsRepository companyInsiderInterviews, ICompanyLocationsRepository companyLocations, ICompanyLogosRepository companyLogos, ICompanyRelationsRepository companyRelations, ICompanySubIndustriesRepository companySubIndustries, ICountiesRepository counties, ICurrenciesRepository currencies, ICurrencyQuotesRepository currencyQuotes, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIndustriesRepository industries, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, IProfessionalAreasRepository professionalAreas, IProfessionsRepository professions, IRegionsRepository regions, IRelationsRepository relations, ISchedulesRepository schedules, ISkillsRepository skills, ISpecializationsRepository specializations, IStreetsRepository streets, ISubIndustriesRepository subIndustries, IIdentityRolesRepository roles, IVacanciesRepository vacancies, IVacancyBillingTypesRepository vacancyBillingTypes, IVacancyContactsRepository vacancyContacts, IVacancyContactPhonesRepository vacancyContactPhones, IVacancyDriverLicenseTypesRepository vacancyDriverLicenseTypes, IVacancyInformationRepository vacancyInformation, IVacancyKeySkillsRepository vacancyKeySkills, IVacancyRelationsRepository vacancyRelations, IVacancySalariesRepository vacancySalaries, IVacancySpecializationsRepository vacancySpecializations, IVacancyTypesRepository vacancyTypes, IWorkingDaysRepository workingDays, IWorkingTimeIntervalsRepository workingTimeIntervals, IWorkingTimeModesRepository workingTimeModes)
+        public DataManager(IAddressesRepository addresses, IAgePreferencesRepository agePreferences, IApplicantCommentAccessTypesRepository applicantCommentAccessTypes, IApplicantCommentsOrdersRepository applicantCommentsOrders, IApplicantNegotiationStatusesRepository applicantNegotiationStatuses, IAreasRepository areas, IBuildingsRepository buildings, IBusinessTripReadinessTypesRepository businessTripReadinessTypes, ICompaniesRepository companies, ICompanyInformationRepository companyInformation, ICompanyInsiderInterviewsRepository companyInsiderInterviews, ICompanyLocationsRepository companyLocations, ICompanyLogosRepository companyLogos, ICompanyRelationsRepository companyRelations, ICompanySubIndustriesRepository companySubIndustries, ICountiesRepository counties, ICurrenciesRepository currencies, ICurrencyQuotesRepository currencyQuotes, IDriverLicenseTypesRepository driverLicenseTypes, IEducationLevelsRepository educationLevels, IEmployerActiveVacanciesOrdersRepository employerActiveVacanciesOrders, IEmployerArchivedVacanciesOrdersRepository employerArchivedVacanciesOrders, IEmployerRelationsRepository employerRelations, IEmployerTypesRepository employerTypes, IEmploymentsRepository employments, IExperiencesRepository experiences, IGendersRepository genders, IIndustriesRepository industries, ILanguagesRepository languages, ILanguageLevelsRepository languageLevels, IPaidPeriodsRepository paidPeriods, IPayoutFrequenciesRepository payoutFrequencies, IPlaceOfWorksRepository placeOfWorks, IProfessionalAreasRepository professionalAreas, IProfessionsRepository professions, IRegionsRepository regions, IRelationsRepository relations, ISchedulesRepository schedules, ISkillsRepository skills, ISpecializationsRepository specializations, IStreetsRepository streets, ISubIndustriesRepository subIndustries, IIdentityRolesRepository roles, IVacanciesRepository vacancies, IVacancyBillingTypesRepository vacancyBillingTypes, IVacancyContactsRepository vacancyContacts, IVacancyContactPhonesRepository vacancyContactPhones, IVacancyDriverLicenseTypesRepository vacancyDriverLicenseTypes, IVacancyInformationRepository vacancyInformation, IVacancyKeySkillsRepository vacancyKeySkills, IVacancyRelationsRepository vacancyRelations, IVacancySalariesRepository vacancySalaries, IVacancySpecializationsRepository vacancySpecializations, IVacancyTypesRepository vacancyTypes, IWorkingDaysRepository workingDays, IWorkingShiftsRepository workingShifts, IWorkingTimeIntervalsRepository workingTimeIntervals, IWorkingTimeModesRepository workingTimeModes)
         {
             Addresses = addresses;
+            AgePreferences = agePreferences;
             ApplicantCommentAccessTypes = applicantCommentAccessTypes;
             ApplicantCommentsOrders = applicantCommentsOrders;
             ApplicantNegotiationStatuses = applicantNegotiationStatuses;
@@ -141,6 +152,9 @@ namespace OnlineRecruitingPlatform.Model.Database
             Industries = industries;
             Languages = languages;
             LanguageLevels = languageLevels;
+            PaidPeriods = paidPeriods;
+            PayoutFrequencies = payoutFrequencies;
+            PlaceOfWorks = placeOfWorks;
             ProfessionalAreas = professionalAreas;
             Professions = professions;
             Regions = regions;
@@ -163,6 +177,7 @@ namespace OnlineRecruitingPlatform.Model.Database
             VacancySpecializations = vacancySpecializations;
             VacancyTypes = vacancyTypes;
             WorkingDays = workingDays;
+            WorkingShifts = workingShifts;
             WorkingTimeIntervals = workingTimeIntervals;
             WorkingTimeModes = workingTimeModes;
         }

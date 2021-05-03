@@ -40,11 +40,15 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IEmploymentsRepository, EFEmploymentsRepository>();
             services.AddTransient<IExperiencesRepository, EFExperiencesRepository>();
             services.AddTransient<IProfessionsRepository, EFProfessionsRepository>();
+            services.AddTransient<IPaidPeriodsRepository, EFPaidPeriodsRepository>();
+            services.AddTransient<IPlaceOfWorksRepository, EFPlaceOfWorksRepository>();
             services.AddTransient<IVacancyTypesRepository, EFVacancyTypesRepository>();
             services.AddTransient<ICompanyLogosRepository, EFCompanyLogosRepository>();
+            services.AddTransient<IWorkingShiftsRepository, EFWorkingShiftsRepository>();
             services.AddTransient<ISubIndustriesRepository, EFSubIndustriesRepository>();
             services.AddTransient<IEmployerTypesRepository, EFEmployerTypesRepository>();
             services.AddTransient<IIdentityRolesRepository, EFIdentityRolesRepository>();
+            services.AddTransient<IAgePreferencesRepository, EFAgePreferencesRepository>();
             services.AddTransient<ILanguageLevelsRepository, EFLanguageLevelsRepository>();
             services.AddTransient<ICurrencyQuotesRepository, EFCurrencyQuotesRepository>();
             services.AddTransient<IEducationLevelsRepository, EFEducationLevelsRepository>();
@@ -56,6 +60,7 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IVacancyKeySkillsRepository, EFVacancyKeySkillsRepository>();
             services.AddTransient<IVacancyRelationsRepository, EFVacancyRelationsRepository>();
             services.AddTransient<IWorkingTimeModesRepository, EFWorkingTimeModesRepository>();
+            services.AddTransient<IPayoutFrequenciesRepository, EFPayoutFrequenciesRepository>();
             services.AddTransient<IProfessionalAreasRepository, EFProfessionalAreasRepository>();
             services.AddTransient<IEmployerRelationsRepository, EFEmployerRelationsRepository>();
             services.AddTransient<IDriverLicenseTypesRepository, EFDriverLicenseTypesRepository>();
