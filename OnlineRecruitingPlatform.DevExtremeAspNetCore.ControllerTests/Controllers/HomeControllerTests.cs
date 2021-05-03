@@ -1,6 +1,6 @@
-﻿using System.Net;
+﻿using FluentAssertions;
+using System.Net;
 using System.Threading.Tasks;
-using FluentAssertions;
 using Xunit;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests.Controllers

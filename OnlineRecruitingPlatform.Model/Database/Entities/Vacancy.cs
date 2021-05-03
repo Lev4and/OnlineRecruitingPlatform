@@ -34,18 +34,42 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("employmentId")]
         [JsonConverter(typeof(GuidNullableConverter))]
         public Guid? EmploymentId { get; set; }
-        
+
+        [JsonProperty("agePreferenceId")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? AgePreferenceId { get; set; }
+
         [JsonProperty("vacancyTypeId")]
         [JsonConverter(typeof(GuidConverter))]
         public Guid VacancyTypeId { get; set; }
-        
+
+        [JsonProperty("payPeriodId")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? PayPeriodId { get; set; }
+
+        [JsonProperty("payoutFrequencyId")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? PayoutFrequencyId { get; set; }
+
         [JsonProperty("companyId")]
         [JsonConverter(typeof(GuidNullableConverter))]
         public Guid? CompanyId { get; set; }
 
+        [JsonProperty("placeOfWorkId")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? PlaceOfWorkId { get; set; }
+
+        [JsonProperty("professionalAreaId")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? ProfessionalAreaId { get; set; }
+
         [JsonProperty("workingDaysId")]
         [JsonConverter(typeof(GuidNullableConverter))]
         public Guid? WorkingDaysId { get; set; }
+
+        [JsonProperty("workingShift")]
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? WorkingShiftId { get; set; }
         
         [JsonProperty("workingTimeIntervalsId")]
         [JsonConverter(typeof(GuidNullableConverter))]
@@ -70,9 +94,15 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("acceptKids")]
         public bool AcceptKids { get; set; }
-        
+
+        [JsonProperty("piecework")]
+        public bool? Piecework { get; set; }
+
         [JsonProperty("createdAt")]
         public DateTime CreatedAt { get; set; }
+
+        [JsonProperty("updatedAt")]
+        public DateTime UpdatedAt { get; set; }
         
         [JsonProperty("publishedAt")]
         public DateTime PublishedAt { get; set; }
@@ -88,6 +118,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("vacancyInformation")]
         public VacancyInformation VacancyInformation { get; set; }
+
+        [JsonProperty("professionalArea")]
+        public ProfessionalArea ProfessionalArea { get; set; }
         
         [JsonProperty("area")]
         public Area Area { get; set; }
@@ -106,21 +139,36 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("employment")]
         public Employment Employment { get; set; }
+
+        [JsonProperty("agePreference")]
+        public AgePreference AgePreference { get; set; }
         
         [JsonProperty("vacancyType")]
         public VacancyType VacancyType { get; set; }
         
         [JsonProperty("vacancySalary")]
         public VacancySalary VacancySalary { get; set; }
-        
+
+        [JsonProperty("paidPeriod")]
+        public PaidPeriod PayPeriod { get; set; }
+
+        [JsonProperty("payoutFrequency")]
+        public PayoutFrequency PayoutFrequency { get; set; }
+
         [JsonProperty("vacancyContact")]
         public VacancyContact VacancyContact { get; set; }
 
         [JsonProperty("company")]
         public Company Company { get; set; }
 
+        [JsonProperty("placeOfWork")]
+        public PlaceOfWork PlaceOfWork { get; set; }
+
         [JsonProperty("workingDays")]
         public WorkingDays WorkingDays { get; set; }
+
+        [JsonProperty("workingShift")]
+        public WorkingShift WorkingShift { get; set; }
         
         [JsonProperty("workingTimeIntervals")]
         public WorkingTimeIntervals WorkingTimeIntervals { get; set; }

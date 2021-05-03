@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineRecruitingPlatform.Model.Database;
 
 namespace OnlineRecruitingPlatform.Model.Database.Migrations
 {
     [DbContext(typeof(OnlineRecruitingPlatformDbContext))]
-    partial class OnlineRecruitingPlatformDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210503064630_AddNewEntityWorkingShift")]
+    partial class AddNewEntityWorkingShift
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -49,21 +51,21 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         new
                         {
                             Id = "B867520A-92DB-4658-BE39-84DA53A601C0",
-                            ConcurrencyStamp = "1d7945a7-3e1a-47a0-acf9-459b73777488",
+                            ConcurrencyStamp = "4464257e-e21e-4c92-bda1-2a9f17d77b56",
                             Name = "Администратор",
                             NormalizedName = "АДМИНИСТРАТОР"
                         },
                         new
                         {
                             Id = "2AABA004-1052-4F53-9EB3-18FA85386AD5",
-                            ConcurrencyStamp = "71224bb1-89dd-4819-8c92-e7689568a2c5",
+                            ConcurrencyStamp = "d3be0ea8-4aeb-47a9-8bb8-374b9627eb3a",
                             Name = "Соискатель",
                             NormalizedName = "СОИСКАТЕЛЬ"
                         },
                         new
                         {
                             Id = "8F525C31-6BCF-460F-86A3-BD51FA76F382",
-                            ConcurrencyStamp = "f3ed2bd0-541e-4ff8-a5ed-845e941f6008",
+                            ConcurrencyStamp = "0707d6c7-f803-4016-aa00-644be4e9559a",
                             Name = "Работодатель",
                             NormalizedName = "РАБОТОДАТЕЛЬ"
                         });
@@ -162,13 +164,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         {
                             Id = "21F7B496-C675-4E8A-A34C-FC5EC0762FDB",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2940ca63-f45d-4ca1-888c-719eee30753e",
+                            ConcurrencyStamp = "04e477bf-9f2c-455a-b6b7-495f88736587",
                             Email = "andrey.levchenko.2001@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ANDREY.LEVCHENKO.2001@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIkf7OXpvzhKKvDaFBwRV9DqMESqLmTXl6sdLY3YtCZhaqa5LdPxZ/RLB8o+fKMAKg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIIUxaTPSPqQ6MEdHIDyDSGWHCcya4OIiBLJronN8vyczGV1xDf4NNKAUi+p5pwNjA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -308,24 +310,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.HasIndex("StreetId");
 
                     b.ToTable("Addresses");
-                });
-
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.AgePreference", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromAvitoRu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("AgePreferences");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.ApplicantCommentAccessType", b =>
@@ -916,60 +900,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.ToTable("LanguageLevels");
                 });
 
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PaidPeriod", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromAvitoRu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PaidPeriods");
-                });
-
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PayoutFrequency", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromAvitoRu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PayoutFrequencies");
-                });
-
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PlaceOfWork", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("IdentifierFromAvitoRu")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("PlaceOfWorks");
-                });
-
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Profession", b =>
                 {
                     b.Property<Guid>("Id")
@@ -1000,9 +930,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
-
-                    b.Property<string>("IdentifierFromAvitoRu")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
@@ -1199,9 +1126,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid?>("AddressId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("AgePreferenceId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
@@ -1236,21 +1160,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("PayPeriodId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("PayoutFrequencyId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("Piecework")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid?>("PlaceOfWorkId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid?>("ProfessionalAreaId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("PublishedAt")
                         .HasColumnType("datetime2");
 
@@ -1279,8 +1188,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("AgePreferenceId");
-
                     b.HasIndex("AreaId");
 
                     b.HasIndex("CompanyId");
@@ -1290,14 +1197,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.HasIndex("EmploymentId");
 
                     b.HasIndex("ExperienceId");
-
-                    b.HasIndex("PayPeriodId");
-
-                    b.HasIndex("PayoutFrequencyId");
-
-                    b.HasIndex("PlaceOfWorkId");
-
-                    b.HasIndex("ProfessionalAreaId");
 
                     b.HasIndex("ScheduleId");
 
@@ -1869,10 +1768,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .WithMany("Vacancies")
                         .HasForeignKey("AddressId");
 
-                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.AgePreference", "AgePreference")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("AgePreferenceId");
-
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Area", "Area")
                         .WithMany("Vacancies")
                         .HasForeignKey("AreaId")
@@ -1896,22 +1791,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasForeignKey("ExperienceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.PaidPeriod", "PayPeriod")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("PayPeriodId");
-
-                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.PayoutFrequency", "PayoutFrequency")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("PayoutFrequencyId");
-
-                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.PlaceOfWork", "PlaceOfWork")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("PlaceOfWorkId");
-
-                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.ProfessionalArea", "ProfessionalArea")
-                        .WithMany("Vacancies")
-                        .HasForeignKey("ProfessionalAreaId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Schedule", "Schedule")
                         .WithMany("Vacancies")
@@ -1943,8 +1822,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Navigation("Address");
 
-                    b.Navigation("AgePreference");
-
                     b.Navigation("Area");
 
                     b.Navigation("Company");
@@ -1954,14 +1831,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Navigation("Employment");
 
                     b.Navigation("Experience");
-
-                    b.Navigation("PayoutFrequency");
-
-                    b.Navigation("PayPeriod");
-
-                    b.Navigation("PlaceOfWork");
-
-                    b.Navigation("ProfessionalArea");
 
                     b.Navigation("Schedule");
 
@@ -2098,11 +1967,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Navigation("Vacancies");
                 });
 
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.AgePreference", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Area", b =>
                 {
                     b.Navigation("Addresses");
@@ -2173,26 +2037,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Navigation("SubIndustries");
                 });
 
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PaidPeriod", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PayoutFrequency", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
-            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PlaceOfWork", b =>
-                {
-                    b.Navigation("Vacancies");
-                });
-
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.ProfessionalArea", b =>
                 {
                     b.Navigation("Specializations");
-
-                    b.Navigation("Vacancies");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Region", b =>

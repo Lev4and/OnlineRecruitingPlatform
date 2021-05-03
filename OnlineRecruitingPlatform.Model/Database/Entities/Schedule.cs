@@ -5,7 +5,7 @@ using OnlineRecruitingPlatform.Model.JsonConverters;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Schedule : IImportedFromHeadHunter<string>
+    public class Schedule : IImportedFromHeadHunter<string>, IImportedFromAvitoRu<string>
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
@@ -17,6 +17,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+
+        [JsonProperty("identifierFromAvitoRu")]
+        public virtual string IdentifierFromAvitoRu { get; set; }
 
         [JsonProperty("vacancies")]
         public Vacancy[] Vacancies { get; set; }

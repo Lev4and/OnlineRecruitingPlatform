@@ -25,6 +25,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("brandedDescription")]
         public string BrandedDescription { get; set; }
+
+        [JsonProperty("url")]
+        public string Url { get; set; }
         
         [JsonProperty("hasTest")]
         public bool? HasTest { get; set; }

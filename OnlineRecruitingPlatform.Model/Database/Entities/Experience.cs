@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Experience : IImportedFromHeadHunter<string>
+    public class Experience : IImportedFromHeadHunter<string>, IImportedFromAvitoRu<string>
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
@@ -17,6 +17,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+
+        [JsonProperty("identifierFromAvitoRu")]
+        public virtual string IdentifierFromAvitoRu { get; set; }
 
         [JsonProperty("vacancies")]
         public Vacancy[] Vacancies { get; set; }

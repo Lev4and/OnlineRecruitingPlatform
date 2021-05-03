@@ -1,10 +1,10 @@
-﻿using System.Net;
+﻿using FluentAssertions;
+using Newtonsoft.Json;
+using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using FluentAssertions;
-using Newtonsoft.Json;
-using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
 using Xunit;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests.Controllers.Areas.Admin

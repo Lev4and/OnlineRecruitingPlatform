@@ -8,6 +8,8 @@ namespace OnlineRecruitingPlatform.Model.Database
     public class OnlineRecruitingPlatformDbContext : IdentityDbContext<IdentityUser>
     {
         public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<AgePreference> AgePreferences { get; set; }
         
         public DbSet<ApplicantCommentAccessType> ApplicantCommentAccessTypes { get; set; }
 
@@ -65,6 +67,12 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<LanguageLevel> LanguageLevels { get; set; }
 
+        public DbSet<PaidPeriod> PaidPeriods { get; set; }
+
+        public DbSet<PayoutFrequency> PayoutFrequencies { get; set; }
+
+        public DbSet<PlaceOfWork> PlaceOfWorks { get; set; }
+
         public DbSet<Profession> Professions { get; set; }
 
         public DbSet<ProfessionalArea> ProfessionalAreas { get; set; }
@@ -106,6 +114,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<VacancyType> VacancyTypes { get; set; }
 
         public DbSet<WorkingDays> WorkingDays { get; set; }
+
+        public DbSet<WorkingShift> WorkingShifts { get; set; }
 
         public DbSet<WorkingTimeIntervals> WorkingTimeIntervals { get; set; }
 
@@ -242,6 +252,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .WithOne(cl => cl.Area)
                 .HasForeignKey(cl => cl.AreaId);
 
+            builder.Entity<AgePreference>()
+                .HasMany(a => a.Vacancies)
+                .WithOne(v => v.AgePreference)
+                .HasForeignKey(v => v.AgePreferenceId);
+
             builder.Entity<SubIndustry>()
                 .HasMany(s => s.CompanySubIndustries)
                 .WithOne(cs => cs.SubIndustry)
@@ -282,10 +297,30 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .WithOne(v => v.Experience)
                 .HasForeignKey(v => v.ExperienceId);
 
+            builder.Entity<PaidPeriod>()
+                .HasMany(p => p.Vacancies)
+                .WithOne(v => v.PayPeriod)
+                .HasForeignKey(v => v.PayPeriodId);
+
+            builder.Entity<PayoutFrequency>()
+                .HasMany(p => p.Vacancies)
+                .WithOne(v => v.PayoutFrequency)
+                .HasForeignKey(v => v.PayoutFrequencyId);
+
+            builder.Entity<PlaceOfWork>()
+                .HasMany(p => p.Vacancies)
+                .WithOne(v => v.PlaceOfWork)
+                .HasForeignKey(v => v.PlaceOfWorkId);
+
             builder.Entity<ProfessionalArea>()
                 .HasMany(p => p.Specializations)
                 .WithOne(s => s.ProfessionalArea)
                 .HasForeignKey(s => s.ProfessionalAreaId);
+
+            builder.Entity<ProfessionalArea>()
+                .HasMany(p => p.Vacancies)
+                .WithOne(v => v.ProfessionalArea)
+                .HasForeignKey(v => v.ProfessionalAreaId);
 
             builder.Entity<Schedule>()
                 .HasMany(s => s.Vacancies)
@@ -366,6 +401,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(w => w.Vacancies)
                 .WithOne(v => v.WorkingDays)
                 .HasForeignKey(v => v.WorkingDaysId);
+
+            builder.Entity<WorkingShift>()
+                .HasMany(w => w.Vacancies)
+                .WithOne(v => v.WorkingShift)
+                .HasForeignKey(v => v.WorkingShiftId);
 
             builder.Entity<WorkingTimeIntervals>()
                 .HasMany(w => w.Vacancies)
