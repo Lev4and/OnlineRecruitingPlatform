@@ -85,6 +85,35 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public EducationLevel GetEducationLevelByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.EducationLevels.SingleOrDefault(e => e.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.EducationLevels.AsNoTracking().SingleOrDefault(e => e.IdentifierFromHeadHunter == id);
+            }
+        }
+
+        public EducationLevel GetEducationLevelByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.EducationLevels.SingleOrDefault(e => e.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.EducationLevels.AsNoTracking().SingleOrDefault(e => e.IdentifierFromZarplataRu == id);
+            }
+        }
+
         public IQueryable<EducationLevel> GetEducationLevels()
         {
             return _context.EducationLevels;

@@ -14,6 +14,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Employment GetEmployment(string name, bool track = false);
 
+        Employment GetEmploymentByIdentifierFromHeadHunter(string id, bool track = false);
+
+        Employment GetEmploymentByIdentifierFromZarplataRu(int id, bool track = false);
+
         IQueryable<Employment> GetEmployments();
 
         void DeleteEmployment(Guid id);

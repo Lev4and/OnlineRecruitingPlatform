@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
@@ -19,7 +20,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public virtual string IdentifierFromHeadHunter { get; set; }
 
         [JsonProperty("vacancyInformation")]
-        public VacancyInformation[] VacancyInformation { get; set; }
+        public ICollection<VacancyInformation> VacancyInformation { get; set; }
     }
 
     public class VacancyBillingTypeIV : VacancyBillingType

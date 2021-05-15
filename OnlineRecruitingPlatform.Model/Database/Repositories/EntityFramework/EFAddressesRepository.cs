@@ -21,6 +21,27 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
                 a.CityId == cityId && a.StreetId == streetId && a.BuildingId == buildingId) != null;
         }
 
+        public bool ContainsAddress(string cityName, string streetName, string buildingName)
+        {
+            if (string.IsNullOrEmpty(cityName))
+            {
+                throw new ArgumentNullException("cityName", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (streetName == null)
+            {
+                throw new ArgumentNullException("streetName", "Параметр не может быть пустым.");
+            }
+
+            if (buildingName == null)
+            {
+                throw new ArgumentNullException("buildingName", "Параметр не может быть пустым.");
+            }
+
+            return _context.Addresses.SingleOrDefault(a =>
+                a.CityName == cityName && a.StreetName == streetName && a.BuildingName == buildingName) != null;
+        }
+
         public bool SaveAddress(Address entity)
         {
             if (entity == null)
@@ -30,7 +51,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 
             if (entity.Id == default)
             {
-                if (!ContainsAddress(entity.CityId, entity.StreetId, entity.BuildingId))
+                if (!ContainsAddress(entity.CityName, entity.StreetName, entity.BuildingName))
                 {
                     _context.Entry(entity).State = EntityState.Added;
                     _context.SaveChanges();
@@ -42,10 +63,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             {
                 var oldVersionEntity = GetAddress(entity.Id);
 
-                if (oldVersionEntity.CityId != entity.CityId || oldVersionEntity.StreetId != entity.StreetId ||
-                    oldVersionEntity.BuildingId != entity.BuildingId)
+                if (oldVersionEntity.CityName != entity.CityName || oldVersionEntity.StreetName != entity.StreetName ||
+                    oldVersionEntity.BuildingName != entity.BuildingName)
                 {
-                    if (!ContainsAddress(entity.CityId, entity.StreetId, entity.BuildingId))
+                    if (!ContainsAddress(entity.CityName, entity.StreetName, entity.BuildingName))
                     {
                         _context.Entry(entity).State = EntityState.Modified;
                         _context.SaveChanges();
@@ -91,6 +112,35 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             else
             {
                 return _context.Addresses.AsNoTracking().SingleOrDefault(a => a.CityId == cityId && a.StreetId == streetId && a.BuildingId == buildingId);
+            }
+        }
+
+        public Address GetAddress(string cityName, string streetName, string buildingName, bool track = false)
+        {
+            if (string.IsNullOrEmpty(cityName))
+            {
+                throw new ArgumentNullException("cityName", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (streetName == null)
+            {
+                throw new ArgumentNullException("streetName", "Параметр не может быть пустым.");
+            }
+
+            if (buildingName == null)
+            {
+                throw new ArgumentNullException("buildingName", "Параметр не может быть пустым.");
+            }
+
+            if (track)
+            {
+                return _context.Addresses.SingleOrDefault(a =>
+                    a.CityName == cityName && a.StreetName == streetName && a.BuildingName == buildingName);
+            }
+            else
+            {
+                return _context.Addresses.AsNoTracking().SingleOrDefault(a =>
+                    a.CityName == cityName && a.StreetName == streetName && a.BuildingName == buildingName);
             }
         }
 

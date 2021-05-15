@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -19,7 +20,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public virtual int? IdentifierFromHeadHunter { get; set; }
 
         [JsonProperty("regions")]
-        public Region[] Regions { get; set; }
+        public ICollection<Region> Regions { get; set; }
     }
 
     public class CountryIV : Country

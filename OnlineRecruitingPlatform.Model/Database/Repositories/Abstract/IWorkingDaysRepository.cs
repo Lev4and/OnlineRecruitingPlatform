@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         WorkingDays GetWorkingDays(string name, bool track = false);
 
+        WorkingDays GetWorkingDaysByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<WorkingDays> GetWorkingDays(bool track = false);
 
         void DeleteWorkingDays(Guid id);

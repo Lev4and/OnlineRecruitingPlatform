@@ -15,31 +15,20 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             _context = context;
         }
 
-        public bool ContainsVacancyContactPhone(Guid vacancyContactId, string countryCode, string cityCode, string number)
+        public bool ContainsVacancyContactPhone(Guid vacancyContactId, string phone)
         {
             if (vacancyContactId == null)
             {
                 throw new ArgumentNullException("vacancyContactId", "Параметр не может быть пустым.");
             }
             
-            if (string.IsNullOrEmpty(countryCode))
+            if (string.IsNullOrEmpty(phone))
             {
-                throw new ArgumentNullException("countryCode", "Параметр не может быть пустым или длиной 0 символов.");
-            }
-            
-            if (string.IsNullOrEmpty(cityCode))
-            {
-                throw new ArgumentNullException("cityCode", "Параметр не может быть пустым или длиной 0 символов.");
-            }
-            
-            if (string.IsNullOrEmpty(number))
-            {
-                throw new ArgumentNullException("number", "Параметр не может быть пустым или длиной 0 символов.");
+                throw new ArgumentNullException("phone", "Параметр не может быть пустым или длиной 0 символов.");
             }
 
             return _context.VacancyContactPhones.SingleOrDefault(v =>
-                v.VacancyContactId == vacancyContactId && v.CountryCode == countryCode &&
-                v.CityCode == cityCode && v.Number == number) != null;
+                       v.VacancyContactId == vacancyContactId && v.Phone == phone) != null;
         }
 
         public bool SaveVacancyContactPhone(VacancyContactPhone entity)
@@ -51,8 +40,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 
             if (entity.Id == default)
             {
-                if (!ContainsVacancyContactPhone(entity.VacancyContactId, entity.CountryCode, entity.CityCode,
-                    entity.Number))
+                if (!ContainsVacancyContactPhone(entity.VacancyContactId, entity.Phone))
                 {
                     _context.Entry(entity).State = EntityState.Added;
                     _context.SaveChanges();
@@ -64,12 +52,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             {
                 var oldVersionEntity = GetVacancyContactPhone(entity.Id);
 
-                if (oldVersionEntity.VacancyContactId != entity.VacancyContactId ||
-                    oldVersionEntity.CountryCode != entity.CountryCode ||
-                    oldVersionEntity.CityCode != entity.CityCode || oldVersionEntity.Number != entity.Number)
+                if (oldVersionEntity.VacancyContactId != entity.VacancyContactId || oldVersionEntity.Phone != entity.Phone)
                 {
-                    if (!ContainsVacancyContactPhone(entity.VacancyContactId, entity.CountryCode, entity.CityCode,
-                        entity.Number))
+                    if (!ContainsVacancyContactPhone(entity.VacancyContactId, entity.Phone))
                     {
                         _context.Entry(entity).State = EntityState.Modified;
                         _context.SaveChanges();
@@ -106,40 +91,27 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
-        public VacancyContactPhone GetVacancyContactPhone(Guid vacancyContactId, string countryCode, string cityCode, string number,
-            bool track = false)
+        public VacancyContactPhone GetVacancyContactPhone(Guid vacancyContactId, string phone, bool track = false)
         {
             if (vacancyContactId == null)
             {
                 throw new ArgumentNullException("vacancyContactId", "Параметр не может быть пустым.");
             }
             
-            if (string.IsNullOrEmpty(countryCode))
+            if (string.IsNullOrEmpty(phone))
             {
-                throw new ArgumentNullException("countryCode", "Параметр не может быть пустым или длиной 0 символов.");
-            }
-            
-            if (string.IsNullOrEmpty(cityCode))
-            {
-                throw new ArgumentNullException("cityCode", "Параметр не может быть пустым или длиной 0 символов.");
-            }
-            
-            if (string.IsNullOrEmpty(number))
-            {
-                throw new ArgumentNullException("number", "Параметр не может быть пустым или длиной 0 символов.");
+                throw new ArgumentNullException("phone", "Параметр не может быть пустым или длиной 0 символов.");
             }
 
             if (track)
             {
                 return _context.VacancyContactPhones.SingleOrDefault(v =>
-                    v.VacancyContactId == vacancyContactId && v.CountryCode == countryCode &&
-                    v.CityCode == cityCode && v.Number == number);
+                    v.VacancyContactId == vacancyContactId && v.Phone == phone);
             }
             else
             {
                 return _context.VacancyContactPhones.AsNoTracking().SingleOrDefault(v =>
-                    v.VacancyContactId == vacancyContactId && v.CountryCode == countryCode &&
-                    v.CityCode == cityCode && v.Number == number);
+                    v.VacancyContactId == vacancyContactId && v.Phone == phone);
             }
         }
 

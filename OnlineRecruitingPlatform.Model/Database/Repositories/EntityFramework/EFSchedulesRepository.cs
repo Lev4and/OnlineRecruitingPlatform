@@ -85,6 +85,52 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Schedule GetScheduleByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Schedules.SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Schedules.AsNoTracking().SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+        }
+
+        public Schedule GetScheduleByIdentifierFromAvitoRu(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Schedules.SingleOrDefault(s => s.IdentifierFromAvitoRu == id);
+            }
+            else
+            {
+                return _context.Schedules.AsNoTracking().SingleOrDefault(s => s.IdentifierFromAvitoRu == id);
+            }
+        }
+
+        public Schedule GetScheduleByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Schedules.SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Schedules.AsNoTracking().SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+        }
+
         public IQueryable<Schedule> GetSchedules(bool track = false)
         {
             if (track)

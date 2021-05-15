@@ -85,6 +85,35 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Employment GetEmploymentByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Employments.SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Employments.AsNoTracking().SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+        }
+
+        public Employment GetEmploymentByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Employments.SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Employments.AsNoTracking().SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+        }
+
         public IQueryable<Employment> GetEmployments()
         {
             return _context.Employments;

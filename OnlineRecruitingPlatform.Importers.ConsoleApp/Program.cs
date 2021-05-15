@@ -1,4 +1,4 @@
-﻿using OnlineRecruitingPlatform.Importers.API.DataMosRu.OKPDTR;
+﻿using OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies;
 using System;
 using System.Threading;
 
@@ -14,7 +14,7 @@ namespace OnlineRecruitingPlatform.Importers.ConsoleApp
 
             var readLine = "";
 
-            var importer = new ProfessionsImporter();
+            var importer = new VacanciesImporter();
 
             Console.Write("Укажите минимальный идентификатор записи: ");
 

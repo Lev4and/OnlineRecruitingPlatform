@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -19,7 +20,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public virtual int? IdentifierFromHeadHunter { get; set; }
         
         [JsonProperty("vacancyKeySkills")]
-        public VacancyKeySkill[] VacancyKeySkills { get; set; }
+        public ICollection<VacancyKeySkill> VacancyKeySkills { get; set; }
     }
 
     public class SkillIV : Skill
@@ -30,6 +31,19 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [Required]
         [JsonProperty("text")]
+        public override string Name { get; set; }
+
+        [JsonProperty("id")]
+        public override int? IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class SkillIV2 : Skill
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty("name")]
         public override string Name { get; set; }
 
         [JsonProperty("id")]

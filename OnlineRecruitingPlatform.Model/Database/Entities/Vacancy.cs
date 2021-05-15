@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
@@ -13,19 +14,19 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("areaId")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid AreaId { get; set; }
+        public Guid? AreaId { get; set; }
         
         [JsonProperty("address")]
         [JsonConverter(typeof(GuidNullableConverter))]
         public Guid? AddressId { get; set; }
 
         [JsonProperty("scheduleId")]
-        [JsonConverter(typeof(GuidConverter))]
-        public Guid ScheduleId { get; set; }
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? ScheduleId { get; set; }
         
         [JsonProperty("experienceId")]
-        [JsonConverter(typeof(GuidConverter))]
-        public Guid ExperienceId { get; set; }
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? ExperienceId { get; set; }
         
         [JsonProperty("educationLevelId")]
         [JsonConverter(typeof(GuidNullableConverter))]
@@ -41,7 +42,14 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("vacancyTypeId")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid VacancyTypeId { get; set; }
+        public Guid? VacancyTypeId { get; set; }
+        
+        [JsonProperty("vacancyVisibilityTypeId")]
+        public Guid? VacancyVisibilityTypeId { get; set; }
+
+        [JsonProperty("professionId")]
+        [JsonConverter(typeof(GuidConverter))]
+        public Guid? ProfessionId { get; set; }
 
         [JsonProperty("payPeriodId")]
         [JsonConverter(typeof(GuidNullableConverter))]
@@ -85,27 +93,39 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("archived")]
         public bool Archived { get; set; }
+
+        [JsonProperty("acceptStudent")]
+        public bool? AcceptStudent { get; set; }
+        
+        [JsonProperty("remoteInterview")]
+        public bool? RemoteInterview { get; set; }
+
+        [JsonProperty("acceptPensioner")]
+        public bool? AcceptPensioner { get; set; }
         
         [JsonProperty("acceptTemporary")]
         public bool? AcceptTemporary { get; set; }
         
         [JsonProperty("acceptHandicapped")]
-        public bool AcceptHandicapped { get; set; }
+        public bool? AcceptHandicapped { get; set; }
         
         [JsonProperty("acceptKids")]
-        public bool AcceptKids { get; set; }
+        public bool? AcceptKids { get; set; }
 
         [JsonProperty("piecework")]
         public bool? Piecework { get; set; }
 
         [JsonProperty("createdAt")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
+        
+        [JsonProperty("modifiedAt")]
+        public DateTime? ModifiedAt { get; set; }
 
         [JsonProperty("updatedAt")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
         
         [JsonProperty("publishedAt")]
-        public DateTime PublishedAt { get; set; }
+        public DateTime? PublishedAt { get; set; }
 
         [JsonProperty("identifierFromHeadHunter")]
         public int? IdentifierFromHeadHunter { get; set; }
@@ -146,8 +166,14 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("vacancyType")]
         public VacancyType VacancyType { get; set; }
         
+        [JsonProperty("vacancyVisibilityType")]
+        public VacancyVisibilityType VacancyVisibilityType { get; set; }
+        
         [JsonProperty("vacancySalary")]
         public VacancySalary VacancySalary { get; set; }
+
+        [JsonProperty("profession")]
+        public Profession Profession { get; set; }
 
         [JsonProperty("paidPeriod")]
         public PaidPeriod PayPeriod { get; set; }
@@ -175,14 +201,14 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("workingTimeModes")]
         public WorkingTimeModes WorkingTimeModes { get; set; }
-        
+
         [JsonProperty("vacancyKeySkills")]
-        public VacancyKeySkill[] VacancyKeySkills { get; set; }
-        
+        public ICollection<VacancyKeySkill> VacancyKeySkills { get; set; }
+
         [JsonProperty("vacancySpecializations")]
-        public VacancySpecialization[] VacancySpecializations { get; set; }
+        public ICollection<VacancySpecialization> VacancySpecializations { get; set; }
         
         [JsonProperty("vacancyDriverLicenseType")]
-        public VacancyDriverLicenseType[] VacancyDriverLicenseTypes { get; set; }
+        public ICollection<VacancyDriverLicenseType> VacancyDriverLicenseTypes { get; set; }
     }
 }

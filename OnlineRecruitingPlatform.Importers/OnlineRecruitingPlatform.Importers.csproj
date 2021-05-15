@@ -35,8 +35,4 @@
     <ProjectReference Include="..\OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="API\ZarplataRu\" />
-  </ItemGroup>
-
 </Project>

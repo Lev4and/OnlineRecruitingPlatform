@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -21,7 +22,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public virtual string Name { get; set; }
 
         [JsonProperty("subIndustries")]
-        public SubIndustry[] SubIndustries { get; set; }
+        public ICollection<SubIndustry> SubIndustries { get; set; }
     }
 
     public class IndustryIV : Industry

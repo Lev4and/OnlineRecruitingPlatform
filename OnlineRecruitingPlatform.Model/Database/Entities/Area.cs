@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class Area : IImportedFromHeadHunter<int?>, IHaveAddressClassifierParentFromHeadHunter, ISupportAssociationWithFIAS
+    public class Area : IImportedFromHeadHunter<int?>, IImportedFromZarplataRu<int?>, IHaveAddressClassifierParentFromHeadHunter, IHaveAddressClassifierParentFromZarplataRu, ISupportAssociationWithFIAS
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
@@ -21,10 +22,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [Required]
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
+        
+        [JsonProperty("identifierFromZarplataRu")]
+        public virtual int? IdentifierFromZarplataRu { get; set; }
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual int? IdentifierFromHeadHunter { get; set; }
+        
+        [JsonProperty("identifierParentFromZarplataRu")]
+        public virtual int? IdentifierParentFromZarplataRu { get; set; }
 
         [JsonProperty("identifierParentFromHeadHunter")]
         public virtual int? IdentifierParentFromHeadHunter { get; set; }
@@ -33,16 +40,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public Region Region { get; set; }
         
         [JsonProperty("addresses")]
-        public Address[] Addresses { get; set; }
+        public ICollection<Address> Addresses { get; set; }
 
         [JsonProperty("vacancies")]
-        public Vacancy[] Vacancies { get; set; }
+        public ICollection<Vacancy> Vacancies { get; set; }
         
         [JsonProperty("streets")]
-        public Street[] Streets { get; set; }
+        public ICollection<Street> Streets { get; set; }
 
         [JsonProperty("companyLocations")]
-        public CompanyLocation[] CompanyLocations { get; set; }
+        public ICollection<CompanyLocation> CompanyLocations { get; set; }
     }
 
     public class AreaIV : Area
@@ -60,5 +67,22 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("parent_id")]
         public override int? IdentifierParentFromHeadHunter { get; set; }
+    }
+
+    public class AreaIVZarplataRu : Area
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid RegionId { get; set; }
+
+        [JsonProperty("id")] 
+        public override int? IdentifierFromZarplataRu { get; set; }
+
+        [JsonProperty("title")]
+        public override string Name { get; set; }
     }
 }

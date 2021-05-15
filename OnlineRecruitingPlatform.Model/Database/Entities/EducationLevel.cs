@@ -1,11 +1,12 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class EducationLevel : IImportedFromHeadHunter<string>
+    public class EducationLevel : IImportedFromHeadHunter<string>, IImportedFromZarplataRu<int?>
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
@@ -13,13 +14,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [Required]
         [JsonProperty("name")]
-        public string Name { get; set; }
+        public virtual string Name { get; set; }
+        
+        [JsonProperty("identifierFromZarplataRu")]
+        public virtual int? IdentifierFromZarplataRu { get; set; }
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
 
         [JsonProperty("vacancies")]
-        public Vacancy[] Vacancies { get; set; }
+        public ICollection<Vacancy> Vacancies { get; set; }
     }
 
     public class EducationLevelIV : EducationLevel
@@ -30,5 +34,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("id")]
         public override string IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class EducationLevelIVZarplataRu : EducationLevel
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty("value")]
+        public override string Name { get; set; }
+
+        [JsonProperty("id")] 
+        public override int? IdentifierFromZarplataRu { get; set; }
     }
 }

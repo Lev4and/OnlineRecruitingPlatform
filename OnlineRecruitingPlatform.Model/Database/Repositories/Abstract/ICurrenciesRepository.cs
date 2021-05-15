@@ -14,6 +14,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Currency GetCurrency(string name, bool track = false);
 
+        Currency GetCurrencyByIdentifierFromZarplataRu(int id, bool track = false);
+
+        Currency GetCurrencyByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<Currency> GetCurrencies();
 
         void DeleteCurrency(Guid id);

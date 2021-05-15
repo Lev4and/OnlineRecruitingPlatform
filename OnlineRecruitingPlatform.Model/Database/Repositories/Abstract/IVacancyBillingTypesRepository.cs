@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         VacancyBillingType GetVacancyBillingType(string name, bool track = false);
 
+        VacancyBillingType GetVacancyBillingTypeByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<VacancyBillingType> GetVacancyBillingTypes(bool track = false);
 
         void DeleteVacancyBillingType(Guid id);

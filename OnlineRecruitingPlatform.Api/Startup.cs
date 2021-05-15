@@ -44,6 +44,7 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IPlaceOfWorksRepository, EFPlaceOfWorksRepository>();
             services.AddTransient<IVacancyTypesRepository, EFVacancyTypesRepository>();
             services.AddTransient<ICompanyLogosRepository, EFCompanyLogosRepository>();
+            services.AddTransient<ICompanyPhotosRepository, EFCompanyPhotosRepository>();
             services.AddTransient<IWorkingShiftsRepository, EFWorkingShiftsRepository>();
             services.AddTransient<ISubIndustriesRepository, EFSubIndustriesRepository>();
             services.AddTransient<IEmployerTypesRepository, EFEmployerTypesRepository>();
@@ -55,6 +56,7 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IVacancyContactsRepository, EFVacancyContactsRepository>();
             services.AddTransient<IVacancySalariesRepository, EFVacancySalariesRepository>();
             services.AddTransient<ISpecializationsRepository, EFSpecializationsRepository>();
+            services.AddTransient<ICompanyContactsRepository, EFCompanyContactsRepository>();
             services.AddTransient<ICompanyLocationsRepository, EFCompanyLocationsRepository>();
             services.AddTransient<ICompanyRelationsRepository, EFCompanyRelationsRepository>();
             services.AddTransient<IVacancyKeySkillsRepository, EFVacancyKeySkillsRepository>();
@@ -70,7 +72,9 @@ namespace OnlineRecruitingPlatform.Api
             services.AddTransient<IWorkingTimeIntervalsRepository, EFWorkingTimeIntervalsRepository>();
             services.AddTransient<ICompanySubIndustriesRepository, EFCompanySubIndustriesRepository>();
             services.AddTransient<IVacancyContactPhonesRepository, EFVacancyContactPhonesRepository>();
+            services.AddTransient<ICompanyContactPhonesRepository, EFCompanyContactPhonesRepository>();
             services.AddTransient<IVacancySpecializationsRepository, EFVacancySpecializationsRepository>();
+            services.AddTransient<IVacancyVisibilityTypesRepository, EFVacancyVisibilityTypesRepository>();
             services.AddTransient<IApplicantCommentsOrdersRepository, EFApplicantCommentsOrdersRepository>();
             services.AddTransient<ICompanyInsiderInterviewsRepository, EFCompanyInsiderInterviewsRepository>();
             services.AddTransient<IVacancyDriverLicenseTypesRepository, EFVacancyDriverLicenseTypesRepository>();

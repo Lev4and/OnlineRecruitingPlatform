@@ -14,10 +14,10 @@ namespace OnlineRecruitingPlatform.HttpClients.ZarplataRu
 
         public BaseHttpClient(string pathAndQueryUrl)
         {
-            _baseUrl = $"https://ekb.zarplata.ru/api/v1/{pathAndQueryUrl}";
+            _baseUrl = $"https://zarplata.ru/api/v1/{pathAndQueryUrl}";
 
             _handler = new HttpClientHandler();
-            _handler.AllowAutoRedirect = false;
+            _handler.AllowAutoRedirect = true;
             _handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) =>
             {
                 return true;

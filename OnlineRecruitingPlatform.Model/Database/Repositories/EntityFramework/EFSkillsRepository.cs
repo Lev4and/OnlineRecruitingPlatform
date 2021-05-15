@@ -25,6 +25,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return _context.Skills.SingleOrDefault(s => s.Name == name) != null;
         }
 
+        public bool ContainsSkillByIdentifierFromHeadHunter(int id)
+        {
+            return _context.Skills.SingleOrDefault(s => s.IdentifierFromHeadHunter == id) != null;
+        }
+
         public bool SaveSkill(Skill entity)
         {
             if (entity == null)
@@ -82,6 +87,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             else
             {
                 return _context.Skills.AsNoTracking().SingleOrDefault(s => s.Name == name);
+            }
+        }
+
+        public Skill GetSkillByIdentifierFromHeadHunter(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Skills.SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Skills.AsNoTracking().SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
             }
         }
 

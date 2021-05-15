@@ -1,6 +1,8 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -19,6 +21,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public string IdentifierFromAvitoRu { get; set; }
 
         [JsonProperty("vacancies")]
-        public Vacancy[] Vacancies { get; set; }
+        public ICollection<Vacancy> Vacancies { get; set; }
     }
 }

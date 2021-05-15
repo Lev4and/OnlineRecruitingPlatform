@@ -49,4 +49,19 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonConverter(typeof(Base64Converter))]
         public override string Original { get; set; }
     }
+
+    public class CompanyLogoIVZarplataRu : CompanyLogo
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid CompanyId { get; set; }
+
+        [JsonProperty("url")]
+        [JsonConverter(typeof(Base64Converter))]
+        public override string Original { get; set; }
+    }
 }

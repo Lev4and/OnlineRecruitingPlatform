@@ -14,8 +14,14 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonConverter(typeof(GuidConverter))]
         public virtual Guid CompanyId { get; set; }
 
+        [JsonProperty("email")]
+        public string Email { get; set; }
+
         [JsonProperty("siteUrl")]
         public virtual string SiteUrl { get; set; }
+
+        [JsonProperty("cardCompanyUrl")]
+        public string CardCompanyUrl { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

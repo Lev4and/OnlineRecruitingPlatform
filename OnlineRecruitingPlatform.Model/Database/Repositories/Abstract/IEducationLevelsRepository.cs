@@ -14,6 +14,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         EducationLevel GetEducationLevel(string name, bool track = false);
 
+        EducationLevel GetEducationLevelByIdentifierFromHeadHunter(string id, bool track = false);
+
+        EducationLevel GetEducationLevelByIdentifierFromZarplataRu(int id, bool track = false);
+
         IQueryable<EducationLevel> GetEducationLevels();
 
         void DeleteEducationLevel(Guid id);

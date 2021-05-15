@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         VacancyType GetVacancyType(string name, bool track = false);
 
+        VacancyType GetVacancyTypeByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<VacancyType> GetVacancyTypes(bool track = false);
 
         void DeleteVacancyType(Guid id);

@@ -15,6 +15,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             _context = context;
         }
 
+        public bool ContainsVacancyByIdentifierFromZarplataRu(int id)
+        {
+            return _context.Vacancies.SingleOrDefault(v => v.IdentifierFromZarplataRu == id) != null;
+        }
+
+        public bool ContainsVacancyByIdentifierFromHeadHunter(int id)
+        {
+            return _context.Vacancies.SingleOrDefault(v => v.IdentifierFromHeadHunter == id) != null;
+        }
+
         public Vacancy GetVacancy(Guid id, bool track = false)
         {
             if (id == null)
@@ -29,6 +39,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             else
             {
                 return _context.Vacancies.AsNoTracking().SingleOrDefault(v => v.Id == id);
+            }
+        }
+
+        public Vacancy GetVacancyByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Vacancies.SingleOrDefault(v => v.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Vacancies.AsNoTracking().SingleOrDefault(v => v.IdentifierFromZarplataRu == id);
             }
         }
 

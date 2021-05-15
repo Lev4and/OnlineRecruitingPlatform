@@ -16,10 +16,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public Guid VacancyId { get; set; }
         
         [JsonProperty("vacancyBillingTypeId")]
-        [JsonConverter(typeof(GuidConverter))]
-        public Guid VacancyBillingTypeId { get; set; }
+        [JsonConverter(typeof(GuidNullableConverter))]
+        public Guid? VacancyBillingTypeId { get; set; }
         
-        [Required]
         [JsonProperty("description")]
         public string Description { get; set; }
         

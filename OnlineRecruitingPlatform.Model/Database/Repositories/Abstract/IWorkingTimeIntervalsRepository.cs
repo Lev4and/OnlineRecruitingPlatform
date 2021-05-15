@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         WorkingTimeIntervals GetWorkingTimeIntervals(string name, bool track = false);
 
+        WorkingTimeIntervals GetWorkingTimeIntervalsByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<WorkingTimeIntervals> GetWorkingTimeIntervals(bool track = false);
 
         void DeleteWorkingTimeIntervals(Guid id);

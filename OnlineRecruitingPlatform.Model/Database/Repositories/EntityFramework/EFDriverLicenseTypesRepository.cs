@@ -85,6 +85,23 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public DriverLicenseType GetDriverLicenseTypeByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.DriverLicenseTypes.SingleOrDefault(d => d.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.DriverLicenseTypes.AsNoTracking().SingleOrDefault(d => d.IdentifierFromHeadHunter == id);
+            }
+        }
+
         public IQueryable<DriverLicenseType> GetDriverLicenseTypes()
         {
             return _context.DriverLicenseTypes;

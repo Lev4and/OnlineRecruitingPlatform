@@ -49,21 +49,21 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         new
                         {
                             Id = "B867520A-92DB-4658-BE39-84DA53A601C0",
-                            ConcurrencyStamp = "1d7945a7-3e1a-47a0-acf9-459b73777488",
+                            ConcurrencyStamp = "0d4f91ef-d07b-4c31-adde-cbdbce11c42b",
                             Name = "Администратор",
                             NormalizedName = "АДМИНИСТРАТОР"
                         },
                         new
                         {
                             Id = "2AABA004-1052-4F53-9EB3-18FA85386AD5",
-                            ConcurrencyStamp = "71224bb1-89dd-4819-8c92-e7689568a2c5",
+                            ConcurrencyStamp = "3a930a53-c99b-43b4-9566-b39468479d38",
                             Name = "Соискатель",
                             NormalizedName = "СОИСКАТЕЛЬ"
                         },
                         new
                         {
                             Id = "8F525C31-6BCF-460F-86A3-BD51FA76F382",
-                            ConcurrencyStamp = "f3ed2bd0-541e-4ff8-a5ed-845e941f6008",
+                            ConcurrencyStamp = "873848a8-bb5e-42fd-877d-8c33e72de8ca",
                             Name = "Работодатель",
                             NormalizedName = "РАБОТОДАТЕЛЬ"
                         });
@@ -162,13 +162,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         {
                             Id = "21F7B496-C675-4E8A-A34C-FC5EC0762FDB",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2940ca63-f45d-4ca1-888c-719eee30753e",
+                            ConcurrencyStamp = "fd53f2ad-23dc-4e50-94cc-c0afaf83ba54",
                             Email = "andrey.levchenko.2001@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ANDREY.LEVCHENKO.2001@GMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIkf7OXpvzhKKvDaFBwRV9DqMESqLmTXl6sdLY3YtCZhaqa5LdPxZ/RLB8o+fKMAKg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEB+8n2Sf4lfsnAszp3HNlljvQGH4Rf3siqo/MO0IW92oz1vf+6PNRdSGgppYXcI6aA==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -394,7 +394,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<int?>("IdentifierFromHeadHunter")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdentifierParentFromHeadHunter")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdentifierParentFromZarplataRu")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
@@ -464,8 +470,35 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime?>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("IdentifierFromAvitoRu")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdentifierFromHeadHunter")
                         .HasColumnType("int");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
+                    b.Property<bool?>("IsBlacklisted")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsBlocked")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsCommerce")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsHolding")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("IsHr")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -474,6 +507,67 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContact", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AddressId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("CompanyContacts");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContactPhone", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CityCode")
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("CompanyContactId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CountryCode")
+                        .HasMaxLength(1)
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<string>("Formatted")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(7)
+                        .HasColumnType("nvarchar(7)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyContactId");
+
+                    b.ToTable("CompanyContactPhones");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyInformation", b =>
@@ -485,10 +579,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<string>("BrandedDescription")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("CardCompanyUrl")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SiteUrl")
@@ -512,6 +612,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("IdentifierFromHeadHunter")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
                         .HasColumnType("int");
 
                     b.Property<string>("Title")
@@ -574,6 +677,29 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .IsUnique();
 
                     b.ToTable("CompanyLogos");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyPhoto", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Photo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("CompanyPhotos");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyRelation", b =>
@@ -657,6 +783,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -717,6 +846,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -808,6 +940,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -828,6 +963,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -981,6 +1119,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
+                    b.Property<string>("IdentifierFromZarplataRu")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -997,7 +1138,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasMaxLength(2)
                         .HasColumnType("nvarchar(2)");
 
@@ -1006,6 +1146,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1072,6 +1215,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1106,12 +1252,14 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .IsRequired()
                         .HasMaxLength(6)
                         .HasColumnType("nvarchar(6)");
 
                     b.Property<string>("IdentifierFromHeadHunter")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdentifierFromZarplataRu")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1187,10 +1335,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("AcceptHandicapped")
+                    b.Property<bool?>("AcceptHandicapped")
                         .HasColumnType("bit");
 
-                    b.Property<bool>("AcceptKids")
+                    b.Property<bool?>("AcceptKids")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("AcceptPensioner")
+                        .HasColumnType("bit");
+
+                    b.Property<bool?>("AcceptStudent")
                         .HasColumnType("bit");
 
                     b.Property<bool?>("AcceptTemporary")
@@ -1205,13 +1359,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<bool>("Archived")
                         .HasColumnType("bit");
 
-                    b.Property<Guid>("AreaId")
+                    b.Property<Guid?>("AreaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CompanyId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<Guid?>("EducationLevelId")
@@ -1220,7 +1374,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid?>("EmploymentId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ExperienceId")
+                    b.Property<Guid?>("ExperienceId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("IdentifierFromAvitoRu")
@@ -1231,6 +1385,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Property<int?>("IdentifierFromZarplataRu")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -1248,19 +1405,28 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<Guid?>("PlaceOfWorkId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ProfessionId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid?>("ProfessionalAreaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("PublishedAt")
+                    b.Property<DateTime?>("PublishedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("ScheduleId")
+                    b.Property<bool?>("RemoteInterview")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid?>("ScheduleId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("VacancyTypeId")
+                    b.Property<Guid?>("VacancyTypeId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("VacancyVisibilityTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("WorkingDaysId")
@@ -1297,11 +1463,15 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.HasIndex("PlaceOfWorkId");
 
+                    b.HasIndex("ProfessionId");
+
                     b.HasIndex("ProfessionalAreaId");
 
                     b.HasIndex("ScheduleId");
 
                     b.HasIndex("VacancyTypeId");
+
+                    b.HasIndex("VacancyVisibilityTypeId");
 
                     b.HasIndex("WorkingDaysId");
 
@@ -1338,16 +1508,27 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("AddressId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Skype")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("VacancyId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("VacancyId")
                         .IsUnique();
@@ -1362,7 +1543,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CityCode")
-                        .IsRequired()
                         .HasMaxLength(3)
                         .HasColumnType("nvarchar(3)");
 
@@ -1370,14 +1550,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CountryCode")
-                        .IsRequired()
                         .HasMaxLength(1)
                         .HasColumnType("nvarchar(1)");
 
+                    b.Property<string>("Formatted")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Number")
-                        .IsRequired()
                         .HasMaxLength(7)
                         .HasColumnType("nvarchar(7)");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("VacancyContactId")
                         .HasColumnType("uniqueidentifier");
@@ -1420,7 +1604,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("HasTest")
@@ -1429,7 +1612,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("VacancyBillingTypeId")
+                    b.Property<Guid?>("VacancyBillingTypeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("VacancyId")
@@ -1490,6 +1673,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<double>("Bonus")
+                        .HasColumnType("float");
+
                     b.Property<Guid>("CurrencyId")
                         .HasColumnType("uniqueidentifier");
 
@@ -1499,7 +1685,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Property<int?>("LowerWageLimit")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LowerWageLimitRubles")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UpperWageLimit")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UpperWageLimitRubles")
                         .HasColumnType("int");
 
                     b.Property<Guid>("VacancyId")
@@ -1552,6 +1744,24 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VacancyTypes");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.VacancyVisibilityType", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("IdentifierFromAvitoRu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VacancyVisibilityTypes");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.WorkingDays", b =>
@@ -1720,6 +1930,36 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Navigation("Street");
                 });
 
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContact", b =>
+                {
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Address", "Address")
+                        .WithMany("CompanyContacts")
+                        .HasForeignKey("AddressId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Company", "Company")
+                        .WithMany("CompanyContacts")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Address");
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContactPhone", b =>
+                {
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContact", "CompanyContact")
+                        .WithMany("CompanyContactPhones")
+                        .HasForeignKey("CompanyContactId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompanyContact");
+                });
+
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyInformation", b =>
                 {
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Company", "Company")
@@ -1766,6 +2006,17 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Company", "Company")
                         .WithOne("Logo")
                         .HasForeignKey("OnlineRecruitingPlatform.Model.Database.Entities.CompanyLogo", "CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyPhoto", b =>
+                {
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Company", "Company")
+                        .WithMany("CompanyPhotos")
+                        .HasForeignKey("CompanyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1875,9 +2126,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Area", "Area")
                         .WithMany("Vacancies")
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AreaId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Company", "Company")
                         .WithMany("Vacancies")
@@ -1893,9 +2142,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Experience", "Experience")
                         .WithMany("Vacancies")
-                        .HasForeignKey("ExperienceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ExperienceId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.PaidPeriod", "PayPeriod")
                         .WithMany("Vacancies")
@@ -1909,21 +2156,25 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                         .WithMany("Vacancies")
                         .HasForeignKey("PlaceOfWorkId");
 
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Profession", "Profession")
+                        .WithMany("Vacancies")
+                        .HasForeignKey("ProfessionId");
+
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.ProfessionalArea", "ProfessionalArea")
                         .WithMany("Vacancies")
                         .HasForeignKey("ProfessionalAreaId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Schedule", "Schedule")
                         .WithMany("Vacancies")
-                        .HasForeignKey("ScheduleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ScheduleId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.VacancyType", "VacancyType")
                         .WithMany("Vacancies")
-                        .HasForeignKey("VacancyTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VacancyTypeId");
+
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.VacancyVisibilityType", "VacancyVisibilityType")
+                        .WithMany("Vacancies")
+                        .HasForeignKey("VacancyVisibilityTypeId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.WorkingDays", "WorkingDays")
                         .WithMany("Vacancies")
@@ -1961,11 +2212,15 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
                     b.Navigation("PlaceOfWork");
 
+                    b.Navigation("Profession");
+
                     b.Navigation("ProfessionalArea");
 
                     b.Navigation("Schedule");
 
                     b.Navigation("VacancyType");
+
+                    b.Navigation("VacancyVisibilityType");
 
                     b.Navigation("WorkingDays");
 
@@ -1978,11 +2233,17 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.VacancyContact", b =>
                 {
+                    b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Address", "Address")
+                        .WithMany("VacancyContacts")
+                        .HasForeignKey("AddressId");
+
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Vacancy", "Vacancy")
                         .WithOne("VacancyContact")
                         .HasForeignKey("OnlineRecruitingPlatform.Model.Database.Entities.VacancyContact", "VacancyId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Address");
 
                     b.Navigation("Vacancy");
                 });
@@ -2021,9 +2282,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                 {
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.VacancyBillingType", "VacancyBillingType")
                         .WithMany("VacancyInformation")
-                        .HasForeignKey("VacancyBillingTypeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("VacancyBillingTypeId");
 
                     b.HasOne("OnlineRecruitingPlatform.Model.Database.Entities.Vacancy", "Vacancy")
                         .WithOne("VacancyInformation")
@@ -2095,7 +2354,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Address", b =>
                 {
+                    b.Navigation("CompanyContacts");
+
                     b.Navigation("Vacancies");
+
+                    b.Navigation("VacancyContacts");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.AgePreference", b =>
@@ -2121,6 +2384,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Company", b =>
                 {
+                    b.Navigation("CompanyContacts");
+
+                    b.Navigation("CompanyPhotos");
+
                     b.Navigation("Information");
 
                     b.Navigation("InsiderInterviews");
@@ -2134,6 +2401,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                     b.Navigation("SubIndustries");
 
                     b.Navigation("Vacancies");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.CompanyContact", b =>
+                {
+                    b.Navigation("CompanyContactPhones");
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Country", b =>
@@ -2184,6 +2456,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.PlaceOfWork", b =>
+                {
+                    b.Navigation("Vacancies");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.Profession", b =>
                 {
                     b.Navigation("Vacancies");
                 });
@@ -2258,6 +2535,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Migrations
                 });
 
             modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.VacancyType", b =>
+                {
+                    b.Navigation("Vacancies");
+                });
+
+            modelBuilder.Entity("OnlineRecruitingPlatform.Model.Database.Entities.VacancyVisibilityType", b =>
                 {
                     b.Navigation("Vacancies");
                 });

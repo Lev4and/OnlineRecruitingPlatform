@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         DriverLicenseType GetDriverLicenseType(string name, bool track = false);
 
+        DriverLicenseType GetDriverLicenseTypeByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<DriverLicenseType> GetDriverLicenseTypes();
 
         void DeleteDriverLicenseType(Guid id);

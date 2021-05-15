@@ -85,6 +85,23 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public WorkingTimeModes GetWorkingTimeModesByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.WorkingTimeModes.SingleOrDefault(v => v.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.WorkingTimeModes.AsNoTracking().SingleOrDefault(v => v.IdentifierFromHeadHunter == id);
+            }
+        }
+
         public IQueryable<WorkingTimeModes> GetWorkingTimeModes(bool track = false)
         {
             if (track)

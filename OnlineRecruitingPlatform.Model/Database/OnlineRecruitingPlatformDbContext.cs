@@ -25,6 +25,10 @@ namespace OnlineRecruitingPlatform.Model.Database
 
         public DbSet<Company> Companies { get; set; }
 
+        public DbSet<CompanyContact> CompanyContacts { get; set; }
+
+        public DbSet<CompanyContactPhone> CompanyContactPhones { get; set; }
+
         public DbSet<CompanyInformation> CompanyInformation { get; set; }
 
         public DbSet<CompanyInsiderInterview> CompanyInsiderInterviews { get; set; }
@@ -32,6 +36,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<CompanyLocation> CompanyLocations { get; set; }
 
         public DbSet<CompanyLogo> CompanyLogos { get; set; }
+
+        public DbSet<CompanyPhoto> CompanyPhotos { get; set; }
 
         public DbSet<CompanyRelation> CompanyRelations { get; set; }
 
@@ -112,6 +118,8 @@ namespace OnlineRecruitingPlatform.Model.Database
         public DbSet<VacancySpecialization> VacancySpecializations { get; set; }
 
         public DbSet<VacancyType> VacancyTypes { get; set; }
+        
+        public DbSet<VacancyVisibilityType> VacancyVisibilityTypes { get; set; }
 
         public DbSet<WorkingDays> WorkingDays { get; set; }
 
@@ -203,6 +211,16 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasForeignKey<CompanyLogo>(cl => cl.CompanyId);
 
             builder.Entity<Company>()
+                .HasMany(c => c.CompanyPhotos)
+                .WithOne(c => c.Company)
+                .HasForeignKey(c => c.CompanyId);
+
+            builder.Entity<Company>()
+                .HasMany(c => c.CompanyContacts)
+                .WithOne(c => c.Company)
+                .HasForeignKey(c => c.CompanyId);
+
+            builder.Entity<Company>()
                 .HasMany(c => c.Vacancies)
                 .WithOne(v => v.Company)
                 .HasForeignKey(v => v.CompanyId);
@@ -226,6 +244,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(c => c.InsiderInterviews)
                 .WithOne(ci => ci.Company)
                 .HasForeignKey(ci => ci.CompanyId);
+
+            builder.Entity<CompanyContact>()
+                .HasMany(c => c.CompanyContactPhones)
+                .WithOne(c => c.CompanyContact)
+                .HasForeignKey(c => c.CompanyContactId);
 
             builder.Entity<Relation>()
                 .HasMany(r => r.CompanyRelations)
@@ -312,6 +335,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .WithOne(v => v.PlaceOfWork)
                 .HasForeignKey(v => v.PlaceOfWorkId);
 
+            builder.Entity<Profession>()
+                .HasMany(p => p.Vacancies)
+                .WithOne(v => v.Profession)
+                .HasForeignKey(v => v.ProfessionId);
+
             builder.Entity<ProfessionalArea>()
                 .HasMany(p => p.Specializations)
                 .WithOne(s => s.ProfessionalArea)
@@ -339,6 +367,16 @@ namespace OnlineRecruitingPlatform.Model.Database
 
             builder.Entity<Address>()
                 .HasMany(a => a.Vacancies)
+                .WithOne(v => v.Address)
+                .HasForeignKey(v => v.AddressId);
+
+            builder.Entity<Address>()
+                .HasMany(a => a.CompanyContacts)
+                .WithOne(c => c.Address)
+                .HasForeignKey(c => c.AddressId);
+
+            builder.Entity<Address>()
+                .HasMany(a => a.VacancyContacts)
                 .WithOne(v => v.Address)
                 .HasForeignKey(v => v.AddressId);
 
@@ -386,6 +424,11 @@ namespace OnlineRecruitingPlatform.Model.Database
                 .HasMany(v => v.Vacancies)
                 .WithOne(v => v.VacancyType)
                 .HasForeignKey(v => v.VacancyTypeId);
+
+            builder.Entity<VacancyVisibilityType>()
+                .HasMany(v => v.Vacancies)
+                .WithOne(v => v.VacancyVisibilityType)
+                .HasForeignKey(v => v.VacancyVisibilityTypeId);
 
             builder.Entity<VacancyBillingType>()
                 .HasMany(v => v.VacancyInformation)

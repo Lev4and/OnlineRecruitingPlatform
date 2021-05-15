@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         Region GetRegion(Guid countryId, string name, bool track = false);
 
+        Region GetRegionByIdentifierFromHeadHunter(int id, bool track = false);
+
         IQueryable<Region> GetRegions(bool track = false);
 
         void DeleteRegion(Guid id);

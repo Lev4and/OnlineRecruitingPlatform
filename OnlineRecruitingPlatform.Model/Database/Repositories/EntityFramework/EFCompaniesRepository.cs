@@ -25,6 +25,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return _context.Companies.SingleOrDefault(c => c.Name == name) != null;
         }
 
+        public bool ContainsCompanyByIdentifierFromZarplataRu(int id)
+        {
+            return _context.Companies.SingleOrDefault(c => c.IdentifierFromZarplataRu == id) != null;
+        }
+
+        public bool ContainsCompanyByIdentifierFromHeadHunter(int id)
+        {
+            return _context.Companies.SingleOrDefault(c => c.IdentifierFromHeadHunter == id) != null;
+        }
+
         public bool SaveCompany(Company entity)
         {
             if (entity == null)
@@ -85,6 +95,30 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Company GetCompanyByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Companies.SingleOrDefault(c => c.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Companies.AsNoTracking().SingleOrDefault(c => c.IdentifierFromZarplataRu == id);
+            }
+        }
+
+        public Company GetCompanyByIdentifierFromHeadHunter(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Companies.SingleOrDefault(c => c.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Companies.AsNoTracking().SingleOrDefault(c => c.IdentifierFromHeadHunter == id);
+            }
+        }
+
         public IQueryable<Company> GetCompanies(bool track = false)
         {
             if (track)
@@ -94,6 +128,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             else
             {
                 return _context.Companies.AsNoTracking();
+            }
+        }
+
+        public IQueryable<Company> GetBrowseCompanies(bool track = false)
+        {
+            if (track)
+            {
+                return _context.Companies.Include(c => c.Logo).Include(c => c.Vacancies);
+            }
+            else
+            {
+                return _context.Companies.Include(c => c.Logo).Include(c => c.Vacancies).AsNoTracking();
             }
         }
 
@@ -108,6 +154,16 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 
             _context.Companies.Remove(entity);
             _context.SaveChanges();
+        }
+
+        public void DetachCompany(Company entity)
+        {
+            if (entity == null)
+            {
+                throw new ArgumentNullException("entity", "Параметр не может быть пустым.");
+            }
+
+            _context.Entry(entity).State = EntityState.Detached;
         }
     }
 }

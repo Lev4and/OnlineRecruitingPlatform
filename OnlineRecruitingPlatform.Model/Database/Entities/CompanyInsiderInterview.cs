@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
 {
-    public class CompanyInsiderInterview : IImportedFromHeadHunter<int?>
+    public class CompanyInsiderInterview : IImportedFromHeadHunter<int?>, IImportedFromZarplataRu<int?>
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
@@ -26,6 +26,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("identifierFromHeadHunter")]
         public virtual int? IdentifierFromHeadHunter { get; set; }
 
+        [JsonProperty("identifierFromZarplataRu")]
+        public virtual int? IdentifierFromZarplataRu { get; set; }
+
         [JsonProperty("company")]
         public Company Company { get; set; }
     }
@@ -42,5 +45,19 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("id")]
         public override int? IdentifierFromHeadHunter { get; set; }
+    }
+
+    public class CompanyInsiderInterviewIVZarplataRu : CompanyInsiderInterview
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid CompanyId { get; set; }
+
+        [JsonProperty("id")]
+        public override int? IdentifierFromZarplataRu { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 
@@ -54,7 +55,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public Building Building { get; set; }
         
         [JsonProperty("vacancies")]
-        public Vacancy[] Vacancies { get; set; }
+        public ICollection<Vacancy> Vacancies { get; set; }
+
+        [JsonProperty("companyContacts")]
+        public ICollection<CompanyContact> CompanyContacts { get; set; }
+        
+        [JsonProperty("vacancyContacts")]
+        public ICollection<VacancyContact> VacancyContacts { get; set; }
     }
 
     public class AddressIV : Address
@@ -93,5 +100,37 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("lng")]
         public override double? Longitude { get; set; }
+    }
+
+    public class AddressIVZarplataRu : Address
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid? Aoguid { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid? CityId { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid? StreetId { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid? BuildingId { get; set; }
+
+        [JsonProperty("street")]
+        public override string StreetName { get; set; }
+
+        [JsonProperty("building")]
+        public override string BuildingName { get; set; }
+        
+        [JsonProperty("city")]
+        public AreaIVZarplataRu[] City { get; set; }
     }
 }

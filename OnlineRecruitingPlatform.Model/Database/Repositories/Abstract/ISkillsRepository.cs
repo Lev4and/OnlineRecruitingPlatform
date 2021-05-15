@@ -8,11 +8,15 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
     {
         bool ContainsSkill(string name);
 
+        bool ContainsSkillByIdentifierFromHeadHunter(int id);
+
         bool SaveSkill(Skill entity);
 
         Skill GetSkill(Guid id, bool track = false);
 
         Skill GetSkill(string name, bool track = false);
+
+        Skill GetSkillByIdentifierFromHeadHunter(int id, bool track = false);
 
         IQueryable<Skill> GetSkills();
 

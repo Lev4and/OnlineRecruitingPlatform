@@ -1,0 +1,43 @@
+﻿<section class="no-padding-top bg-alt">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <br>
+                <h5>We found <strong>@ViewBag.companies.Count</strong> matches, you're watching <i>1</i> to <i>@ViewBag.companies.Count</i></h5>
+            </div>
+            @foreach (var company in ViewBag.companies)
+            {
+                <div class="col-xs-12">
+                    <a class="item-block" asp-controller="Company" asp-action="BrowseCompany" asp-route-companyId="@company.Id">
+                        <header>
+                            @if (company.Logo != null)
+                            {
+                                @if (!string.IsNullOrEmpty(company.Logo.Resolution90px))
+                                {
+                                    <img src="data:image/png;base64, @company.Logo.Resolution90px" alt="">
+                                }
+                                else
+                                {   
+                                    <img src="" alt="">
+                                }
+                            }
+                            else
+                            {
+                                <img src="" alt="">
+                            }
+                            <div class="hgroup">
+                                <h4>@company.Name</h4>
+                                <h5>???</h5>
+                            </div>
+                            <span class="open-position">@company.Vacancies.Count open position</span>
+                        </header>
+
+                        <div class="item-body">
+                            ???
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</section>

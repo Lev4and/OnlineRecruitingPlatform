@@ -8,29 +8,69 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
     {
         [JsonProperty("id")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid Id { get; set; }
+        public virtual Guid Id { get; set; }
         
         [JsonProperty("vacancyId")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid VacancyId { get; set; }
+        public virtual Guid VacancyId { get; set; }
         
         [JsonProperty("currencyId")]
         [JsonConverter(typeof(GuidConverter))]
-        public Guid CurrencyId { get; set; }
+        public virtual Guid CurrencyId { get; set; }
         
         [JsonProperty("upperWageLimit")]
-        public int? UpperWageLimit { get; set; }
+        public virtual int? UpperWageLimit { get; set; }
         
+        [JsonProperty("upperWageLimitRubles")]
+        public virtual int? UpperWageLimitRubles { get; set; }
+
         [JsonProperty("lowerWageLimit")]
-        public int? LowerWageLimit { get; set; }
+        public virtual int? LowerWageLimit { get; set; }
+        
+        [JsonProperty("lowerWageLimitRubles")]
+        public virtual int? LowerWageLimitRubles { get; set; }
+        
+        [JsonProperty("bonus")]
+        public virtual double Bonus { get; set; }
         
         [JsonProperty("gross")]
-        public bool? Gross { get; set; }
+        public virtual bool? Gross { get; set; }
         
         [JsonProperty("vacancy")]
         public Vacancy Vacancy { get; set; }
         
         [JsonProperty("currency")]
-        public Currency Currency { get; set; }
+        public virtual Currency Currency { get; set; }
+    }
+
+    public class VacancySalaryIV : VacancySalary
+    {
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid Id { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid VacancyId { get; set; }
+
+        [JsonProperty()]
+        [JsonConverter(typeof(GuidConverter))]
+        public override Guid CurrencyId { get; set; }
+
+        [JsonProperty("gross")]
+        public override bool? Gross { get; set; }
+
+        [JsonProperty("to")]
+        public override int? UpperWageLimit { get; set; }
+
+        [JsonProperty("from")]
+        public override int? LowerWageLimit { get; set; }
+
+        [JsonProperty("currency")]
+        public string CurrencyCode { get; set; }
+
+        [JsonIgnore]
+        [JsonProperty()]
+        public override Currency Currency { get; set; }
     }
 }

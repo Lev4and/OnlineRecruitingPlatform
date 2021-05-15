@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
@@ -33,10 +34,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public Area Area { get; set; }
         
         [JsonProperty("addresses")]
-        public Address[] Addresses { get; set; }
+        public ICollection<Address> Addresses { get; set; }
         
         [JsonProperty("buildings")]
-        public Building[] Buildings { get; set; }
+        public ICollection<Building> Buildings { get; set; }
     }
 
     public class StreetIV : Street

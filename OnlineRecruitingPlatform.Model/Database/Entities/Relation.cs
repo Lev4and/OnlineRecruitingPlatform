@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -16,6 +17,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public string Name { get; set; }
 
         [JsonProperty("companyRelations")]
-        public CompanyRelation[] CompanyRelations { get; set; }
+        public ICollection<CompanyRelation> CompanyRelations { get; set; }
     }
 }

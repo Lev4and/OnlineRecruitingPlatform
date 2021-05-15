@@ -102,6 +102,35 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Currency GetCurrencyByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Currencies.SingleOrDefault(c => c.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Currencies.AsNoTracking().SingleOrDefault(c => c.IdentifierFromZarplataRu == id);
+            }
+        }
+
+        public Currency GetCurrencyByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Currencies.SingleOrDefault(c => c.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Currencies.AsNoTracking().SingleOrDefault(c => c.IdentifierFromHeadHunter == id);
+            }
+        }
+
         public IQueryable<Currency> GetCurrencies()
         {
             return _context.Currencies;

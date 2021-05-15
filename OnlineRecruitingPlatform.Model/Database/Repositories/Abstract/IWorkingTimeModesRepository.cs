@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         WorkingTimeModes GetWorkingTimeModes(string name, bool track = false);
 
+        WorkingTimeModes GetWorkingTimeModesByIdentifierFromHeadHunter(string id, bool track = false);
+
         IQueryable<WorkingTimeModes> GetWorkingTimeModes(bool track = false);
 
         void DeleteWorkingTimeModes(Guid id);

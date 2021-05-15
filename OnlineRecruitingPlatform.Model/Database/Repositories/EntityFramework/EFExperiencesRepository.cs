@@ -85,6 +85,52 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Experience GetExperienceByIdentifierFromHeadHunter(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Experiences.SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Experiences.AsNoTracking().SingleOrDefault(s => s.IdentifierFromHeadHunter == id);
+            }
+        }
+
+        public Experience GetExperienceByIdentifierFromAvitoRu(string id, bool track = false)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException("id", "Параметр не может быть пустым или длиной 0 символов.");
+            }
+
+            if (track)
+            {
+                return _context.Experiences.SingleOrDefault(s => s.IdentifierFromAvitoRu == id);
+            }
+            else
+            {
+                return _context.Experiences.AsNoTracking().SingleOrDefault(s => s.IdentifierFromAvitoRu == id);
+            }
+        }
+
+        public Experience GetExperienceByIdentifierFromZarplataRu(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Experiences.SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+            else
+            {
+                return _context.Experiences.AsNoTracking().SingleOrDefault(s => s.IdentifierFromZarplataRu == id);
+            }
+        }
+
         public IQueryable<Experience> GetExperiences()
         {
             return _context.Experiences;

@@ -102,6 +102,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
+        public Region GetRegionByIdentifierFromHeadHunter(int id, bool track = false)
+        {
+            if (track)
+            {
+                return _context.Regions.SingleOrDefault(r => r.IdentifierFromHeadHunter == id);
+            }
+            else
+            {
+                return _context.Regions.AsNoTracking().SingleOrDefault(r => r.IdentifierFromHeadHunter == id);
+            }
+        }
+
         public IQueryable<Region> GetRegions(bool track = false)
         {
             if (track)

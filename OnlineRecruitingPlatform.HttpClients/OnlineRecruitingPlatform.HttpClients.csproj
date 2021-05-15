@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="AvitoRu\Clients\" />
     <Folder Include="DataMosRu\OKVED2\Clients\" />
-    <Folder Include="HeadHunter\Clients\Vacancies\" />
-    <Folder Include="ZarplataRu\Clients\" />
   </ItemGroup>
 
   <ItemGroup>
