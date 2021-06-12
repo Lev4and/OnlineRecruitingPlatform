@@ -50,6 +50,10 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("companyLocations")]
         public ICollection<CompanyLocation> CompanyLocations { get; set; }
+        
+        public ICollection<ResumeExperience> ResumeExperiences { get; set; }
+        
+        public ICollection<ResumeRelocationArea> ResumeRelocationAreas { get; set; }
     }
 
     public class AreaIV : Area

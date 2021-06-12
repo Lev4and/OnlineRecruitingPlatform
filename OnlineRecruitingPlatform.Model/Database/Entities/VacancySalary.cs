@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 
@@ -41,6 +42,34 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("currency")]
         public virtual Currency Currency { get; set; }
+
+        public string GetStringFormat()
+        {
+            var culture = new CultureInfo("ru-RU");
+
+            if (LowerWageLimit != null && UpperWageLimit != null)
+            {
+                return $"{((int)LowerWageLimit).ToString("#,#", culture)} {Currency.Designation} - {((int)UpperWageLimit).ToString("#,#", culture)} {Currency.Designation}";
+            }
+            else
+            {
+                if(LowerWageLimit != null)
+                {
+                    return $"от {((int)LowerWageLimit).ToString("#,#", culture)} {Currency.Designation}";
+                }
+                else
+                {
+                    if(UpperWageLimit != null)
+                    {
+                        return $"до {((int)UpperWageLimit).ToString("#,#", culture)} {Currency.Designation}";
+                    }
+                    else
+                    {
+                        return "Не указана";
+                    }
+                }
+            }
+        }
     }
 
     public class VacancySalaryIV : VacancySalary

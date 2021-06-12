@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using OnlineRecruitingPlatform.HttpClients.CLADR.Clients;
 using OnlineRecruitingPlatform.Model.API.CLADR;
 using OnlineRecruitingPlatform.Model.Database.Entities;
+using System.IO;
 
 namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
 {
@@ -95,22 +96,55 @@ namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
 
                                                 if (resultVacancy.Company.CompanyLogo != null)
                                                 {
+                                                    string logoOriginalPath = null;
+
+                                                    if (!Directory.Exists(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\"))
+                                                    {
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\");
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\logos\");
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\photos\");
+                                                    }
+
+                                                    if (!string.IsNullOrEmpty(resultVacancy.Company.CompanyLogo.Original))
+                                                    {
+                                                        logoOriginalPath = @$"images\upload\companies\{company.Id}\logos\Original.jpeg";
+
+                                                        File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logoOriginalPath}", Convert.FromBase64String(resultVacancy.Company.CompanyLogo.Original));
+                                                    }
+
                                                     _dataManager.CompanyLogos.SaveCompanyLogo(new CompanyLogo()
                                                     {
-                                                        Original = resultVacancy.Company.CompanyLogo.Original,
+                                                        Original = logoOriginalPath,
                                                         CompanyId = company.Id
                                                     });
                                                 }
 
                                                 if (resultVacancy.Company.CompanyPhotos != null)
                                                 {
+                                                    if (!Directory.Exists(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\"))
+                                                    {
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\");
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\logos\");
+                                                        Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\photos\");
+                                                    }
+
                                                     foreach (var photo in resultVacancy.Company.CompanyPhotos)
                                                     {
+                                                        string photoPath = null;
+                                                        int countFiles = Directory.GetFiles(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\photos\").Length;
+
+                                                        if (!string.IsNullOrEmpty(photo.Photo))
+                                                        {
+                                                            photoPath = @$"images\upload\companies\{company.Id}\photos\{countFiles + 1}.jpeg";
+
+                                                            File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{photoPath}", Convert.FromBase64String(photo.Photo));
+                                                        }
+
                                                         _dataManager.CompanyPhotos.SaveCompanyPhoto(new CompanyPhoto()
                                                         {
                                                             IdentifierFromZarplataRu = photo.IdentifierFromZarplataRu,
                                                             CompanyId = company.Id,
-                                                            Photo = photo.Photo
+                                                            Photo = photoPath
                                                         });
                                                     }
                                                 }

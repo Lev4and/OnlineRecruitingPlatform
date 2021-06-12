@@ -27,6 +27,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("vacancies")]
         public ICollection<Vacancy> Vacancies { get; set; }
+        
+        public ICollection<ResumeSchedule> ResumeSchedules { get; set; }
     }
 
     public class ScheduleIV : Schedule

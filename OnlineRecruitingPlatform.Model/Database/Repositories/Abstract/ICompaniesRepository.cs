@@ -14,6 +14,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         bool SaveCompany(Company entity);
 
+        int GetCountCompanies();
+
         Company GetCompany(Guid id, bool track = false);
 
         Company GetCompany(string name, bool track = false);
@@ -24,7 +26,7 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         IQueryable<Company> GetCompanies(bool track = false);
 
-        IQueryable<Company> GetBrowseCompanies(bool track = false);
+        IQueryable<Company> GetBrowseCompanies(int itemsPerPage = 5, int numberPage = 1, bool track = false);
 
         void DeleteCompany(Guid id);
 

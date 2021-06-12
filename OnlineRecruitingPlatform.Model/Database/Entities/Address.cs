@@ -62,6 +62,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("vacancyContacts")]
         public ICollection<VacancyContact> VacancyContacts { get; set; }
+
+        public string GetStringFullAddress()
+        {
+            return $"{CityName}, {StreetName}, {BuildingName}";
+        }
     }
 
     public class AddressIV : Address

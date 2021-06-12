@@ -27,7 +27,7 @@ namespace OnlineRecruitingPlatform.HttpClients.DaDataRu
 
             _client = new HttpClient(_handler);
             _client.BaseAddress = new Uri(_baseUrl);
-            _client.DefaultRequestHeaders.UserAgent.ParseAdd("OnlineRecruitingPlatform/1.0 (onlinerecruitingplatform.u1321851.plsk.regruhosting.ru)");
+            _client.DefaultRequestHeaders.UserAgent.ParseAdd("OnlineRecruitingPlatform/1.0 (online-recruiting-platform-asp-net-core.ru)");
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Token", _authorizationToken);
             _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }

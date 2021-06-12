@@ -1,43 +1,73 @@
-﻿<section class="no-padding-top bg-alt">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <br>
-                <h5>We found <strong>@ViewBag.companies.Count</strong> matches, you're watching <i>1</i> to <i>@ViewBag.companies.Count</i></h5>
-            </div>
-            @foreach (var company in ViewBag.companies)
-            {
+﻿@using OnlineRecruitingPlatform.Model.Formatters.String
+@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.BrowseCompaniesViewModel
+@await Html.PartialAsync("BrowseCompaniesHeaderPartial", Model)
+<main>
+    <section class="no-padding-top bg-alt">
+        <div class="container">
+            <div class="row">
                 <div class="col-xs-12">
-                    <a class="item-block" asp-controller="Company" asp-action="BrowseCompany" asp-route-companyId="@company.Id">
-                        <header>
-                            @if (company.Logo != null)
-                            {
-                                @if (!string.IsNullOrEmpty(company.Logo.Resolution90px))
+                    <br>
+                    <h5>Мы нашли <strong>@Model.CountCompanies</strong> @(Declension.DeclensionByNumeral(Model.CountCompanies, new string[3] 
+                                                                        {
+                                                                            "совпадение",
+                                                                            "совпадения",
+                                                                            "совпадений"
+                                                                        }, false)), вы смотрите с <i>@Model.FirstNumberCompany</i> по <i>@Model.LastNumberCompany</i></h5>
+                </div>
+                @foreach (var company in Model.Companies)
+                {
+                    <div class="col-xs-12">
+                        <a class="item-block" asp-controller="Company" asp-action="BrowseCompany" asp-route-companyId="@company.Id">
+                            <header>
+                                <div class="company-logo-container-62px">
+                                    @if (company.Logo != null)
+                                    {
+                                        @if (!string.IsNullOrEmpty(company.Logo.Resolution90px))
+                                        {
+                                            <img src="~/@company.Logo.Resolution90px">
+                                        }
+                                        else
+                                        {
+                                            @if (!string.IsNullOrEmpty(company.Logo.Original))
+                                            {
+                                                <img src="~/@company.Logo.Original">
+                                            }
+                                            else
+                                            {
+                                                <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                    }
+                                </div>
+                                <div class="hgroup">
+                                    <h4>@company.Name</h4>
+                                    <h5>Юридический адрес компании неизвестен</h5>
+                                </div>
+                                @if (company.Vacancies != null)
                                 {
-                                    <img src="data:image/png;base64, @company.Logo.Resolution90px" alt="">
+                                    <span class="open-position">@(Declension.DeclensionByNumeral(company.Vacancies.Count, new string[3] 
+                                                                {
+                                                                    "открытая вакансия",
+                                                                    "открытых вакансий",
+                                                                    "открытых вакансий"
+                                                                }))</span>
                                 }
                                 else
-                                {   
-                                    <img src="" alt="">
+                                {
+                                    <span class="open-position">0 открытых вакансий</span>
                                 }
-                            }
-                            else
-                            {
-                                <img src="" alt="">
-                            }
-                            <div class="hgroup">
-                                <h4>@company.Name</h4>
-                                <h5>???</h5>
+                            </header>
+                            <div class="item-body">
+                                Краткое описание компании отсутствует
                             </div>
-                            <span class="open-position">@company.Vacancies.Count open position</span>
-                        </header>
-
-                        <div class="item-body">
-                            ???
-                        </div>
-                    </a>
-                </div>
-            }
+                        </a>
+                    </div>
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>

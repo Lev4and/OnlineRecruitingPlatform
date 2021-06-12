@@ -1,4 +1,4 @@
-﻿using OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies;
+﻿using OnlineRecruitingPlatform.Importers.API.HeadHunter.Vacancies;
 using System;
 using System.Threading;
 

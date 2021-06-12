@@ -2,54 +2,11 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <UserSecretsId>ceaf7ab3-e3ae-4c84-a315-a72ef8a7a58b</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
       <Content Remove="compilerconfig.json" />
-      <Content Update="Areas\Admin\Views\FIAS\Areas\Index.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\Areas\Details.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\Areas.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\DetailsArea.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\DetailsCity.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\DetailsPlace.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\DetailsRegion.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\FIAS\DetailsStreet.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="wwwroot\sass\adminpanel\form.scss">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\Database\ApplicantCommentAccessTypes.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
-      <Content Update="Areas\Admin\Views\Database\SaveOrEditApplicantCommentAccessType.cshtml">
-        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -75,8 +32,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="wwwroot\css\adminpanel\" />
-      <Folder Include="wwwroot\images\upload\" />
+      <Folder Include="wwwroot\images\upload\companies\" />
       <Folder Include="wwwroot\sass\libs\" />
       <Folder Include="wwwroot\sass\main\" />
     </ItemGroup>
@@ -4454,19 +4410,6 @@
       <ProjectReference Include="..\OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Reference Include="FIASApi.HttpClients, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\FIASApi\FIASApi.HttpClients\bin\Debug\netcoreapp3.1\FIASApi.HttpClients.dll</HintPath>
-      </Reference>
-      <Reference Include="FIASApi.Model">
-        <HintPath>..\..\FIASApi\FIASApi.Model\bin\Debug\netcoreapp3.1\FIASApi.Model.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <_ContentIncludedByDefault Remove="Areas\Admin\Views\Database\ApplicantCommentAccessTypes\Index.cshtml" />
-    </ItemGroup>
-
-    <ProjectExtensions><VisualStudio><UserProperties TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>
+    <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" TemplateFeatures="NETCORE" /></VisualStudio></ProjectExtensions>
 
 </Project>

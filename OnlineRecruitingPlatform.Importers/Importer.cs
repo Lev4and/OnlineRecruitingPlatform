@@ -34,6 +34,7 @@ namespace OnlineRecruitingPlatform.Importers
             var options = optionsBuilder.UseSqlServer(@"Server=DESKTOP-9CDGA5B;Database=OnlineRecruitingPlatform;User ID=sa;Password=sa;Trusted_Connection=True;").Options;
 
             _context = new OnlineRecruitingPlatformDbContext(options);
+            _context.ChangeTracker.AutoDetectChangesEnabled = false;
             _dataManager = new DataManager(
                 new EFAddressesRepository(_context), 
                 new EFAgePreferencesRepository(_context), 

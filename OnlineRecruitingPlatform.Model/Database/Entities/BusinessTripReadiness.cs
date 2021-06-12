@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
@@ -17,6 +18,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+        
+        public ICollection<Resume> Resumes { get; set; }
     }
 
     public class BusinessTripReadinessIV : BusinessTripReadiness

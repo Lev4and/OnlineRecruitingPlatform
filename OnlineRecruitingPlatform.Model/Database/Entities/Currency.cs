@@ -39,6 +39,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         
         [JsonProperty("vacancySalaries")]
         public ICollection<VacancySalary> VacancySalaries { get; set; }
+        
+        public ICollection<ResumeSalary> ResumeSalaries { get; set; }
     }
 
     public class CurrencyIV : Currency

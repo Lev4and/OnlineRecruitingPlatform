@@ -1,0 +1,86 @@
+﻿@using OnlineRecruitingPlatform.Model.Formatters.String
+@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.BrowseVacanciesViewModel
+@await Html.PartialAsync("BrowseVacanciesHeaderPartial", Model)
+<main>
+    <section class="no-padding-top bg-alt">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <br>
+                    <h5>
+                        Мы нашли <strong>@Model.CountVacancies</strong> @(Declension.DeclensionByNumeral(Model.CountVacancies, new string[3]
+                                                                        {
+                                                                            "совпадение",
+                                                                            "совпадения",
+                                                                            "совпадений"
+                                                                        }, false)), вы смотрите с <i>@Model.FirstNumberVacancy</i> по <i>@Model.LastNumberVacancy</i>
+                    </h5>
+                </div>
+                @foreach (var vacancy in Model.Vacancies)
+                {
+                    <div class="col-xs-12">
+                        <a class="item-block" asp-controller="Vacancy" asp-action="Browse" asp-route-vacancyId="@vacancy.Id">
+                            <header>
+                                <div class="company-logo-container-62px">
+                                    @if (vacancy.Company != null)
+                                    {
+                                        if (vacancy.Company.Logo != null)
+                                        {
+                                            if (!string.IsNullOrEmpty(vacancy.Company.Logo.Resolution90px))
+                                            {
+                                                <img src="~/@vacancy.Company.Logo.Resolution90px">
+                                            }
+                                            else
+                                            {
+                                                if (!string.IsNullOrEmpty(vacancy.Company.Logo.Original))
+                                                {
+                                                    <img src="~/@vacancy.Company.Logo.Original">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                    }
+                                </div>
+                                <div class="hgroup">
+                                    <h4>@vacancy.Name</h4>
+                                    <h5>@(vacancy.Company != null ? vacancy.Company.Name : "Неизвестно") <span class="label label-success">@(vacancy.Schedule != null ? vacancy.Schedule.Name : "Неизвестно")</span></h5>
+                                </div>
+                                <time datetime="@vacancy.CreatedAt">@vacancy.CreatedAt</time>
+                            </header>
+                            <div class="item-body">
+                                <p>Краткое описание отсутствует</p>
+                            </div>
+                            <footer>
+                                <ul class="details cols-3">
+                                    <li>
+                                        <i class="fa fa-map-marker"></i>
+                                        <span>@(vacancy.Address != null ? vacancy.Address.GetStringFullAddress() : "Неизвестно")</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-money"></i>
+                                        <span>@(vacancy.VacancySalary != null ? vacancy.VacancySalary.GetStringFormat() : "Неизвестно")</span>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-certificate"></i>
+                                        <span>Master or Bachelor</span>
+                                    </li>
+                                </ul>
+                            </footer>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</main>

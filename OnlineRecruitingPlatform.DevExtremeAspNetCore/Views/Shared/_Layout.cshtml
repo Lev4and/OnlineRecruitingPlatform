@@ -9,10 +9,7 @@
 </head>
 <body class="nav-on-header">
     @await Html.PartialAsync("NavBarPartial")
-    @await Html.PartialAsync("HeaderPartial")
-    <main>
-        @RenderBody()
-    </main>
+    @RenderBody()
     @await Html.PartialAsync("FooterPartial")
     <a id="scroll-up" href="#">
         <i class="ti-angle-up"></i>

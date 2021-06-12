@@ -13986,6 +13986,24 @@ dl {
         margin-right: 30px
     }
 
+    .page-header .header-detail .company-logo-container-92px {
+        float: left;
+        width: 92px;
+        height: 92px;
+        display: flex;
+        margin-right: 30px;
+        text-align: center;
+        align-content: center;
+        vertical-align: middle;
+        justify-content: center;
+    }
+
+    .page-header .header-detail .company-logo-container-92px .logo {
+        margin: auto;
+        max-width: 92px;
+        max-height: 92px;
+    }
+
     .page-header .header-detail .hgroup {
         display: inline-block
     }
@@ -14305,6 +14323,24 @@ dl {
             float: left
         }
 
+        .item-block header .company-logo-container-62px {
+            float: left;
+            width: 64px;
+            height: 64px;
+            display: flex;
+            margin-right: 30px;
+            text-align: center;
+            align-content: center;
+            vertical-align: middle;
+            justify-content: center;
+        }
+
+        .item-block header .company-logo-container-62px img {
+           margin: auto;
+           max-width: 64px;
+           max-height: 64px;
+        } 
+
         .item-block header .resume-avatar {
             max-height: 64px;
             width: auto
@@ -14522,6 +14558,24 @@ dl {
             .item-block header img {
                 margin-right: 25px;
                 width: 56px
+            }
+
+            .item-block header .company-logo-container {
+                float: left;
+                width: 56px;
+                height: 56px;
+                display: flex;
+                margin-right: 25px;
+                text-align: center;
+                align-content: center;
+                vertical-align: middle;
+                justify-content: center;
+            }
+
+            .item-block header .company-logo-container img {
+                margin: auto;
+                max-width: 56px;
+                max-height: 56px;
             }
 
             .item-block header .open-position, .item-block header .time, .item-block header time {

@@ -1,22 +1,29 @@
-﻿<header class="site-header size-lg text-center" style="background-image: url(images/interface/main/bg-banner1.jpg)">
+﻿@using OnlineRecruitingPlatform.Model.Formatters.String
+@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.HomeViewModel
+<header class="site-header size-lg text-center" style="background-image: url(images/interface/main/bg-banner1.jpg)">
     <div class="container">
         <div class="col-xs-12">
             <br><br>
-            <h2>We offer <mark>1,259</mark> job vacancies right now!</h2>
-            <h5 class="font-alt">Find your desire one in a minute</h5>
+            <h2>Мы предлагаем <mark>@Model.CountActiveVacancies</mark> @(Declension.DeclensionByNumeral(Model.CountActiveVacancies, new string[3] 
+                                                                       {
+                                                                            "вакансия",
+                                                                            "вакансий",
+                                                                            "вакансий"
+                                                                        }, false)) прямо сейчас!</h2>
+            <h5 class="font-alt">Найдите свое желание за минуту</h5>
             <br><br><br>
-            <form class="header-job-search">
+            <form class="header-job-search" method="post" asp-controller="Vacancy" asp-action="Browse">
                 <div class="input-keyword">
-                    <input type="text" class="form-control" placeholder="Job title, skills, or company">
+                    <input type="text" class="form-control" placeholder="Должность, навыки или компания" asp-for="SearchStringByJobTitleSkillsOrCompany">
                 </div>
 
                 <div class="input-location">
-                    <input type="text" class="form-control" placeholder="City, state or zip">
+                    <input type="text" class="form-control" placeholder="Город, область или почтовый индекс" asp-for="SearchStringByCityAddressOrZip">
                 </div>
 
                 <div class="btn-search">
-                    <button class="btn btn-primary" type="submit">Find jobs</button>
-                    <a href="job-list.html">Advanced Job Search</a>
+                    <button class="btn btn-primary" type="submit">Найти работу</button>
+                    <a href="job-list.html">Расширенный поиск работы</a>
                 </div>
             </form>
         </div>

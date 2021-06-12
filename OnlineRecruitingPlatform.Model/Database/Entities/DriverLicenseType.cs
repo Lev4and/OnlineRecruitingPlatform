@@ -21,6 +21,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonConverter(typeof(UpperRegisterConverter))]
         public virtual string IdentifierFromHeadHunter { get; set; }
         
+        public ICollection<ResumeDriverLicenseType> ResumeDriverLicenseTypes { get; set; }
+        
         [JsonProperty("vacancyDriverLicenseTypes")]
         public ICollection<VacancyDriverLicenseType> VacancyDriverLicenseTypes { get; set; }
     }

@@ -68,6 +68,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return false;
         }
 
+        public int GetCountCompanyLogos()
+        {
+            return _context.CompanyLogos.Count();
+        }
+
         public CompanyLogo GetCompanyLogo(Guid id, bool track = false)
         {
             if (id == null)
@@ -94,6 +99,25 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             else
             {
                 return _context.CompanyLogos.AsNoTracking();
+            }
+        }
+
+        public IQueryable<CompanyLogo> GetCompanyLogos(int itemsPerPage, int numberPage, bool track = false)
+        {
+            if (track)
+            {
+                return _context.CompanyLogos
+                    .OrderBy(c => c.Id)
+                    .Skip((numberPage - 1) * itemsPerPage)
+                    .Take(itemsPerPage);
+            }
+            else
+            {
+                return _context.CompanyLogos
+                    .AsNoTracking()
+                    .OrderBy(c => c.Id)
+                    .Skip((numberPage - 1) * itemsPerPage)
+                    .Take(itemsPerPage);
             }
         }
 

@@ -6,6 +6,6 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Models
     {
         [Required(ErrorMessage = "Введите адрес электронной почты")]
         [Display(Name = "Электронная почта")]
-        public  string Email { get; set; }
+        public string Email { get; set; }
     }
 }

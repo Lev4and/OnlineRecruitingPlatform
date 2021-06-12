@@ -24,6 +24,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("vacancies")]
         public ICollection<Vacancy> Vacancies { get; set; }
+        
+        public ICollection<ResumeEmployment> ResumeEmployments { get; set; }
     }
 
     public class EmploymentIV : Employment

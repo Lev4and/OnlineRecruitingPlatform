@@ -1,202 +1,199 @@
-﻿<section>
-    <div class="container">
-        <header class="section-header">
-            <span>Latest</span>
-            <h2>Recent jobs</h2>
-        </header>
-        <div class="row item-blocks-connected">
-            <div class="col-xs-12">
-                <a class="item-block" href="job-detail.html">
-                    <header>
-                        <img src="~/images/interface/main/logo-google.jpg" alt="">
-                        <div class="hgroup">
-                            <h4>Senior front-end developer</h4>
-                            <h5>Google</h5>
-                        </div>
-                        <div class="header-meta">
-                            <span class="location">Menlo park, CA</span>
-                            <span class="label label-success">Full-time</span>
-                        </div>
-                    </header>
-                </a>
+﻿@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.HomeViewModel
+@await Html.PartialAsync("HeaderPartial", Model)
+<main>
+    <section>
+        <div class="container">
+            <header class="section-header">
+                <span>Недавно</span>
+                <h2>Недавние вакансии</h2>
+            </header>
+            <div class="row item-blocks-connected">
+                @foreach (var recentVacancy in Model.RecentVacancies)
+                {
+                    <div class="col-xs-12">
+                        <a class="item-block" asp-controller="Vacancy" asp-action="Browse" asp-route-vacancyId="@recentVacancy.Id">
+                            <header>
+                                <div class="company-logo-container-62px">
+                                    @if (recentVacancy.Company != null)
+                                    {
+                                        if (recentVacancy.Company.Logo != null)
+                                        {
+                                            if (!string.IsNullOrEmpty(recentVacancy.Company.Logo.Resolution90px))
+                                            {
+                                                <img src="~/@recentVacancy.Company.Logo.Resolution90px">
+                                            }
+                                            else
+                                            {
+                                                if (!string.IsNullOrEmpty(recentVacancy.Company.Logo.Original))
+                                                {
+                                                    <img src="~/@recentVacancy.Company.Logo.Original">
+                                                }
+                                                else
+                                                {
+                                                    <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                                    }
+                                </div>
+                                <div class="hgroup">
+                                    <h4>@recentVacancy.Name</h4>
+                                    @if (recentVacancy.Company != null)
+                                    {
+                                        <h5>@recentVacancy.Company.Name</h5>
+                                    }
+                                    else
+                                    {
+                                        <h5>Неизвестно</h5>
+                                    }
+                                </div>
+                                <div class="header-meta">
+                                    @if (recentVacancy.Address != null)
+                                    {
+                                        <span class="location">@recentVacancy.Address.GetStringFullAddress()</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="location">Неизвестно</span>
+                                    }
+                                    @if (recentVacancy.Schedule != null)
+                                    {
+                                        <span class="label label-info">@recentVacancy.Schedule.Name</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="label label-info">Неизвестно</span>
+                                    }
+                                </div>
+                            </header>
+                        </a>
+                    </div>
+                }
             </div>
-            <div class="col-xs-12">
-                <a class="item-block" href="job-detail.html">
-                    <header>
-                        <img src="~/images/interface/main/logo-linkedin.png" alt="">
-                        <div class="hgroup">
-                            <h4>Software Engineer (Entry or Senior)</h4>
-                            <h5>Linkedin</h5>
-                        </div>
-                        <div class="header-meta">
-                            <span class="location">Livermore, CA</span>
-                            <span class="label label-warning">Part-time</span>
-                        </div>
-                    </header>
-                </a>
-            </div>
-            <div class="col-xs-12">
-                <a class="item-block" href="job-detail.html">
-                    <header>
-                        <img src="~/images/interface/main/logo-envato.png" alt="">
-                        <div class="hgroup">
-                            <h4>Full Stack Web Developer</h4>
-                            <h5>Envato</h5>
-                        </div>
-                        <div class="header-meta">
-                            <span class="location">San Francisco, CA</span>
-                            <span class="label label-info">Freelance</span>
-                        </div>
-                    </header>
-                </a>
-            </div>
-            <div class="col-xs-12">
-                <a class="item-block" href="job-detail.html">
-                    <header>
-                        <img src="~/images/interface/main/logo-facebook.png" alt="">
-                        <div class="hgroup">
-                            <h4>Web Applications Developer</h4>
-                            <h5>Facebook</h5>
-                        </div>
-                        <div class="header-meta">
-                            <span class="location">Lexington, MA</span>
-                            <span class="label label-danger">Internship</span>
-                        </div>
-                    </header>
-                </a>
-            </div>
-            <div class="col-xs-12">
-                <a class="item-block" href="job-detail.html">
-                    <header>
-                        <img src="~/images/interface/main/logo-microsoft.jpg" alt="">
-                        <div class="hgroup">
-                            <h4>Sr. SQL Server Developer</h4>
-                            <h5>Microsoft</h5>
-                        </div>
-                        <div class="header-meta">
-                            <span class="location">Palo Alto, CA</span>
-                            <span class="label label-success">Remote</span>
-                        </div>
-                    </header>
-                </a>
-            </div>
+            <br><br>
+            <p class="text-center"><a class="btn btn-info" asp-controller="Vacancy" asp-action="Browse">Просмотреть все вакансии</a></p>
         </div>
+    </section>
+    <section class="bg-img bg-repeat no-overlay section-sm" style="background-image: url(images/interface/main/bg-pattern.png)">
+        <div class="container">
 
-        <br><br>
-        <p class="text-center"><a class="btn btn-info" href="job-list.html">Browse all jobs</a></p>
-    </div>
-</section>
-<section class="bg-img bg-repeat no-overlay section-sm" style="background-image: url(images/interface/main/bg-pattern.png)">
-    <div class="container">
+            <div class="row">
+                <div class="counter col-md-3 col-sm-6">
+                    <p><span data-from="0" data-to="@Model.CountVacancies"></span>+</p>
+                    <h6>Вакансии</h6>
+                </div>
 
-        <div class="row">
-            <div class="counter col-md-3 col-sm-6">
-                <p><span data-from="0" data-to="6890"></span>+</p>
-                <h6>Jobs</h6>
+                <div class="counter col-md-3 col-sm-6">
+                    <p><span data-from="0" data-to="@Model.CountApplicants"></span>+</p>
+                    <h6>Соискателей</h6>
+                </div>
+
+                <div class="counter col-md-3 col-sm-6">
+                    <p><span data-from="0" data-to="@Model.CountResume"></span>+</p>
+                    <h6>Резюме</h6>
+                </div>
+
+                <div class="counter col-md-3 col-sm-6">
+                    <p><span data-from="0" data-to="@Model.CountCompanies"></span>+</p>
+                    <h6>Компаний</h6>
+                </div>
             </div>
 
-            <div class="counter col-md-3 col-sm-6">
-                <p><span data-from="0" data-to="1200"></span>+</p>
-                <h6>Members</h6>
-            </div>
-
-            <div class="counter col-md-3 col-sm-6">
-                <p><span data-from="0" data-to="36800"></span>+</p>
-                <h6>Resume</h6>
-            </div>
-
-            <div class="counter col-md-3 col-sm-6">
-                <p><span data-from="0" data-to="15400"></span>+</p>
-                <h6>Company</h6>
-            </div>
         </div>
+    </section>
+    <section>
+        <div class="container">
 
-    </div>
-</section>
-<section>
-    <div class="container">
+            <div class="col-sm-12 col-md-6">
+                <header class="section-header text-left">
+                    <span>Workflow</span>
+                    <h2>How it works</h2>
+                </header>
 
-        <div class="col-sm-12 col-md-6">
-            <header class="section-header text-left">
-                <span>Workflow</span>
-                <h2>How it works</h2>
+                <p class="lead">Pellentesque et pulvinar orci. Suspendisse sed euismod purus. Pellentesque nunc ex, ultrices eu enim non, consectetur interdum nisl. Nam congue interdum mauris, sed ultrices augue lacinia in. Praesent turpis purus, faucibus in tempor vel, dictum ac eros.</p>
+                <p>Nulla quis felis et orci luctus semper sit amet id dui. Aenean ultricies lectus nunc, vel rhoncus odio sagittis eu. Sed at felis eu tortor mattis imperdiet et sed tortor. Nullam ac porttitor arcu. Vivamus tristique elit id tempor lacinia. Donec auctor at nibh eget tincidunt. Nulla facilisi. Nunc condimentum dictum mattis.</p>
+
+
+                <br><br>
+                <a class="btn btn-primary" href="page-typography.html">Learn more</a>
+            </div>
+
+            <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
+                <br>
+                <img class="center-block" src="~/images/interface/main/how-it-works.png" alt="how it works">
+            </div>
+
+        </div>
+    </section>
+    <section class="bg-alt">
+        <div class="container">
+            <header class="section-header">
+                <span>Categories</span>
+                <h2>Popular categories</h2>
+                <p>Here's the most popular categories</p>
             </header>
 
-            <p class="lead">Pellentesque et pulvinar orci. Suspendisse sed euismod purus. Pellentesque nunc ex, ultrices eu enim non, consectetur interdum nisl. Nam congue interdum mauris, sed ultrices augue lacinia in. Praesent turpis purus, faucibus in tempor vel, dictum ac eros.</p>
-            <p>Nulla quis felis et orci luctus semper sit amet id dui. Aenean ultricies lectus nunc, vel rhoncus odio sagittis eu. Sed at felis eu tortor mattis imperdiet et sed tortor. Nullam ac porttitor arcu. Vivamus tristique elit id tempor lacinia. Donec auctor at nibh eget tincidunt. Nulla facilisi. Nunc condimentum dictum mattis.</p>
+            <div class="category-grid">
+                <a href="job-list-1.html">
+                    <i class="fa fa-laptop"></i>
+                    <h6>Technology</h6>
+                    <p>Designer, Developer, IT Service, Front-end developer, Project management</p>
+                </a>
 
+                <a href="job-list-2.html">
+                    <i class="fa fa-line-chart"></i>
+                    <h6>Accounting</h6>
+                    <p>Finance, Tax service, Payroll manager, Book keeper, Human resource</p>
+                </a>
 
-            <br><br>
-            <a class="btn btn-primary" href="page-typography.html">Learn more</a>
-        </div>
+                <a href="job-list-3.html">
+                    <i class="fa fa-medkit"></i>
+                    <h6>Medical</h6>
+                    <p>Doctor, Nurse, Hospotal, Dental service, Massagist</p>
+                </a>
 
-        <div class="col-sm-12 col-md-6 hidden-xs hidden-sm">
-            <br>
-            <img class="center-block" src="~/images/interface/main/how-it-works.png" alt="how it works">
-        </div>
+                <a href="job-list-1.html">
+                    <i class="fa fa-cutlery"></i>
+                    <h6>Food</h6>
+                    <p>Restaurant, Food service, Coffe shop, Cashier, Waitress</p>
+                </a>
 
-    </div>
-</section>
-<section class="bg-alt">
-    <div class="container">
-        <header class="section-header">
-            <span>Categories</span>
-            <h2>Popular categories</h2>
-            <p>Here's the most popular categories</p>
-        </header>
+                <a href="job-list-2.html">
+                    <i class="fa fa-newspaper-o"></i>
+                    <h6>Media</h6>
+                    <p>Journalism, Newspaper, Reporter, Writer, Cameraman</p>
+                </a>
 
-        <div class="category-grid">
-            <a href="job-list-1.html">
-                <i class="fa fa-laptop"></i>
-                <h6>Technology</h6>
-                <p>Designer, Developer, IT Service, Front-end developer, Project management</p>
-            </a>
-
-            <a href="job-list-2.html">
-                <i class="fa fa-line-chart"></i>
-                <h6>Accounting</h6>
-                <p>Finance, Tax service, Payroll manager, Book keeper, Human resource</p>
-            </a>
-
-            <a href="job-list-3.html">
-                <i class="fa fa-medkit"></i>
-                <h6>Medical</h6>
-                <p>Doctor, Nurse, Hospotal, Dental service, Massagist</p>
-            </a>
-
-            <a href="job-list-1.html">
-                <i class="fa fa-cutlery"></i>
-                <h6>Food</h6>
-                <p>Restaurant, Food service, Coffe shop, Cashier, Waitress</p>
-            </a>
-
-            <a href="job-list-2.html">
-                <i class="fa fa-newspaper-o"></i>
-                <h6>Media</h6>
-                <p>Journalism, Newspaper, Reporter, Writer, Cameraman</p>
-            </a>
-
-            <a href="job-list-3.html">
-                <i class="fa fa-institution"></i>
-                <h6>Government</h6>
-                <p>Federal, Law, Human resource, Manager, Biologist</p>
-            </a>
-        </div>
-
-    </div>
-</section>
-<section class="bg-img text-center" style="background-image: url(images/interface/main/bg-facts.jpg)">
-    <div class="container">
-        <h2><strong>Subscribe</strong></h2>
-        <h6 class="font-alt">Get weekly top new jobs delivered to your inbox</h6>
-        <br><br>
-        <form class="form-subscribe" action="#">
-            <div class="input-group">
-                <input type="text" class="form-control input-lg" placeholder="Your eamil address">
-                <span class="input-group-btn">
-                    <button class="btn btn-success btn-lg" type="submit">Subscribe</button>
-                </span>
+                <a href="job-list-3.html">
+                    <i class="fa fa-institution"></i>
+                    <h6>Government</h6>
+                    <p>Federal, Law, Human resource, Manager, Biologist</p>
+                </a>
             </div>
-        </form>
-    </div>
-</section>
+
+        </div>
+    </section>
+    <section class="bg-img text-center" style="background-image: url(images/interface/main/bg-facts.jpg)">
+        <div class="container">
+            <h2><strong>Subscribe</strong></h2>
+            <h6 class="font-alt">Get weekly top new jobs delivered to your inbox</h6>
+            <br><br>
+            <form class="form-subscribe" action="#">
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="Your eamil address">
+                    <span class="input-group-btn">
+                        <button class="btn btn-success btn-lg" type="submit">Subscribe</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>

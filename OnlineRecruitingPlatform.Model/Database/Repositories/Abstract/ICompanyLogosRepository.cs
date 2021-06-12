@@ -10,9 +10,13 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.Abstract
 
         bool SaveCompanyLogo(CompanyLogo entity);
 
+        int GetCountCompanyLogos();
+
         CompanyLogo GetCompanyLogo(Guid id, bool track = false);
 
         IQueryable<CompanyLogo> GetCompanyLogos(bool track = false);
+
+        IQueryable<CompanyLogo> GetCompanyLogos(int itemsPerPage, int numberPage, bool track = false);
 
         void DeleteCompanyLogo(Guid id);
     }

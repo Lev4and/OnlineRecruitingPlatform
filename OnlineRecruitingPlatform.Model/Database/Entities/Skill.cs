@@ -19,6 +19,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("identifierFromHeadHunter")]
         public virtual int? IdentifierFromHeadHunter { get; set; }
         
+        public ICollection<ResumeKeySkill> ResumeKeySkills { get; set; }
+        
         [JsonProperty("vacancyKeySkills")]
         public ICollection<VacancyKeySkill> VacancyKeySkills { get; set; }
     }

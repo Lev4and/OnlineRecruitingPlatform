@@ -33,6 +33,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         [JsonProperty("professionalArea")]
         public ProfessionalArea ProfessionalArea { get; set; }
         
+        public ICollection<ResumeSpecialization> ResumeSpecializations { get; set; }
+        
         [JsonProperty("vacancySpecializations")]
         public ICollection<VacancySpecialization> VacancySpecializations { get; set; }
     }

@@ -12,29 +12,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevExtreme NuGet.config", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Model", "OnlineRecruitingPlatform.Model\OnlineRecruitingPlatform.Model.csproj", "{735E6DD4-E305-4355-BF56-F4B27D3714CE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests\OnlineRecruitingPlatform.DevExtremeAspNetCore.ControllerTests.csproj", "{32C1A658-E29F-41C2-9DB0-A560834351AC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.HttpClients", "OnlineRecruitingPlatform.HttpClients\OnlineRecruitingPlatform.HttpClients.csproj", "{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.HttpClients.Tests", "OnlineRecruitingPlatform.HttpClients.Tests\OnlineRecruitingPlatform.HttpClients.Tests.csproj", "{CD4186E8-D6CD-48A4-B5F0-F06F4AC5D095}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Model.Tests", "OnlineRecruitingPlatform.Model.Tests\OnlineRecruitingPlatform.Model.Tests.csproj", "{574B16B3-CEC8-4A55-9402-E33DFB9DC920}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api", "OnlineRecruitingPlatform.Api\OnlineRecruitingPlatform.Api.csproj", "{941BFAA1-3553-47EE-84A4-6A65726DEAFC}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.ControllerTests", "OnlineRecruitingPlatform.Api.ControllerTests\OnlineRecruitingPlatform.Api.ControllerTests.csproj", "{22064065-731A-42A7-A123-C8A06ADD2ACD}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.HttpClients", "OnlineRecruitingPlatform.Api.HttpClients\OnlineRecruitingPlatform.Api.HttpClients.csproj", "{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Api.HttpClients.Tests", "OnlineRecruitingPlatform.Api.HttpClients.Tests\OnlineRecruitingPlatform.Api.HttpClients.Tests.csproj", "{2BC132FD-360E-4477-AA29-70136650C682}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests", "OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests\OnlineRecruitingPlatform.DevExtremeAspNetCore.Tests.csproj", "{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Importers", "OnlineRecruitingPlatform.Importers\OnlineRecruitingPlatform.Importers.csproj", "{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Importers.Tests", "OnlineRecruitingPlatform.Importers.Tests\OnlineRecruitingPlatform.Importers.Tests.csproj", "{C3273AD7-691C-4BCE-AF19-66B65299CD8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineRecruitingPlatform.Importers.ConsoleApp", "OnlineRecruitingPlatform.Importers.ConsoleApp\OnlineRecruitingPlatform.Importers.ConsoleApp.csproj", "{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineRecruitingPlatform.Importers.ConsoleApp", "OnlineRecruitingPlatform.Importers.ConsoleApp\OnlineRecruitingPlatform.Importers.ConsoleApp.csproj", "{04AB7514-E6DD-4748-B70D-BD39BEF4FEB6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,10 +38,6 @@ Global
 		{735E6DD4-E305-4355-BF56-F4B27D3714CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{735E6DD4-E305-4355-BF56-F4B27D3714CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{735E6DD4-E305-4355-BF56-F4B27D3714CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{32C1A658-E29F-41C2-9DB0-A560834351AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32C1A658-E29F-41C2-9DB0-A560834351AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{32C1A658-E29F-41C2-9DB0-A560834351AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{32C1A658-E29F-41C2-9DB0-A560834351AC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{592A0C6F-7BF6-4A8B-9446-D7AD98D10530}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,26 +50,6 @@ Global
 		{574B16B3-CEC8-4A55-9402-E33DFB9DC920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{574B16B3-CEC8-4A55-9402-E33DFB9DC920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{574B16B3-CEC8-4A55-9402-E33DFB9DC920}.Release|Any CPU.Build.0 = Release|Any CPU
-		{941BFAA1-3553-47EE-84A4-6A65726DEAFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{941BFAA1-3553-47EE-84A4-6A65726DEAFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{941BFAA1-3553-47EE-84A4-6A65726DEAFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{941BFAA1-3553-47EE-84A4-6A65726DEAFC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22064065-731A-42A7-A123-C8A06ADD2ACD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22064065-731A-42A7-A123-C8A06ADD2ACD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22064065-731A-42A7-A123-C8A06ADD2ACD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22064065-731A-42A7-A123-C8A06ADD2ACD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F2931DE-12D7-4BA7-9ADD-A0AE2A7605A9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BC132FD-360E-4477-AA29-70136650C682}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BC132FD-360E-4477-AA29-70136650C682}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BC132FD-360E-4477-AA29-70136650C682}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BC132FD-360E-4477-AA29-70136650C682}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FDD91B63-A93A-4266-93B7-E2DFAE4F243A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F468D16-A9C7-4C5D-B3F3-6C0BE6C3FBD1}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,15 +1,14 @@
 ﻿using Newtonsoft.Json;
-using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Vacancies;
-using OnlineRecruitingPlatform.Model.API.HeadHunter.Vacancies;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using OnlineRecruitingPlatform.HttpClients.CLADR.Clients;
 using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Companies;
-using OnlineRecruitingPlatform.Model.API.CLADR;
+using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Vacancies;
 using OnlineRecruitingPlatform.Model.API.HeadHunter.Companies;
+using OnlineRecruitingPlatform.Model.API.HeadHunter.Vacancies;
 using OnlineRecruitingPlatform.Model.Database.Entities;
+using System;
+using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Vacancies
 {
@@ -32,8 +31,8 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Vacancies
 
             Progress.CountFoundRecords = await CalculateCountRecords();
 
-            var dateTo = new DateTime(2021, 5, 14, 22, 1, 0);
-            var dateFrom = new DateTime(2021, 5, 14, 22, 0, 0);
+            var dateTo = DateTime.Now.Date.AddHours(-2).AddMinutes(1);
+            var dateFrom = DateTime.Now.Date.AddHours(-2);
 
             while (dateTo <= DateTime.Now)
             {
@@ -106,12 +105,44 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Vacancies
 
                                                             if (resultCompany.Logo != null)
                                                             {
+                                                                string logo90pxPath = null;
+                                                                string logo240pxPath = null;
+                                                                string logoOriginalPath = null;
+
+                                                                if (!Directory.Exists(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\"))
+                                                                {
+                                                                    Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\");
+                                                                    Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\logos\");
+                                                                    Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\photos\");
+                                                                }
+
+                                                                if (!string.IsNullOrEmpty(resultCompany.Logo.Original))
+                                                                {
+                                                                    logoOriginalPath = @$"images\upload\companies\{company.Id}\logos\Original.jpeg";
+
+                                                                    File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logoOriginalPath}", Convert.FromBase64String(resultCompany.Logo.Original));
+                                                                }
+
+                                                                if (!string.IsNullOrEmpty(resultCompany.Logo.Resolution90px))
+                                                                {
+                                                                    logo90pxPath = @$"images\upload\companies\{company.Id}\logos\90px.jpeg";
+
+                                                                    File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logo90pxPath}", Convert.FromBase64String(resultCompany.Logo.Resolution90px));
+                                                                }
+
+                                                                if (!string.IsNullOrEmpty(resultCompany.Logo.Resolution240px))
+                                                                {
+                                                                    logo240pxPath = @$"images\upload\companies\{company.Id}\logos\240px.jpeg";
+
+                                                                    File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logo240pxPath}", Convert.FromBase64String(resultCompany.Logo.Resolution240px));
+                                                                }
+
                                                                 _dataManager.CompanyLogos.SaveCompanyLogo(new CompanyLogo()
                                                                 {
                                                                     CompanyId = company.Id,
-                                                                    Original = resultCompany.Logo.Original,
-                                                                    Resolution90px = resultCompany.Logo.Resolution90px,
-                                                                    Resolution240px = resultCompany.Logo.Resolution240px
+                                                                    Original = logoOriginalPath,
+                                                                    Resolution90px = logo90pxPath,
+                                                                    Resolution240px = logo240pxPath
                                                                 });
                                                             }
 
@@ -288,7 +319,7 @@ namespace OnlineRecruitingPlatform.Importers.API.HeadHunter.Vacancies
 
         private async Task<int> CalculateCountRecords()
         {
-            var response = await _vacanciesClient.GetVacancies(new DateTime(2021, 5, 14, 22, 0, 0), DateTime.Now, 1, 0);
+            var response = await _vacanciesClient.GetVacancies(DateTime.Now.Date.AddHours(-2), DateTime.Now, 1, 0);
             var resultJson = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<VacanciesDirectory>(resultJson);
 

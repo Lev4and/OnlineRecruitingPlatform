@@ -21,6 +21,8 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("regions")]
         public ICollection<Region> Regions { get; set; }
+        
+        public ICollection<ResumeCitizenship> ResumeCitizenship { get; set; }
     }
 
     public class CountryIV : Country

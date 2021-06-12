@@ -1,8 +1,4 @@
-﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
-
-<nav class="navbar">
+﻿<nav class="navbar">
     <div class="container">
         <div class="pull-left">
             <a class="navbar-toggle" href="#" data-toggle="offcanvas">
@@ -13,68 +9,18 @@
                 <a class="logo-alt" asp-controller="Home" asp-action="Index"><img src="~/images/logo/logo.ico" alt="logo-alt"></a>
             </div>
         </div>
-        @if (SignInManager.IsSignedIn(User))
-        {
-            <div class="pull-right">
-                <div class="dropdown user-account">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                        <span>@User.Identity.Name</span>
-                        <!--<img src="" alt="avatar">-->
-                    </a>
-
-                    <ul class="dropdown-menu dropdown-menu-right">
-                        <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-        }
-        else
-        {
-            <div class="pull-right user-login">
-                <a class="btn btn-sm btn-primary" asp-controller="Account" asp-action="Login">Login</a> or <a asp-controller="Account" asp-action="Register">register</a>
-            </div>
-        }
         <ul class="nav-menu">
             <li>
-                <a class="active" asp-controller="Home" asp-action="Index">Home</a>
-                <ul>
-                    <li><a class="active" href="#">Version 1</a></li>
-                    <li><a href="#">Version 2</a></li>
-                </ul>
+                <a class="active" asp-controller="Home" asp-action="Index">Главная</a>
             </li>
             <li>
-                <a href="#">Вакансии</a>
-                <ul>
-                    <li><a href="#">Browse jobs - 1</a></li>
-                    <li><a href="#">Browse jobs - 2</a></li>
-                    <li><a href="#">Browse jobs - 3</a></li>
-                    <li><a href="#">Job detail</a></li>
-                    <li><a href="#">Post a job</a></li>
-                    <li><a href="#">Manage jobs</a></li>
-                </ul>
+                <a asp-controller="Vacancy" asp-action="Browse">Вакансии</a>
             </li>
             <li>
                 <a href="#">Резюме</a>
-                <ul>
-                    <li><a href="#">Browse resumes</a></li>
-                    <li><a href="#">Resume detail</a></li>
-                    <li><a href="#">Create a resume</a></li>
-                    <li><a href="#">Manage resumes</a></li>
-                </ul>
             </li>
             <li>
                 <a asp-controller="Company" asp-action="Browse">Компании</a>
-            </li>
-            <li>
-                <a href="#">Pages</a>
-                <ul>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Typography</a></li>
-                    <li><a href="#">UI elements</a></li>
-                </ul>
             </li>
         </ul>
     </div>

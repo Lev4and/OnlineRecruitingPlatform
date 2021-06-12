@@ -61,6 +61,11 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             return false;
         }
 
+        public int GetCountCompanies()
+        {
+            return _context.Companies.Count();
+        }
+
         public Company GetCompany(Guid id, bool track = false)
         {
             if (id == null)
@@ -70,11 +75,18 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
 
             if (track)
             {
-                return _context.Companies.SingleOrDefault(c => c.Id == id);
+                return _context.Companies
+                    .Include(c => c.Logo)
+                    .Include(c => c.Information)
+                    .SingleOrDefault(c => c.Id == id);
             }
             else
             {
-                return _context.Companies.AsNoTracking().SingleOrDefault(c => c.Id == id);
+                return _context.Companies
+                    .Include(c => c.Logo)
+                    .Include(c => c.Information)
+                    .AsNoTracking()
+                    .SingleOrDefault(c => c.Id == id);
             }
         }
 
@@ -131,15 +143,26 @@ namespace OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework
             }
         }
 
-        public IQueryable<Company> GetBrowseCompanies(bool track = false)
+        public IQueryable<Company> GetBrowseCompanies(int itemsPerPage = 5, int numberPage = 1, bool track = false)
         {
             if (track)
             {
-                return _context.Companies.Include(c => c.Logo).Include(c => c.Vacancies);
+                return _context.Companies
+                    .OrderBy(c => c.Id)
+                    .Skip((numberPage - 1) * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .Include(c => c.Logo)
+                    .Include(c => c.Vacancies.Where(v => v.Archived == false));
             }
             else
             {
-                return _context.Companies.Include(c => c.Logo).Include(c => c.Vacancies).AsNoTracking();
+                return _context.Companies
+                    .OrderBy(c => c.Id)
+                    .Skip((numberPage - 1) * itemsPerPage)
+                    .Take(itemsPerPage)
+                    .Include(c => c.Logo)
+                    .Include(c => c.Vacancies.Where(v => v.Archived == false))
+                    .AsNoTracking();
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using OnlineRecruitingPlatform.Model.JsonConverters;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace OnlineRecruitingPlatform.Model.Database.Entities
@@ -17,6 +18,9 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
 
         [JsonProperty("identifierFromHeadHunter")]
         public virtual string IdentifierFromHeadHunter { get; set; }
+        
+        [JsonProperty("resumes")]
+        public virtual ICollection<Resume> Resumes { get; set; }
     }
 
     public class GenderIV : Gender
