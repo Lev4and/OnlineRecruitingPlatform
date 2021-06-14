@@ -1,1 +1,98 @@
-﻿
+﻿@model dynamic
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <div class="header-detail">
+            <div class="company-logo-container-92px">
+                @if (Model.photo.url != null)
+                {
+                    <img class="logo" src="@Model.photo.url" alt="">
+                }
+                else
+                {
+                    <img class="logo" src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg" alt="">
+                }
+            </div>
+            <div class="hgroup">
+                <h4>@Model.header</h4>
+                <h5>Пол: @Model.sex Возраст: @Model.age @(Model.citizenship != null ? $"Гражданство: {Model.citizenship.title}" : "") @(Model.experience_length != null ? $"Опыт: {Model.experience_length.title}" : "")</h5>
+            </div>
+            <time datetime="@Model.add_date ">@Model.add_date </time>
+            <hr>
+            <p class="lead">@Html.Raw(Model.description)</p>
+            <p class="lead">@Html.Raw(Model.personal_qualities)</p>
+            <ul class="details cols-3">
+                <li>
+                    <i class="fa fa-money"></i>
+                    @if (Model.salary != null)
+                    {
+                        <span>@Model.salary</span>
+                    }
+                    else
+                    {
+                        <span>Не указана</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-briefcase"></i>
+                    @if (Model.working_type != null)
+                    {
+                        <span>@Model.working_type.title</span>
+                    }
+                    else
+                    {
+                        <span>Не указан</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-clock-o"></i>
+                    @if (Model.schedule != null)
+                    {
+                        <span>@Model.schedule.title</span>
+                    }
+                    else
+                    {
+                        <span>Не указан</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-copyright"></i>
+                    <a href="https://zarplata.ru/@Model.url">Взято с ZarplataRu</a>
+                </li>
+            </ul>
+
+            <div class="tag-list">
+                <p>@Model.skills</p>
+            </div>
+
+            @if (Model.working_types != null)
+            {
+                <div class="tag-list">
+                    @foreach (var workingTypes in Model.working_types)
+                    {
+                        <span>@workingTypes.title</span>
+                    }
+                </div>
+            }
+
+            @if (Model.schedules != null)
+            {
+                <div class="tag-list">
+                    @foreach (var schedule in Model.schedules)
+                    {
+                        <span>@schedule.title</span>
+                    }
+                </div>
+            }
+
+            @if (Model.rubrics != null)
+            {
+                <div class="tag-list">
+                    @foreach (var rubric in Model.rubrics)
+                    {
+                        <span>@rubric.title</span>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</header>
