@@ -136,6 +136,6 @@ namespace OnlineRecruitingPlatform.Model.Database.Entities
         public override string BuildingName { get; set; }
         
         [JsonProperty("city")]
-        public AreaIVZarplataRu[] City { get; set; }
+        public AreaIVZarplataRu City { get; set; }
     }
 }

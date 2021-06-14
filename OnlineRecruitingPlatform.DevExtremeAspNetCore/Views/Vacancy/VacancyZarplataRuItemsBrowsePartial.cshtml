@@ -1,0 +1,75 @@
+﻿@model List<dynamic>
+@foreach (var vacancy in Model)
+{
+    <div class="col-xs-12">
+        <a class="item-block" asp-controller="Vacancy" asp-action="Details" asp-route-type="ZarplataRu" asp-route-id="@vacancy.id">
+            <header>
+                <div class="company-logo-container-62px">
+                    @if (vacancy.company.logo != null)
+                    {
+                        <img src="@vacancy.company.logo.url">
+                    }
+                    else
+                    {
+                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                    }
+                </div>
+                <div class="hgroup">
+                    <h4>@vacancy.header</h4>
+                    @if (vacancy.company != null)
+                    {
+                        <h5>@vacancy.company.title</h5>
+                    }
+                    else
+                    {
+                        <h5>Не указана</h5>
+                    }
+                </div>
+                <div class="header-meta">
+                    <span class="location">@vacancy.contact.address</span>
+                    @if (vacancy.schedule != null)
+                    {
+                        <span class="label label-info">@vacancy.schedule.title</span>
+                    }
+                    else
+                    {
+                        <span class="label label-info">Не указан</span>
+                    }
+                </div>
+            </header>
+            <div class="item-body">
+                <p>Краткое описание отсутствует</p>
+            </div>
+            <footer>
+                <ul class="details cols-3">
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        @if (vacancy.contact != null)
+                        {
+                            <span>@vacancy.contact.address</span>
+                        }
+                        else
+                        {
+                            <span>Не указан</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-money"></i>
+                        @if (vacancy.salary != null)
+                        {
+                            <span>@vacancy.salary_formatted</span>
+                        }
+                        else
+                        {
+                            <span>Не указана</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-copyright"></i>
+                        <span>Взято с ZarplataRu</span>
+                    </li>
+                </ul>
+            </footer>
+        </a>
+    </div>
+}

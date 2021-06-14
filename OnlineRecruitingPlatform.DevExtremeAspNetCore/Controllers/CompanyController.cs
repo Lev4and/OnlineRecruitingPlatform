@@ -1,75 +1,60 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
-using OnlineRecruitingPlatform.Model.Database;
-using System;
+using OnlineRecruitingPlatform.Model.Deserializers;
 using System.Linq;
+using System.Threading.Tasks;
+using HeadHunterClients = OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients;
+using HeadHunterCompanies = OnlineRecruitingPlatform.Model.API.HeadHunter.Companies;
+using ZarplataRu = OnlineRecruitingPlatform.Model.API.ZarplataRu;
+using ZarplataRuClients = OnlineRecruitingPlatform.HttpClients.ZarplataRu.Clients;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 {
     public class CompanyController : Controller
     {
-        private readonly DataManager _dataManager;
+        private readonly HeadHunterClients.Companies.CompaniesClient _companiesHeadHunterClient;
+        private readonly ZarplataRuClients.Companies.CompaniesClient _companiesZarplataRuClient;
 
-        public CompanyController(DataManager dataManager)
+        public CompanyController(HeadHunterClients.Companies.CompaniesClient companiesHeadHunterClient, ZarplataRuClients.Companies.CompaniesClient companiesZarplataRuClient)
         {
-            _dataManager = dataManager;
+            _companiesHeadHunterClient = companiesHeadHunterClient;
+            _companiesZarplataRuClient = companiesZarplataRuClient;
         }
-        
+
+        [Route("~/Company")]
         [Route("~/Company/Browse")]
-        public IActionResult Browse()
+        public async Task<IActionResult> Browse()
         {
-            var numberPage = 1;
-            var itemsPerPage = 25;
-            var countCompanies = _dataManager.Companies.GetCountCompanies();
-            var companies = _dataManager.Companies.GetBrowseCompanies(itemsPerPage, numberPage).ToList();
+            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(1, 25));
+            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, 1));
 
             var viewModel = new BrowseCompaniesViewModel()
             {
-                Companies = companies,
-                NumberPage = numberPage,
                 SearchStringByTitle = "",
-                ItemsPerPage = itemsPerPage,
                 SearchStringByLocation = "",
-                SelectedSubIndustryId = null,
-                CountCompanies = countCompanies,
-                FirstNumberCompany = ((numberPage - 1) * itemsPerPage) + 1,
-                SubIndustries = _dataManager.SubIndustries.GetSubIndustries().ToList(),
-                LastNumberCompany = countCompanies > numberPage * itemsPerPage ? numberPage * itemsPerPage : countCompanies
+                CompaniesHeadHunter = resultCompaniesHeadHunter.Companies.ToList(),
+                CompaniesZarplataRu = resultCompaniesZarplataRu.Companies.ToList()
             };
 
             return View(viewModel);
         }
 
-        [HttpGet]
-        [Route("~/Company/Browse/page={numberPage}")]
-        public IActionResult Browse(int numberPage)
+        [Route("~/Company/{type}/{id}")]
+        public async Task<IActionResult> Details(string type, int id)
         {
-            var itemsPerPage = 25;
-            var countCompanies = _dataManager.Companies.GetCountCompanies();
-            var companies = _dataManager.Companies.GetBrowseCompanies(itemsPerPage, numberPage).ToList();
-
-            var viewModel = new BrowseCompaniesViewModel()
+            if (type == "HeadHunter")
             {
-                Companies = companies,
-                NumberPage = numberPage,
-                SearchStringByTitle = "",
-                ItemsPerPage = itemsPerPage,
-                SearchStringByLocation = "",
-                SelectedSubIndustryId = null,
-                CountCompanies = countCompanies,
-                FirstNumberCompany = ((numberPage - 1) * itemsPerPage) + 1,
-                SubIndustries = _dataManager.SubIndustries.GetSubIndustries().ToList(),
-                LastNumberCompany = countCompanies > numberPage * itemsPerPage ? numberPage * itemsPerPage : countCompanies
-            };
+                return View("DetailsCompanyHeadHunter", await BaseDeserializer.Deserialize<dynamic>(await _companiesHeadHunterClient.GetCompany(id)));
+            }
 
-            return View(viewModel);
-        }
+            if (type == "ZarplataRu")
+            {
+                var result = await GzipDeserializer.Deserialize<dynamic>(await _companiesZarplataRuClient.GetCompany(id));
 
-        [HttpGet]
-        [Route("~/Company/Browse/{companyId}")]
-        public IActionResult BrowseCompany(Guid companyId)
-        {
-            return View(new BrowseCompanyViewModel() { Company = _dataManager.Companies.GetCompany(companyId) });
+                return View("DetailsCompanyZarplataRu", result.companies[0]);
+            }
+
+            return View("DetailsCompany");
         }
     }
 }

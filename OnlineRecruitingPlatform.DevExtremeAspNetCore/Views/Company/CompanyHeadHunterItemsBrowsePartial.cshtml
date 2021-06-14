@@ -1,0 +1,67 @@
+﻿@model List<dynamic>
+@foreach (var company in Model)
+{
+    <div class="col-xs-12">
+        <a class="item-block" asp-controller="Company" asp-action="Details" asp-route-type="HeadHunter" asp-route-id="@company.id">
+            <header>
+                <div class="company-logo-container-62px">
+                    @if (company.logo_urls != null)
+                    {
+                        <img src="@(company.logo_urls.original)">
+                    }
+                    else
+                    {
+                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                    }
+                </div>
+                <div class="hgroup">
+                    <h4>@company.name</h4>
+                    @if (company.type != null)
+                    {
+                        <h5>@company.type</h5>
+                    }
+                    else
+                    {
+                        <h5>Тип компании неизвестен</h5>
+                    }
+                </div>
+            </header>
+            <div class="item-body">
+                <p>Краткое описание отсутствует</p>
+            </div>
+            <footer>
+                <ul class="details cols-3">
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        @if (company.area != null)
+                        {
+                            <span>@company.area.name</span>
+                        }
+                        else
+                        {
+                            <span>Не указан</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-briefcase"></i>
+                        <span>@company.open_vacancies</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-copyright"></i>
+                        <span>Взято с HeadHunter</span>
+                    </li>
+                </ul>
+
+                @if (company.industries != null)
+                {
+                    <div class="tag-list">
+                        @foreach (var industry in company.industries)
+                        {
+                            <span>@industry.name</span>
+                        }
+                    </div>
+                }
+            </footer>
+        </a>
+    </div>
+}

@@ -2,12 +2,12 @@
 
 namespace OnlineRecruitingPlatform.Model.API.ZarplataRu
 {
-    public class VacanciesDirectory
+    public class CompaniesDirectory
     {
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
 
-        [JsonProperty("vacancies")]
-        public dynamic[] Vacancies { get; set; }
+        [JsonProperty("companies")]
+        public dynamic[] Companies { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace OnlineRecruitingPlatform.Model.API.ZarplataRu
         public DateTime? ModifiedAt { get; set; }
 
         [JsonProperty("logo")]
-        public CompanyLogoIVZarplataRu CompanyLogo { get; set; }
+        public CompanyLogoIVZarplataRu Logo { get; set; }
 
         [JsonProperty("companyPhotos")]
         public CompanyPhotoIVZarplataRu[] CompanyPhotos { get; set; }

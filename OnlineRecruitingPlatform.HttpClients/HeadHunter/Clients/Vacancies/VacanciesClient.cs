@@ -12,7 +12,31 @@ namespace OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Vacancies
 
         }
 
+        public async Task<HttpResponseMessage> GetVacancies(int perPage, int page)
+        {
+            try
+            {
+                return await _client.GetAsync($"?per_page={perPage}&page={page}");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public async Task<HttpResponseMessage> GetVacancies(DateTime dateFrom, DateTime dateTo, int perPage, int page)
+        {
+            try
+            {
+                return await _client.GetAsync($"?date_from={dateFrom.ToString("yyyy-MM-ddTHH:mm:ss")}&date_to={dateTo.ToString("yyyy-MM-ddTHH:mm:ss")}&per_page={perPage}&page={page}");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<HttpResponseMessage> GetActiveVacancies(DateTime dateFrom, DateTime dateTo, int perPage, int page)
         {
             try
             {

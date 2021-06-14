@@ -54,6 +54,9 @@ namespace OnlineRecruitingPlatform.Model.API.ZarplataRu
         [JsonProperty("company")]
         public CompanyIV Company { get; set; }
 
+        [JsonProperty("address")]
+        public AddressIVZarplataRu Address { get; set; }
+
         [JsonProperty("currency")]
         public CurrencyIVZarplataRu Currency { get; set; }
 

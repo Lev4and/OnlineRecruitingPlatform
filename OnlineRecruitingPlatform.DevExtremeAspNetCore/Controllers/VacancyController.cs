@@ -1,86 +1,60 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
-using OnlineRecruitingPlatform.Model.Database;
-using System;
+using OnlineRecruitingPlatform.Model.Deserializers;
 using System.Linq;
+using System.Threading.Tasks;
+using HeadHunterClients = OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients;
+using HeadHunterVacancies = OnlineRecruitingPlatform.Model.API.HeadHunter.Vacancies;
+using ZarplataRu = OnlineRecruitingPlatform.Model.API.ZarplataRu;
+using ZarplataRuClients = OnlineRecruitingPlatform.HttpClients.ZarplataRu.Clients;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 {
     public class VacancyController : Controller
     {
-        private readonly DataManager _dataManager;
+        private readonly HeadHunterClients.Vacancies.VacanciesClient _vacanciesHeadHunterClient;
+        private readonly ZarplataRuClients.Vacancies.VacanciesClient _vacanciesZarplataRuClient;
 
-        public VacancyController(DataManager dataManager)
+        public VacancyController(HeadHunterClients.Vacancies.VacanciesClient vacanciesHeadHunterClient, ZarplataRuClients.Vacancies.VacanciesClient vacanciesZarplataRuClient)
         {
-            _dataManager = dataManager;
+            _vacanciesHeadHunterClient = vacanciesHeadHunterClient;
+            _vacanciesZarplataRuClient = vacanciesZarplataRuClient;
         }
 
+        [Route("~/Vacancy")]
         [Route("~/Vacancy/Browse")]
-        public IActionResult Browse()
+        public async Task<IActionResult> Browse()
         {
-            var numberPage = 1;
-            var itemsPerPage = 25;
-            var countVacancies = _dataManager.Vacancies.GetCountVacancies();
-            var vacancies = _dataManager.Vacancies.GetBrowseVacancies(itemsPerPage, numberPage).ToList();
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, 1));
 
             var viewModel = new BrowseVacanciesViewModel()
             {
-                Vacancies = vacancies,
-                NumberPage = numberPage,
-                ItemsPerPage = itemsPerPage,
-                CountVacancies = countVacancies,
-                FirstNumberVacancy = ((numberPage - 1) * itemsPerPage) + 1,
-                LastNumberVacancy = countVacancies > numberPage * itemsPerPage ? numberPage * itemsPerPage : countVacancies
+                SearchStringByCityAddressOrZip = "",
+                SearchStringByJobTitleSkillsOrCompany = "",
+                VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList(),
+                VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList()
             };
 
             return View(viewModel);
         }
 
-        [HttpPost]
-        [Route("~/Vacancy/Browse")]
-        public IActionResult Browse(BrowseVacanciesViewModel viewModel)
+        [Route("~/Vacancy/{type}/{id}")]
+        public async Task<IActionResult> Details(string type, int id)
         {
-            var numberPage = 1;
-            var itemsPerPage = 25;
-            var countVacancies = _dataManager.Vacancies.GetCountVacancies(viewModel.SearchStringByJobTitleSkillsOrCompany);
-            var vacancies = _dataManager.Vacancies.GetBrowseVacancies(itemsPerPage, numberPage, viewModel.SearchStringByJobTitleSkillsOrCompany).ToList();
-
-            viewModel.Vacancies = vacancies;
-            viewModel.NumberPage = numberPage;
-            viewModel.ItemsPerPage = itemsPerPage;
-            viewModel.CountVacancies = countVacancies;
-            viewModel.FirstNumberVacancy = ((numberPage - 1) * itemsPerPage) + 1;
-            viewModel.LastNumberVacancy = countVacancies > numberPage * itemsPerPage ? numberPage * itemsPerPage : countVacancies;
-
-            return View(viewModel);
-        }
-
-        [HttpGet]
-        [Route("~/Vacancy/Browse/page={numberPage}")]
-        public IActionResult Browse(int numberPage)
-        {
-            var itemsPerPage = 25;
-            var countVacancies = _dataManager.Vacancies.GetCountVacancies();
-            var vacancies = _dataManager.Vacancies.GetBrowseVacancies(itemsPerPage, numberPage).ToList();
-
-            var viewModel = new BrowseVacanciesViewModel()
+            if(type == "HeadHunter")
             {
-                Vacancies = vacancies,
-                NumberPage = numberPage,
-                ItemsPerPage = itemsPerPage,
-                CountVacancies = countVacancies,
-                FirstNumberVacancy = ((numberPage - 1) * itemsPerPage) + 1,
-                LastNumberVacancy = countVacancies > numberPage * itemsPerPage ? numberPage * itemsPerPage : countVacancies
-            };
+                return View("DetailsVacancyHeadHunter", await BaseDeserializer.Deserialize<dynamic>(await _vacanciesHeadHunterClient.GetVacancy(id)));
+            }
 
-            return View(viewModel);
-        }
+            if(type == "ZarplataRu")
+            {
+                var result = await GzipDeserializer.Deserialize<dynamic>(await _vacanciesZarplataRuClient.GetVacancy(id));
 
-        [HttpGet]
-        [Route("~/Vacancy/Browse/{vacancyId}")]
-        public IActionResult BrowseVacancy(Guid vacancyId)
-        {
-            return View();
+                return View("DetailsVacancyZarplataRu", result.vacancies[0]);
+            }
+
+            return View("DetailsVacancy");
         }
     }
 }

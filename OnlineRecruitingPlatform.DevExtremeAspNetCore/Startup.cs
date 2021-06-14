@@ -6,10 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Service;
-using OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Directories;
 using OnlineRecruitingPlatform.Model.Database;
 using OnlineRecruitingPlatform.Model.Database.Repositories.Abstract;
 using OnlineRecruitingPlatform.Model.Database.Repositories.EntityFramework;
+using HeadHunterClients = OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients;
+using ZarplataRuClients = OnlineRecruitingPlatform.HttpClients.ZarplataRu.Clients;
 
 namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
 {
@@ -23,11 +24,12 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore
         {
             Configuration.Bind("Project", new Config());
 
-            services.AddTransient<CurrenciesClient>();
-            services.AddTransient<ApplicantCommentsOrdersClient>();
-            services.AddTransient<BusinessTripReadinessTypesClient>();
-            services.AddTransient<ApplicantCommentAccessTypesClient>();
-            services.AddTransient<ApplicantNegotiationStatusesClient>();
+            services.AddTransient<HeadHunterClients.Resumes.ResumesClient>();
+            services.AddTransient<ZarplataRuClients.Resumes.ResumesClient>();
+            services.AddTransient<HeadHunterClients.Companies.CompaniesClient>();
+            services.AddTransient<HeadHunterClients.Vacancies.VacanciesClient>();
+            services.AddTransient<ZarplataRuClients.Companies.CompaniesClient>();
+            services.AddTransient<ZarplataRuClients.Vacancies.VacanciesClient>();
 
             services.AddTransient<IAreasRepository, EFAreasRepository>();
             services.AddTransient<ISkillsRepository, EFSkillsRepository>();

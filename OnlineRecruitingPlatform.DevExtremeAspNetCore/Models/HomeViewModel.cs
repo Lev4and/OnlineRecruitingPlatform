@@ -27,7 +27,8 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Models
         [Display(Name = "Строка поиска по названии вакансий, навыкам или по названию компании")]
         public string SearchStringByJobTitleSkillsOrCompany { get; set; }
 
-        [Display(Name = "Последние вакансии")]
-        public List<Vacancy> RecentVacancies { get; set; }
+        public List<dynamic> RecentVacanciesHeadHunter { get; set; }
+
+        public List<dynamic> RecentVacanciesZarplataRu { get; set; }
     }
 }

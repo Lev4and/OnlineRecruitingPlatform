@@ -1,0 +1,65 @@
+﻿@model dynamic
+<header class="page-header bg-img size-lg">
+   <div class="container">
+       <div class="header-detail">
+           <div class="company-logo-container-92px">
+               @if (Model.logo_urls != null)
+               {
+                   <img class="logo" src="@Model.logo_urls.original" alt="">
+               }
+               else
+               {
+                   <img class="logo" src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg" alt="">
+               }
+           </div>
+           <div class="hgroup">
+               <h1>@Model.name</h1>
+               @if (Model.type != null)
+               {
+                   <h3>@Model.type</h3>
+               }
+               else
+               {
+                   <h3>Тип компании неизвестен</h3>
+               }
+           </div>
+           <hr>
+           <p class="lead">@Html.Raw(Model.description)</p>
+           <ul class="details cols-3">
+               <li>
+                   <i class="fa fa-map-marker"></i>
+                   @if (Model.area != null)
+                   {
+                       <span>@Model.area.name</span>
+                   }
+                   else
+                   {
+                       <span>Не указан</span>
+                   }
+               </li>
+               <li>
+                   <i class="fa fa-globe"></i>
+                   <a href="@Model.site_url">Официальный сайт</a>
+               </li>
+               <li>
+                   <i class="fa fa-briefcase"></i>
+                   <span>@Model.open_vacancies</span>
+               </li>
+               <li>
+                   <i class="fa fa-copyright"></i>
+                   <a href="@Model.alternate_url">Взято с HeadHunter</a>
+               </li>
+           </ul>
+
+           @if (Model.industries != null)
+           {
+               <div class="tag-list">
+                   @foreach (var industry in Model.industries)
+                   {
+                       <span>@industry.name</span>
+                   }
+               </div>
+           }
+       </div>
+   </div>
+</header>

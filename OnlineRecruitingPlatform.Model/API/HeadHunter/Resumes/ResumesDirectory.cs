@@ -1,9 +1,8 @@
 ﻿using Newtonsoft.Json;
-using OnlineRecruitingPlatform.Model.Database.Entities;
 
-namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Companies
+namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Resumes
 {
-    public class SearchResultCompanies
+    public class ResumesDirectory
     {
         [JsonProperty("page")]
         public int Page { get; set; }
@@ -18,6 +17,6 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Companies
         public int PerPage { get; set; }
 
         [JsonProperty("items")]
-        public dynamic[] Companies { get; set; }
+        public dynamic[] Resumes { get; set; }
     }
 }

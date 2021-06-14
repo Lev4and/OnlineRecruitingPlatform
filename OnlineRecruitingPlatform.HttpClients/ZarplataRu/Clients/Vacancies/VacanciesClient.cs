@@ -10,11 +10,23 @@ namespace OnlineRecruitingPlatform.HttpClients.ZarplataRu.Clients.Vacancies
 
         }
 
-        public async Task<HttpResponseMessage> GetVacancies(int limit, int offset)
+        public async Task<HttpResponseMessage> GetNewVacancies(int limit, int offset)
         {
             try
             {
                 return await _client.GetAsync($"?limit={limit}&offset={offset}&period=today&is_new_only=1");
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<HttpResponseMessage> GetVacancies(int limit, int offset)
+        {
+            try
+            {
+                return await _client.GetAsync($"?limit={limit}&offset={offset}");
             }
             catch
             {

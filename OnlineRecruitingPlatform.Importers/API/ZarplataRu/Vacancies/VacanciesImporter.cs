@@ -36,7 +36,7 @@ namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
                 {
                     Status = ImportStatus.DownloadFromAPI;
 
-                    var response = await _client.GetVacancies(100, i * 100);
+                    var response = await _client.GetNewVacancies(100, i * 100);
 
                     if (response.IsSuccessStatusCode)
                     {
@@ -94,7 +94,7 @@ namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
                                                     CardCompanyUrl = resultVacancy.Company.CardCompanyUrl
                                                 });
 
-                                                if (resultVacancy.Company.CompanyLogo != null)
+                                                if (resultVacancy.Company.Logo != null)
                                                 {
                                                     string logoOriginalPath = null;
 
@@ -105,11 +105,11 @@ namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
                                                         Directory.CreateDirectory(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\images\upload\companies\{company.Id}\photos\");
                                                     }
 
-                                                    if (!string.IsNullOrEmpty(resultVacancy.Company.CompanyLogo.Original))
+                                                    if (!string.IsNullOrEmpty(resultVacancy.Company.Logo.Original))
                                                     {
                                                         logoOriginalPath = @$"images\upload\companies\{company.Id}\logos\Original.jpeg";
 
-                                                        File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logoOriginalPath}", Convert.FromBase64String(resultVacancy.Company.CompanyLogo.Original));
+                                                        File.WriteAllBytes(@$"C:\Users\andre\Desktop\Проекты\OnlineRecruitingPlatform\OnlineRecruitingPlatform.DevExtremeAspNetCore\wwwroot\{logoOriginalPath}", Convert.FromBase64String(resultVacancy.Company.Logo.Original));
                                                     }
 
                                                     _dataManager.CompanyLogos.SaveCompanyLogo(new CompanyLogo()
@@ -396,7 +396,7 @@ namespace OnlineRecruitingPlatform.Importers.API.ZarplataRu.Vacancies
 
         private async Task<int> CalculateCountRecords()
         {
-            var response = await _client.GetVacancies(1, 0);
+            var response = await _client.GetNewVacancies(1, 0);
             var resultByteArrayGzip = await response.Content.ReadAsByteArrayAsync();
             var resultByteArray = Decompresser.Decompress(resultByteArrayGzip);
             var resultString = Encoding.UTF8.GetString(resultByteArray, 0, resultByteArray.Length);

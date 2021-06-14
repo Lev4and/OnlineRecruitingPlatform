@@ -17,6 +17,6 @@ namespace OnlineRecruitingPlatform.Model.API.HeadHunter.Vacancies
         public int PerPage { get; set; }
 
         [JsonProperty("items")]
-        public VacancyIV[] Vacancies { get; set; }
+        public dynamic[] Vacancies { get; set; }
     }
 }

@@ -1,0 +1,35 @@
+﻿@model List<dynamic>
+@foreach (var vacancy in Model)
+{
+    <div class="col-xs-12">
+        <a class="item-block" asp-controller="Vacancy" asp-action="Details" asp-route-type="HeadHunter" asp-route-id="@vacancy.id">
+            <header>
+                <div class="company-logo-container-62px">
+                    @if (vacancy.employer.logo_urls != null)
+                    {
+                        <img src="@(vacancy.employer.logo_urls.original)">
+                    }
+                    else
+                    {
+                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                    }
+                </div>
+                <div class="hgroup">
+                    <h4>@vacancy.name</h4>
+                    <h5>@vacancy.employer.name</h5>
+                </div>
+                <div class="header-meta">
+                    @if (vacancy.address != null)
+                    {
+                        <span class="location">@vacancy.address.raw</span>
+                    }
+                    else
+                    {
+                        <span class="location">Не указан</span>
+                    }
+                    <span class="label label-info">@vacancy.schedule.name</span>
+                </div>
+            </header>
+        </a>
+    </div>
+}

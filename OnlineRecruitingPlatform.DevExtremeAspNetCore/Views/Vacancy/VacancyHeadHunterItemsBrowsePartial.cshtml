@@ -1,0 +1,68 @@
+﻿@model List<dynamic>
+@foreach (var vacancy in Model)
+{
+    <div class="col-xs-12">
+        <a class="item-block" asp-controller="Vacancy" asp-action="Details" asp-route-type="HeadHunter" asp-route-id="@vacancy.id">
+            <header>
+                <div class="company-logo-container-62px">
+                    @if (vacancy.employer.logo_urls != null)
+                    {
+                        <img src="@(vacancy.employer.logo_urls.original)">
+                    }
+                    else
+                    {
+                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                    }
+                </div>
+                <div class="hgroup">
+                    <h4>@vacancy.name</h4>
+                    <h5>@vacancy.employer.name</h5>
+                </div>
+                <div class="header-meta">
+                    @if (vacancy.address != null)
+                    {
+                        <span class="location">@vacancy.address.raw</span>
+                    }
+                    else
+                    {
+                        <span class="location">Не указан</span>
+                    }
+                    <span class="label label-info">@vacancy.schedule.name</span>
+                </div>
+            </header>
+            <div class="item-body">
+                <p>Краткое описание отсутствует</p>
+            </div>
+            <footer>
+                <ul class="details cols-3">
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        @if (vacancy.address != null)
+                        {
+                            <span>@vacancy.address.raw</span>
+                        }
+                        else
+                        {
+                            <span>Не указан</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-money"></i>
+                        @if (vacancy.salary != null)
+                        {
+                            <span>@(vacancy.salary.from != null ? $"от {vacancy.salary.from} {vacancy.salary.currency} " : "")@(vacancy.salary.to != null ? $"до {vacancy.salary.to} {vacancy.salary.currency}" : "")</span>
+                        }
+                        else
+                        {
+                            <span>Не указана</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-copyright"></i>
+                        <span>Взято с HeadHunter</span>
+                    </li>
+                </ul>
+            </footer>
+        </a>
+    </div>
+}

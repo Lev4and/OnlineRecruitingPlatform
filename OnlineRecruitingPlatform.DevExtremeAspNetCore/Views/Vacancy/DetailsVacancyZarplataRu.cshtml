@@ -1,0 +1,64 @@
+﻿@model dynamic
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <div class="header-detail">
+            <div class="company-logo-container-92px">
+                @if (Model.company.logo != null)
+                {
+                    <img class="logo" src="@Model.company.logo.url" alt="">
+                }
+                else
+                {
+                    <img class="logo" src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg" alt="">
+                }
+            </div>
+            <div class="hgroup">
+                <h1>@Model.header</h1>
+                <h3><a asp-controller="Company" asp-action="Details" asp-route-type="ZarplataRu" asp-route-id="@Model.company.id">@Model.company.title</a></h3>
+            </div>
+            <time datetime="@Model.add_date">@Model.add_date</time>
+            <hr>
+            <p class="lead">@Html.Raw(Model.description)</p>
+            <ul class="details cols-3">
+                <li>
+                    <i class="fa fa-map-marker"></i>
+                    @if (Model.contact != null)
+                    {
+                        <span>@Model.contact.address</span>
+                    }
+                    else
+                    {
+                        <span>Не указан</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-briefcase"></i>
+                    <span>@Model.working_type.title</span>
+                </li>
+                <li>
+                    <i class="fa fa-money"></i>
+                    @if (Model.salary != null)
+                    {
+                        <span>@Model.salary_formatted</span>
+                    }
+                    else
+                    {
+                        <span>Не указана</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-clock-o"></i>
+                    <span>@Model.schedule.title</span>
+                </li>
+                <li>
+                    <i class="fa fa-flask"></i>
+                    <span>@Model.experience_length.title</span>
+                </li>
+                <li>
+                    <i class="fa fa-copyright"></i>
+                    <a href="@Model.canonical_url">Взято с ZarplataRu</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>

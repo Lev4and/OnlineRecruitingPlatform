@@ -1,0 +1,73 @@
+﻿@model dynamic
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <div class="header-detail">
+            <div class="company-logo-container-92px">
+                @if (Model.logo != null)
+                {
+                    <img class="logo" src="@Model.logo.url" alt="">
+                }
+                else
+                {
+                    <img class="logo" src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg" alt="">
+                }
+            </div>
+            <div class="hgroup">
+                <h1>@Model.title</h1>
+            </div>
+            <time datetime="@Model.add_date">@Model.add_date</time>
+            <hr>
+            <p class="lead">@Html.Raw(Model.description)</p>
+            <ul class="details cols-3">
+                <li>
+                    <i class="fa fa-envelope"></i>
+                    <span>@Model.email</span>
+                </li>
+                <li>
+                    <i class="fa fa-globe"></i>
+                    <a href="@Model.external_url">Официальный сайт</a>
+                </li>
+            </ul>
+
+            @if (Model.rubrics != null)
+            {
+                <div class="tag-list">
+                    @foreach (var rubric in Model.rubrics)
+                    {
+                        <span>@rubric.title</span>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</header>
+<main>
+    <section>
+        <div class="container">
+            <header class="section-header">
+                <span>Контакты</span>
+                <h2>Контактная информация компании</h2>
+            </header>
+            <ul class="details cols-3">
+                @foreach (var contact in Model.contacts)
+                {
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <span>@contact.address</span>
+                    </li>
+                    @foreach (var phone in contact.phones)
+                    {
+                        <li>
+                            <i class="fa fa-phone"></i>
+                            <span>@phone.formatted</span>
+                        </li>
+                    }
+                    <li>
+                        <i class="fa fa-copyright"></i>
+                        <a href="@contact.canonical_url">Взято с ZarplataRu</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </section>
+</main>

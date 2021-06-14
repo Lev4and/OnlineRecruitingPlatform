@@ -20,9 +20,9 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.ZarplataRu.Clients.Vacancie
         }
 
         [Fact]
-        public async Task GetVacancies_WithZoroParams_ReturnHttpStatusCode200Response()
+        public async Task GetNewVacancies_WithZoroParams_ReturnHttpStatusCode200Response()
         {
-            var response = await _client.GetVacancies(0, 0);
+            var response = await _client.GetNewVacancies(0, 0);
             var resultByteArrayGzip = await response.Content.ReadAsByteArrayAsync();
             var resultByteArray = Decompresser.Decompress(resultByteArrayGzip);
             var resultString = Encoding.UTF8.GetString(resultByteArray, 0, resultByteArray.Length);
@@ -35,9 +35,9 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.ZarplataRu.Clients.Vacancie
         }
 
         [Fact]
-        public async Task GetVacancies_WithNormalParams_ReturnHttpStatusCode200Response()
+        public async Task GetNewVacancies_WithNormalParams_ReturnHttpStatusCode200Response()
         {
-            var response = await _client.GetVacancies(100, 100);
+            var response = await _client.GetNewVacancies(100, 100);
             var resultByteArrayGzip = await response.Content.ReadAsByteArrayAsync();
             var resultByteArray = Decompresser.Decompress(resultByteArrayGzip);
             var resultString = Encoding.UTF8.GetString(resultByteArray, 0, resultByteArray.Length);
@@ -50,9 +50,9 @@ namespace OnlineRecruitingPlatform.HttpClients.Tests.ZarplataRu.Clients.Vacancie
         }
 
         [Fact]
-        public async Task GetVacancies_WithLargeParams_ReturnHttpStatusCode400Response()
+        public async Task GetNewVacancies_WithLargeParams_ReturnHttpStatusCode400Response()
         {
-            var response = await _client.GetVacancies(100, 10000);
+            var response = await _client.GetNewVacancies(100, 10000);
 
             response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }

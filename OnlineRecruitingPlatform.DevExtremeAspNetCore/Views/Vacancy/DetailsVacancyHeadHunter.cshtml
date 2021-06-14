@@ -1,0 +1,74 @@
+﻿@model dynamic
+<header class="page-header bg-img size-lg">
+    <div class="container">
+        <div class="header-detail">
+            <div class="company-logo-container-92px">
+                @if (Model.employer.logo_urls != null)
+                {
+                    <img class="logo" src="@Model.employer.logo_urls.original" alt="">
+                }
+                else
+                {
+                    <img class="logo" src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg" alt="">
+                }
+            </div>
+            <div class="hgroup">
+                <h1>@Model.name</h1>
+                <h3><a asp-controller="Company" asp-action="Details" asp-route-type="HeadHunter" asp-route-id="@Model.employer.id">@Model.employer.name</a></h3>
+            </div>
+            <time datetime="@Model.published_at">@Model.published_at</time>
+            <hr>
+            <p class="lead">@Html.Raw(Model.description)</p>
+            <ul class="details cols-3">
+                <li>
+                    <i class="fa fa-map-marker"></i>
+                    @if (Model.address != null)
+                    {
+                        <span>@Model.address.raw</span>
+                    }
+                    else
+                    {
+                        <span>Не указан</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-briefcase"></i>
+                    <span>@Model.employment.name</span>
+                </li>
+                <li>
+                    <i class="fa fa-money"></i>
+                    @if (Model.salary != null)
+                    {
+                        <span>@(Model.salary.from != null ? $"от {Model.salary.from} {Model.salary.currency} " : "")@(Model.salary.to != null ? $"до {Model.salary.to} {Model.salary.currency}" : "")</span>
+                    }
+                    else
+                    {
+                        <span>Не указана</span>
+                    }
+                </li>
+                <li>
+                    <i class="fa fa-clock-o"></i>
+                    <span>@Model.schedule.name</span>
+                </li>
+                <li>
+                    <i class="fa fa-flask"></i>
+                    <span>@Model.experience.name</span>
+                </li>
+                <li>
+                    <i class="fa fa-copyright"></i>
+                    <a href="@Model.alternate_url">Взято с HeadHunter</a>
+                </li>
+            </ul>
+
+            @if (Model.key_skills != null)
+            {
+                <div class="tag-list">
+                    @foreach (var keySkill in Model.key_skills)
+                    {
+                        <span>@keySkill.name</span>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</header>
