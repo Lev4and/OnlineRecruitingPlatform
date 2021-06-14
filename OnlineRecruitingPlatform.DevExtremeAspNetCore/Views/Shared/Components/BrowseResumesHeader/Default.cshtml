@@ -1,14 +1,14 @@
-﻿@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.BrowseVacanciesViewModel
+﻿@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.BrowseResumesViewModel
 <header class="page-header bg-img" style="background-image: url(../images/interface/main/bg-banner1.jpg)">
     <div class="container page-name">
-        <h1 class="text-center">Просмотр вакансий</h1>
-        <p class="lead text-center">Используйте следующее окно поиска, чтобы найти работу, которая вам больше подходит</p>
+        <h1 class="text-center">Просмотреть резюме</h1>
+        <p class="lead text-center">Используйте следующее поле поиска, чтобы найти резюме, которое лучше соответствует вашей должности</p>
     </div>
     <div class="container">
-        <form method="post" asp-controller="Vacancy" asp-action="Browse">
+        <form method="post" asp-controller="Resume" asp-action="Browse">
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-4">
-                    <input type="text" class="form-control" placeholder="Должность, навыки или компания" asp-for="SearchStringByJobTitleSkillsOrCompany">
+                    <input type="text" class="form-control" placeholder="Должность, навыки или компания" asp-for="SearchStringByJobTitleSkills">
                 </div>
                 <div class="form-group col-xs-12 col-sm-4">
                     <input type="text" class="form-control" placeholder="Город, область или почтовый индекс" asp-for="SearchStringByCityAddressOrZip">

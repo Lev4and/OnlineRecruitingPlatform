@@ -1,0 +1,16 @@
+﻿@using OnlineRecruitingPlatform.Model.Formatters.String
+@model OnlineRecruitingPlatform.DevExtremeAspNetCore.Models.BrowseResumesViewModel
+@await Component.InvokeAsync("BrowseResumesHeader", Model)
+<main>
+    <section class="no-padding-top bg-alt">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <br>
+                    <h5>Мы нашли <strong>100</strong> совпадений, вы смотрите с <i>1</i> по <i>25</i></h5>
+                </div>
+                @await Html.PartialAsync("ResumeZarplataRuItemsBrowsePartial", Model.ResumesZarplataRu)
+            </div>
+        </div>
+    </section>
+</main>

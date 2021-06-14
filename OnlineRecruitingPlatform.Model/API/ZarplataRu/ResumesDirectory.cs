@@ -7,7 +7,7 @@ namespace OnlineRecruitingPlatform.Model.API.ZarplataRu
         [JsonProperty("metadata")]
         public Metadata Metadata { get; set; }
 
-        [JsonProperty("companies")]
+        [JsonProperty("resumes")]
         public dynamic[] Resumes { get; set; }
     }
 }

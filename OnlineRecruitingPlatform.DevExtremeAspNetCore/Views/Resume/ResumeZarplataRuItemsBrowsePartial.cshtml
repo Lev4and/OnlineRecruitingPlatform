@@ -1,0 +1,105 @@
+﻿@model List<dynamic>
+@foreach (var resume in Model)
+{
+    <div class="col-xs-12">
+        <a class="item-block" asp-controller="Resume" asp-action="Details" asp-route-type="ZarplataRu" asp-route-id="@resume.id">
+            <header>
+                <div class="company-logo-container-62px">
+                    @if (resume.photo.url != null)
+                    {
+                        <img src="@resume.photo.url">
+                    }
+                    else
+                    {
+                        <img src="~/fonts/fontawesome6/pro/svgs/solid/file-image.svg">
+                    }
+                </div>
+                <div class="hgroup">
+                    <h4>@resume.header</h4>
+                    <h5>Пол: @resume.sex Возраст: @resume.age @(resume.citizenship != null ? $"Гражданство: {resume.citizenship.title}" : "") @(resume.experience_length != null ? $"Опыт: {resume.experience_length.title}" : "")</h5>
+                </div>
+                <div class="header-meta">
+
+                </div>
+            </header>
+            <div class="item-body">
+                <p>@resume.personal_qualities</p>
+            </div>
+            <footer>
+                <ul class="details cols-3">
+                    <li>
+                        <i class="fa fa-money"></i>
+                        @if (resume.salary != null)
+                        {
+                            <span>@resume.salary</span>
+                        }
+                        else
+                        {
+                            <span>Не указана</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-briefcase"></i>
+                        @if (resume.working_type != null)
+                        {
+                            <span>@resume.working_type.title</span>
+                        }
+                        else
+                        {
+                            <span>Не указан</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-clock-o"></i>
+                        @if (resume.schedule != null)
+                        {
+                            <span>@resume.schedule.title</span>
+                        }
+                        else
+                        {
+                            <span>Не указан</span>
+                        }
+                    </li>
+                    <li>
+                        <i class="fa fa-copyright"></i>
+                        <span>Взято с ZarplataRu</span>
+                    </li>
+                </ul>
+
+                <div class="tag-list">
+                    <p>@resume.skills</p>
+                </div>
+
+                @if (resume.working_types != null)
+                {
+                    <div class="tag-list">
+                        @foreach (var workingTypes in resume.working_types)
+                        {
+                            <span>@workingTypes.title</span>
+                        }
+                    </div>
+                }
+
+                @if (resume.schedules != null)
+                {
+                    <div class="tag-list">
+                        @foreach (var schedule in resume.schedules)
+                        {
+                            <span>@schedule.title</span>
+                        }
+                    </div>
+                }
+
+                @if (resume.rubrics != null)
+                {
+                    <div class="tag-list">
+                        @foreach (var rubric in resume.rubrics)
+                        {
+                            <span>@rubric.title</span>
+                        }
+                    </div>
+                }
+            </footer>
+        </a>
+    </div>
+}
