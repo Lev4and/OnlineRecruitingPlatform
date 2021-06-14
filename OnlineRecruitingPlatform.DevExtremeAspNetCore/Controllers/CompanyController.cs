@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
 using OnlineRecruitingPlatform.Model.Deserializers;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HeadHunterClients = OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients;
@@ -30,11 +31,15 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 
             var viewModel = new BrowseCompaniesViewModel()
             {
+                NumberPage = 1,
                 SearchStringByTitle = "",
                 SearchStringByLocation = "",
                 CompaniesHeadHunter = resultCompaniesHeadHunter.Companies.ToList(),
-                CompaniesZarplataRu = resultCompaniesZarplataRu.Companies.ToList()
+                CompaniesZarplataRu = resultCompaniesZarplataRu.Companies.ToList(),
+                CountItems = resultCompaniesHeadHunter.Found + resultCompaniesZarplataRu.Metadata.Resultset.Count
             };
+
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }
@@ -43,11 +48,37 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
         [Route("~/Company/Browse")]
         public async Task<IActionResult> Browse(BrowseCompaniesViewModel viewModel)
         {
-            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(1, 25, viewModel.SearchStringByTitle));
-            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, 1, viewModel.SearchStringByTitle));
+            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(viewModel.NumberPage, 25, viewModel.SearchStringByTitle));
+            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, viewModel.NumberPage * 25, viewModel.SearchStringByTitle));
+
+            if (resultCompaniesHeadHunter == null)
+            {
+                resultCompaniesHeadHunter = new HeadHunterCompanies.SearchResultCompanies()
+                {
+                    Found = 0,
+                    Companies = new List<dynamic>().ToArray()
+                };
+            }
+
+            if (resultCompaniesZarplataRu == null)
+            {
+                resultCompaniesZarplataRu = new ZarplataRu.CompaniesDirectory()
+                {
+                    Metadata = new ZarplataRu.Metadata()
+                    {
+                        Resultset = new ZarplataRu.Resultset()
+                        {
+                            Count = 0
+                        }
+                    },
+                    Companies = new List<dynamic>().ToArray()
+                };
+            }
 
             viewModel.CompaniesHeadHunter = resultCompaniesHeadHunter.Companies.ToList();
             viewModel.CompaniesZarplataRu = resultCompaniesZarplataRu.Companies.ToList();
+            viewModel.CountItems = resultCompaniesHeadHunter.Found + resultCompaniesZarplataRu.Metadata.Resultset.Count;
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }

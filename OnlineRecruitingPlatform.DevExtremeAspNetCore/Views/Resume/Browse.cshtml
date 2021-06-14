@@ -7,10 +7,58 @@
             <div class="row">
                 <div class="col-xs-12">
                     <br>
-                    <h5>Мы нашли <strong>100</strong> совпадений, вы смотрите с <i>1</i> по <i>25</i></h5>
+                    <h5>@Html.Raw(Model.GetFormattedStringRange())</h5>
                 </div>
                 @await Html.PartialAsync("ResumeZarplataRuItemsBrowsePartial", Model.ResumesZarplataRu)
             </div>
         </div>
     </section>
+    <div class="row">
+        <div class="col-xs-12">
+            <nav class="text-center">
+                <ul class="pagination">
+                    <li>
+                        <a onclick="OnClickPreviousPage(this);" aria-label="Previous">
+                            <i class="ti-angle-left"></i>
+                        </a>
+                    </li>
+                    @foreach (var pagination in Model.Pagination)
+                    {
+                        <li @(Model.NumberPage == pagination ? $"class={"active"}" : "")><a data-number-page="@pagination" onclick="OnClickPage(this);">@pagination</a></li>
+                    }
+                    <li>
+                        <a onclick="OnClickNextPage(this);" aria-label="Next">
+                            <i class="ti-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 </main>
+@section ScriptPage
+{
+    <script>
+        function OnClickPreviousPage(element) {
+            let numberPage = $('#input-hidden-number-page').attr('value');
+
+            if (numberPage > 0) {
+                $('#input-hidden-number-page').attr('value', numberPage - 1);
+            }
+            else {
+                $('#input-hidden-number-page').attr('value', 0);
+            }
+            $('#form').submit();
+        }
+
+        function OnClickPage(element) {
+            $('#input-hidden-number-page').attr('value', $(element).attr('data-number-page'));
+            $('#form').submit();
+        }
+
+        function OnClickNextPage(element) {
+            $('#input-hidden-number-page').attr('value', $('#input-hidden-number-page').attr('value') + 1);
+            $('#form').submit();
+        }
+    </script>
+}

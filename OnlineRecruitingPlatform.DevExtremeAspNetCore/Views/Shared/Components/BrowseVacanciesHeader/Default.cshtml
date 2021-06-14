@@ -5,7 +5,8 @@
         <p class="lead text-center">Используйте следующее окно поиска, чтобы найти работу, которая вам больше подходит</p>
     </div>
     <div class="container">
-        <form method="post" asp-controller="Vacancy" asp-action="Browse">
+        <form id="form" method="post" asp-controller="Vacancy" asp-action="Browse">
+            <input id="input-hidden-number-page" type="hidden" asp-for="NumberPage" />
             <div class="row">
                 <div class="form-group col-xs-12 col-sm-4">
                     <input type="text" class="form-control" placeholder="Должность, навыки или компания" asp-for="SearchStringByJobTitleSkillsOrCompany">

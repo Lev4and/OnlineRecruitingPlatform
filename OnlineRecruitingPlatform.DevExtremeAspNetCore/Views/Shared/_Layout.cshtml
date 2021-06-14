@@ -14,5 +14,9 @@
     <a id="scroll-up" href="#">
         <i class="ti-angle-up"></i>
     </a>
+    @if (IsSectionDefined("ScriptPage"))
+    {
+        @await RenderSectionAsync("ScriptPage")
+    }
 </body>
 </html>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
 using OnlineRecruitingPlatform.Model.Deserializers;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HeadHunterClients = OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients;
@@ -30,29 +31,60 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 
             var viewModel = new BrowseVacanciesViewModel()
             {
+                NumberPage = 1,
                 SearchStringByCityAddressOrZip = "",
                 SearchStringByJobTitleSkillsOrCompany = "",
                 VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList(),
-                VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList()
+                VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList(),
+                CountItems = resultVacanciesHeadHunter.Found + resultVacanciesZarplataRu.Metadata.Resultset.Count
             };
 
-            return View(viewModel);
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Browse(BrowseVacanciesViewModel viewModel)
-        {
-            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1, viewModel.SearchStringByJobTitleSkillsOrCompany));
-            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, 1, viewModel.SearchStringByJobTitleSkillsOrCompany));
-
-            viewModel.VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList();
-            viewModel.VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList();
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }
 
         [HttpPost]
         [Route("~/Vacancy/Browse")]
+        public async Task<IActionResult> Browse(BrowseVacanciesViewModel viewModel)
+        {
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, viewModel.NumberPage, viewModel.SearchStringByJobTitleSkillsOrCompany));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkillsOrCompany));
+
+            if(resultVacanciesHeadHunter == null)
+            {
+                resultVacanciesHeadHunter = new HeadHunterVacancies.VacanciesDirectory()
+                {
+                    Found = 0,
+                    Vacancies = new List<dynamic>().ToArray()
+                };
+            }
+
+            if (resultVacanciesZarplataRu == null)
+            {
+                resultVacanciesZarplataRu = new ZarplataRu.VacanciesDirectory()
+                {
+                    Metadata = new ZarplataRu.Metadata()
+                    {
+                        Resultset = new ZarplataRu.Resultset()
+                        {
+                            Count = 0
+                        }
+                    },
+                    Vacancies = new List<dynamic>().ToArray()
+                };
+            }
+
+            viewModel.VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList();
+            viewModel.VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList();
+            viewModel.CountItems = resultVacanciesHeadHunter.Found + resultVacanciesZarplataRu.Metadata.Resultset.Count;
+            viewModel.GeneratePagination();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Route("~/Vacancy")]
         public async Task<IActionResult> Browse(HomeViewModel homeViewModel)
         {
             var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1, homeViewModel.SearchStringByJobTitleSkillsOrCompany));
@@ -60,11 +92,15 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
 
             var viewModel = new BrowseVacanciesViewModel()
             {
+                NumberPage = 1,
                 VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList(),
                 VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList(),
                 SearchStringByCityAddressOrZip = homeViewModel.SearchStringByCityAddressOrZip,
-                SearchStringByJobTitleSkillsOrCompany = homeViewModel.SearchStringByJobTitleSkillsOrCompany
+                SearchStringByJobTitleSkillsOrCompany = homeViewModel.SearchStringByJobTitleSkillsOrCompany,
+                CountItems = resultVacanciesHeadHunter.Found + resultVacanciesZarplataRu.Metadata.Resultset.Count
             };
+
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }

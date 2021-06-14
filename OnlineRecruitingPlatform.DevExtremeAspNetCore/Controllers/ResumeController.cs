@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OnlineRecruitingPlatform.DevExtremeAspNetCore.Models;
 using OnlineRecruitingPlatform.Model.Deserializers;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZarplataRu = OnlineRecruitingPlatform.Model.API.ZarplataRu;
@@ -21,14 +22,18 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
         [Route("~/Resume/Browse")]
         public async Task<IActionResult> Browse()
         {
-            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, 1));
+            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, 0));
 
             var viewModel = new BrowseResumesViewModel()
             {
+                NumberPage = 1,
                 SearchStringByCityAddressOrZip = "",
                 SearchStringByJobTitleSkills = "",
-                ResumesZarplataRu = resultResumesZarplataRu.Resumes.ToList()
+                ResumesZarplataRu = resultResumesZarplataRu.Resumes.ToList(),
+                CountItems = resultResumesZarplataRu.Metadata.Resultset.Count
             };
+
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }
@@ -37,9 +42,26 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
         [Route("~/Resume/Browse")]
         public async Task<IActionResult> Browse(BrowseResumesViewModel viewModel)
         {
-            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, 1, viewModel.SearchStringByJobTitleSkills));
+            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkills));
+
+            if (resultResumesZarplataRu == null)
+            {
+                resultResumesZarplataRu = new ZarplataRu.ResumesDirectory()
+                {
+                    Metadata = new ZarplataRu.Metadata()
+                    {
+                        Resultset = new ZarplataRu.Resultset()
+                        {
+                            Count = 0
+                        }
+                    },
+                    Resumes = new List<dynamic>().ToArray()
+                };
+            }
 
             viewModel.ResumesZarplataRu = resultResumesZarplataRu.Resumes.ToList();
+            viewModel.CountItems = resultResumesZarplataRu.Metadata.Resultset.Count;
+            viewModel.GeneratePagination();
 
             return View(viewModel);
         }

@@ -16,7 +16,7 @@
                 </div>
                 <div class="hgroup">
                     <h4>@vacancy.header</h4>
-                    @if (vacancy.company != null)
+                    @if (vacancy.company != null ? vacancy.company.GetType().GetProperty("title") != null : false)
                     {
                         <h5>@vacancy.company.title</h5>
                     }
