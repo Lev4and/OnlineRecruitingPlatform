@@ -39,6 +39,19 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        [Route("~/Company/Browse")]
+        public async Task<IActionResult> Browse(BrowseCompaniesViewModel viewModel)
+        {
+            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(1, 25, viewModel.SearchStringByTitle));
+            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, 1, viewModel.SearchStringByTitle));
+
+            viewModel.CompaniesHeadHunter = resultCompaniesHeadHunter.Companies.ToList();
+            viewModel.CompaniesZarplataRu = resultCompaniesZarplataRu.Companies.ToList();
+
+            return View(viewModel);
+        }
+
         [Route("~/Company/{type}/{id}")]
         public async Task<IActionResult> Details(string type, int id)
         {

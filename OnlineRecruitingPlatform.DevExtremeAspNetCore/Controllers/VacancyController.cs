@@ -39,6 +39,36 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Browse(BrowseVacanciesViewModel viewModel)
+        {
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1, viewModel.SearchStringByJobTitleSkillsOrCompany));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, 1, viewModel.SearchStringByJobTitleSkillsOrCompany));
+
+            viewModel.VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList();
+            viewModel.VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Route("~/Vacancy/Browse")]
+        public async Task<IActionResult> Browse(HomeViewModel homeViewModel)
+        {
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1, homeViewModel.SearchStringByJobTitleSkillsOrCompany));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, 1, homeViewModel.SearchStringByJobTitleSkillsOrCompany));
+
+            var viewModel = new BrowseVacanciesViewModel()
+            {
+                VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList(),
+                VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList(),
+                SearchStringByCityAddressOrZip = homeViewModel.SearchStringByCityAddressOrZip,
+                SearchStringByJobTitleSkillsOrCompany = homeViewModel.SearchStringByJobTitleSkillsOrCompany
+            };
+
+            return View(viewModel);
+        }
+
         [Route("~/Vacancy/{type}/{id}")]
         public async Task<IActionResult> Details(string type, int id)
         {

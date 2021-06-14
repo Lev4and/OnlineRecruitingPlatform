@@ -12,11 +12,11 @@ namespace OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Vacancies
 
         }
 
-        public async Task<HttpResponseMessage> GetVacancies(int perPage, int page)
+        public async Task<HttpResponseMessage> GetVacancies(int perPage, int page, string searchString = "")
         {
             try
             {
-                return await _client.GetAsync($"?per_page={perPage}&page={page}");
+                return await _client.GetAsync($"?per_page={perPage}&page={page}&text={searchString}");
             }
             catch
             {

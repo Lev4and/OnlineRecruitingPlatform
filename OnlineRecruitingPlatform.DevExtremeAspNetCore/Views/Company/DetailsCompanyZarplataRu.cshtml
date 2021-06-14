@@ -48,9 +48,9 @@
                 <span>Контакты</span>
                 <h2>Контактная информация компании</h2>
             </header>
-            <ul class="details cols-3">
-                @foreach (var contact in Model.contacts)
-                {
+            @foreach (var contact in Model.contacts)
+            {
+                <ul class="details">
                     <li>
                         <i class="fa fa-map-marker"></i>
                         <span>@contact.address</span>
@@ -66,8 +66,8 @@
                         <i class="fa fa-copyright"></i>
                         <a href="@contact.canonical_url">Взято с ZarplataRu</a>
                     </li>
-                }
-            </ul>
+                </ul>
+            }
         </div>
     </section>
 </main>
