@@ -5,8 +5,7 @@
                 <h6>О нас</h6>
                 <p class="text-justify">Веб-сайт по трудоустройству - это веб-сайт, специально посвященный вопросам трудоустройства или карьеры. Многие веб-сайты по трудоустройству предназначены для того, чтобы работодатели могли публиковать требования к вакансиям, которые необходимо заполнить, и обычно называются досками по трудоустройству. Другие сайты по трудоустройству предлагают обзоры работодателей, советы по карьере и поиску работы, а также описывают различные описания должностей или работодателей. Через веб-сайт о вакансиях потенциальный сотрудник может найти и заполнить заявление о приеме на работу.</p>
             </div>
-
-            <div class="col-xs-6 col-md-3">
+            @*<div class="col-xs-6 col-md-3">
                 <h6>Компания</h6>
                 <ul class="footer-links">
                     <li><a href="page-about.html">О нас</a></li>
@@ -14,15 +13,15 @@
                     <li><a href="page-typography.html">Политика конфиденциальности</a></li>
                     <li><a href="page-contact.html">Свяжитесь с нами</a></li>
                 </ul>
-            </div>
+            </div>*@
             <div class="col-xs-6 col-md-3">
                 <h6>Актуальные вакансии</h6>
                 <ul class="footer-links">
-                    <li><a href="job-list.html">Front-end developer</a></li>
-                    <li><a href="job-list.html">Android developer</a></li>
-                    <li><a href="job-list.html">iOS developer</a></li>
-                    <li><a href="job-list.html">Full stack developer</a></li>
-                    <li><a href="job-list.html">Project administrator</a></li>
+                    <li><a asp-controller="Vacancy" asp-action="Browse" asp-route-title="Front-end developer">Front-end developer</a></li>
+                    <li><a asp-controller="Vacancy" asp-action="Browse" asp-route-title="Android developer">Android developer</a></li>
+                    <li><a asp-controller="Vacancy" asp-action="Browse" asp-route-title="iOS developer">iOS developer</a></li>
+                    <li><a asp-controller="Vacancy" asp-action="Browse" asp-route-title="Full stack developer">Full stack developer</a></li>
+                    <li><a asp-controller="Vacancy" asp-action="Browse" asp-route-title="Project administrator">Project administrator</a></li>
                 </ul>
             </div>
         </div>

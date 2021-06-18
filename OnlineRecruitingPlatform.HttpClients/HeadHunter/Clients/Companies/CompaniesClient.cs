@@ -22,7 +22,7 @@ namespace OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Companies
             }
         }
 
-        public async Task<HttpResponseMessage> GetCompanies(int pageNumber = 0, int perPage = 100, string searchString = "")
+        public async Task<HttpResponseMessage> GetCompanies(int pageNumber = 0, int perPage = 100, string searchString = "", string searchStringByLocation = "")
         {
             try
             {
@@ -36,7 +36,7 @@ namespace OnlineRecruitingPlatform.HttpClients.HeadHunter.Clients.Companies
                     perPage = 20;
                 }
 
-                return await _client.GetAsync($"?page={pageNumber}&per_page={perPage}&text={searchString}");
+                return await _client.GetAsync($"?page={pageNumber}&per_page={perPage}&text={searchString}%20{searchStringByLocation}");
             }
             catch
             {

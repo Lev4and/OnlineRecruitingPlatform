@@ -10,11 +10,11 @@ namespace OnlineRecruitingPlatform.HttpClients.ZarplataRu.Clients.Companies
 
         }
 
-        public async Task<HttpResponseMessage> GetCompanies(int limit, int offset, string searchString = "")
+        public async Task<HttpResponseMessage> GetCompanies(int limit, int offset, string searchString = "", string searchStringByLocation = "")
         {
             try
             {
-                return await _client.GetAsync($"?limit={limit}&offset={offset}&q={searchString}");
+                return await _client.GetAsync($"?limit={limit}&offset={offset}&q={searchString}%20{searchStringByLocation}");
             }
             catch
             {

@@ -48,8 +48,8 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
         [Route("~/Company/Browse")]
         public async Task<IActionResult> Browse(BrowseCompaniesViewModel viewModel)
         {
-            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(viewModel.NumberPage, 25, viewModel.SearchStringByTitle));
-            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, viewModel.NumberPage * 25, viewModel.SearchStringByTitle));
+            var resultCompaniesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterCompanies.SearchResultCompanies>(await _companiesHeadHunterClient.GetCompanies(viewModel.NumberPage, 25, viewModel.SearchStringByTitle, viewModel.SearchStringByLocation));
+            var resultCompaniesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.CompaniesDirectory>(await _companiesZarplataRuClient.GetCompanies(25, viewModel.NumberPage * 25, viewModel.SearchStringByTitle, viewModel.SearchStringByLocation));
 
             if (resultCompaniesHeadHunter == null)
             {

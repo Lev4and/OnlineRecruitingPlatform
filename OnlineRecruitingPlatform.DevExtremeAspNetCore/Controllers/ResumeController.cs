@@ -42,7 +42,7 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
         [Route("~/Resume/Browse")]
         public async Task<IActionResult> Browse(BrowseResumesViewModel viewModel)
         {
-            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkills));
+            var resultResumesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.ResumesDirectory>(await _resumesZarplataRuClient.GetResumes(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkills, viewModel.SearchStringByCityAddressOrZip));
 
             if (resultResumesZarplataRu == null)
             {

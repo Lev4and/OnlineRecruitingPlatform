@@ -44,12 +44,33 @@ namespace OnlineRecruitingPlatform.DevExtremeAspNetCore.Controllers
             return View(viewModel);
         }
 
+        [Route("~/Vacancy/Browse/{title}")]
+        public async Task<IActionResult> Browse(string title)
+        {
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, 1, title));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, 1, title));
+
+            var viewModel = new BrowseVacanciesViewModel()
+            {
+                NumberPage = 1,
+                SearchStringByCityAddressOrZip = "",
+                SearchStringByJobTitleSkillsOrCompany = title,
+                VacanciesHeadHunter = resultVacanciesHeadHunter.Vacancies.ToList(),
+                VacanciesZarplataRu = resultVacanciesZarplataRu.Vacancies.ToList(),
+                CountItems = resultVacanciesHeadHunter.Found + resultVacanciesZarplataRu.Metadata.Resultset.Count
+            };
+
+            viewModel.GeneratePagination();
+
+            return View(viewModel);
+        }
+
         [HttpPost]
         [Route("~/Vacancy/Browse")]
         public async Task<IActionResult> Browse(BrowseVacanciesViewModel viewModel)
         {
-            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, viewModel.NumberPage, viewModel.SearchStringByJobTitleSkillsOrCompany));
-            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkillsOrCompany));
+            var resultVacanciesHeadHunter = await BaseDeserializer.Deserialize<HeadHunterVacancies.VacanciesDirectory>(await _vacanciesHeadHunterClient.GetVacancies(25, viewModel.NumberPage, viewModel.SearchStringByJobTitleSkillsOrCompany, viewModel.SearchStringByCityAddressOrZip));
+            var resultVacanciesZarplataRu = await GzipDeserializer.Deserialize<ZarplataRu.VacanciesDirectory>(await _vacanciesZarplataRuClient.GetVacancies(25, viewModel.NumberPage * 25, viewModel.SearchStringByJobTitleSkillsOrCompany, viewModel.SearchStringByCityAddressOrZip));
 
             if(resultVacanciesHeadHunter == null)
             {
